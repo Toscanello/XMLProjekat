@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.vakcinisoni.com/DigitalCert"
+    xmlns:vx="http://www.vakcinisoni.com/DigitalCert">
+    <xs:element name="PCRTest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="testInfo" type="vx:TTest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AntigenTest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="testInfo" type="vx:TTest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProteinTest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="testInfo" type="vx:TTest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType abstract="false" name="TTest">
+        <xs:sequence>
+            <xs:element name="sampleType" type="xs:string"/>
+            <xs:element name="testManufacturer" type="xs:string"/>
+            <xs:element name="sampleDate" type="xs:date"/>
+            <xs:element name="resultDate" type="xs:date"/>
+            <xs:element name="result" type="xs:boolean"/>
+            <xs:element name="laboratory" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="certificate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="gender">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="dateOfBirth" type="xs:date"/>
+                <xs:element name="jmbg">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="\d{13}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="passportNum" type="xs:string"/>
+                <xs:element name="vaccination">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="dose" type="vx:TDose" maxOccurs="4" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" ref="vx:PCRTest"/>
+                <xs:element minOccurs="0" ref="vx:AntigenTest"/>
+                <xs:element minOccurs="0" ref="vx:ProteinTest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TDose">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="manufacturer" type="xs:string"/>
+            <xs:element name="batch" type="xs:long"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="institution" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="count"/>
+    </xs:complexType>
+</xs:schema>

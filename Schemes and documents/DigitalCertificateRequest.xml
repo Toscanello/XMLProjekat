@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<certificateRequest xmlns="http://www.vakcinisoni.com/DigitalCertRequest"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vakcinisoni.com/DigitalCertRequest DigitalCertRequest.xsd">
+    <fullName>Filip Volaric</fullName>
+    <birthDate>1999-09-25</birthDate>
+    <gender>0</gender>
+    <jmbg>2509999880166</jmbg>
+    <passportNum>00112233</passportNum>
+    <reason>I want to travel</reason>
+    <place>Ruma</place>
+    <requestDate>2021-12-05</requestDate>
+</certificateRequest>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.vakcinisoni.com/ImmunizationAccordance"
+    xmlns:vx="http://www.vakcinisoni.com/ImmunizationAccordance">
+
+    <xs:element name="accordance">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="jmbg">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="\d{13}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="foreignCitizenship" nillable="true" type="xs:string"/>
+                <xs:element name="surname" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="parentName" type="xs:string"/>
+                <xs:element name="gender">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="birthDate" type="xs:date"/>
+                <xs:element name="birthPlace" type="xs:string"/>
+                <xs:element name="address" type="xs:string"/>
+                <xs:element name="post" type="xs:string"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="homeNumber" type="xs:string"/>
+                <xs:element name="phoneNum" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="workStatus">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="5"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="employedAt">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="5"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="socialSecurity" type="xs:boolean"> </xs:element>
+                <xs:element name="residenceName" type="xs:string"/>
+                <xs:element name="isAccordant" type="xs:boolean"/>
+                <xs:element name="medicineName" type="xs:string"/>
+                <xs:element name="date" type="xs:date"/>
+                <xs:element name="vaccineEvidence">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="institution" type="xs:string"/>
+                            <xs:element name="vaccinationNum" type="xs:string"/>
+                            <xs:element name="doctorInfo">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="fullName" type="xs:string"/>
+                                        <xs:element name="fax" type="xs:string"/>
+                                        <xs:element name="phoneNum" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="table">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="4" name="row">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="vaccineName" type="xs:string"/>
+                                                  <xs:element name="dateIssued" type="xs:date"/>
+                                                  <xs:element name="issueMethod">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="0"/>
+                                                  <xs:maxInclusive value="5"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="bodyPart">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="0"/>
+                                                  <xs:maxInclusive value="5"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="batch" type="xs:int"/>
+                                                  <xs:element name="manufacturer" type="xs:string"/>
+                                                  <xs:element name="reaction" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="contraindications" nillable="true"
+                                            minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="diagnosis" type="xs:string"/>
+                                                  <xs:element name="date" type="xs:date"/>
+                                                  <xs:element default="false" name="permanent"
+                                                  type="xs:boolean"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
