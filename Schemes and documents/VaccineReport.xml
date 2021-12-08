@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vaccinationReport xmlns="http://www.vakcinisoni.com/VaccineReport"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vakcinisoni.com/VaccineReport VaccineReport.xsd">
+    <fullName>Filip Volaric</fullName>
+    <birthDate>1999-09-25</birthDate>
+    <gender>0</gender>
+    <jmbg>2509999880166</jmbg>
+    <doses>
+        <dose>
+            <date>2021-11-06</date>
+            <batch>1101</batch>
+        </dose>
+        <dose>
+            <date>2021-12-06</date>
+            <batch>2732</batch>
+        </dose>
+    </doses>
+    <institution>DZ Ruma</institution>
+    <vaccine>Pfizer</vaccine>
+    <confirmationDate>2021-12-06</confirmationDate>
+    <qrCode>http://www.vakcinisoni.com/VaccineReport/2509999880166</qrCode>
+</vaccinationReport>

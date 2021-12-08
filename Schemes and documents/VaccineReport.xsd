@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.vakcinisoni.com/VaccineReport"
+    xmlns:vx="http://www.vakcinisoni.com/VaccineReport">
+
+    <xs:element name="vaccinationReport">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="birthDate" type="xs:date"/>
+                <xs:element name="gender">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="jmbg">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="\d{13}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="doses">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="4" name="dose">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="date" type="xs:date"/>
+                                        <xs:element name="batch">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="0"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="institution" type="xs:string"/>
+                <xs:element name="vaccine" type="xs:string"/>
+                <xs:element name="confirmationDate" type="xs:date"/>
+                <xs:element name="qrCode" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
