@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vaccineCandidate xmlns="http://www.vakcinisoni.com/VaccineCandidate"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vakcinisoni.com/VaccineCandidate VaccineCandidate.xsd">
+    <residence>0</residence>
+    <jmbg>2509999880166</jmbg>
+    <name>Filip</name>
+    <surname>Volaric</surname>
+    <email>filip.kresa@gmail.com</email>
+    <phoneNum>0641345948</phoneNum>
+    <homeNum>022433857</homeNum>
+    <location>Ruma</location>
+    <options>
+        <manufacturer>Pfizer</manufacturer>
+        <manufacturer>Sputnik V</manufacturer>
+        <manufacturer>Sinopharm</manufacturer>
+        <manufacturer>Astra Zeneca</manufacturer>
+        <manufacturer>Moderna</manufacturer>
+    </options>
+    <isBloodDonor>false</isBloodDonor>
+    <date>2021-05-12</date>
+</vaccineCandidate>
