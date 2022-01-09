@@ -26,7 +26,7 @@
                 <xs:element name="doses">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element maxOccurs="4" name="dose">
+                            <xs:element maxOccurs="unbounded" name="dose">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="date" type="xs:date"/>

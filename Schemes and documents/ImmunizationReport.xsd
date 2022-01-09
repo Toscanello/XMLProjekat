@@ -54,6 +54,7 @@
                 </xs:element>
                 <xs:element name="reportDate" type="xs:date"/>
             </xs:sequence>
+            <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="manufacturer">

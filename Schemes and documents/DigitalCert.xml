@@ -3,6 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.vakcinisoni.com/DigitalCert DigitalCert.xsd">
     <id>1</id>
+    <qrCode>http://www.vakcinisoni.com/DigitalCert/2509999880166</qrCode>
     <fullName>Pera Peric</fullName>
     <gender>0</gender>
     <dateOfBirth>2021-12-07</dateOfBirth>

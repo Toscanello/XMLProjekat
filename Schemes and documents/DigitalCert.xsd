@@ -37,6 +37,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:long"/>
+                <xs:element name="qrCode" type="xs:string"/>
                 <xs:element name="fullName" type="xs:string"/>
                 <xs:element name="gender">
                     <xs:simpleType>
@@ -58,7 +59,7 @@
                 <xs:element name="vaccination">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="dose" type="vx:TDose" maxOccurs="4" minOccurs="0"/>
+                            <xs:element name="dose" type="vx:TDose" maxOccurs="4" minOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -76,6 +77,6 @@
             <xs:element name="date" type="xs:date"/>
             <xs:element name="institution" type="xs:string"/>
         </xs:sequence>
-        <xs:attribute name="count"/>
+        <xs:attribute name="count" type="xs:positiveInteger"/>
     </xs:complexType>
 </xs:schema>
