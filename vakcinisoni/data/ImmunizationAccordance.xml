@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<accordance xmlns="http://www.vakcinisoni.com/ImmunizationAccordance"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationAccordance ImmunizationAccordance.xsd">
+    <jmbg>2509999880166</jmbg>
+    <surname>Peric</surname>
+    <name>Pera</name>
+    <parentName>Petar</parentName>
+    <gender>0</gender>
+    <birthDate>1999-08-07</birthDate>
+    <birthPlace>Sremska Mitrovica</birthPlace>
+    <address>Perina 17</address>
+    <post>Jalija</post>
+    <city>Sremska Mitrovica</city>
+    <homeNumber>022 420420</homeNumber>
+    <phoneNum>0642042042</phoneNum>
+    <email>peraperic@gmail.com</email>
+    <workStatus>1</workStatus>
+    <employedAt>5</employedAt>
+    <socialSecurity>true</socialSecurity>
+    <residenceName>Perina Ustanova</residenceName>
+    <isAccordant>true</isAccordant>
+    <medicineName>Pfizer</medicineName>
+    <date>2021-12-07</date>
+    <vaccineEvidence>
+        <institution>DZ SM</institution>
+        <vaccinationNum>1100</vaccinationNum>
+        <doctorInfo>
+            <fullName>Mika Mikic</fullName>
+            <fax>12312312321</fax>
+            <phoneNum>022 464 373</phoneNum>
+        </doctorInfo>
+        <table>
+            <row>
+                <vaccineName>Kinez</vaccineName>
+                <dateIssued>2021-11-05</dateIssued>
+                <issueMethod>0</issueMethod>
+                <bodyPart>0</bodyPart>
+                <batch>11111</batch>
+                <manufacturer>BIOTECH</manufacturer>
+                <reaction></reaction>
+            </row>
+            <row>
+                <vaccineName>Pfizer</vaccineName>
+                <dateIssued>2021-12-05</dateIssued>
+                <issueMethod>0</issueMethod>
+                <bodyPart>1</bodyPart>
+                <batch>12221</batch>
+                <manufacturer>BIOTECH</manufacturer>
+                <reaction></reaction>
+            </row>
+            <contraindications>
+                <diagnosis>Ima temperaturu</diagnosis>
+                <date>2021-11-06</date>
+                <permanent>false</permanent>
+            </contraindications>
+        </table>
+    </vaccineEvidence>
+</accordance>
