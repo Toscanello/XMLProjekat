@@ -42,4 +42,17 @@ public class ObjectFactory {
 
     public DigitalCertificateRequest createDigitalCertificateRequest() { return new DigitalCertificateRequest(); }
 
+    public ImmunizationAccordance createImmunizationAccordance() { return new ImmunizationAccordance(); }
+
+    public ImmunizationAccordance.VaccineEvidence createVaccineEvidence()
+    { return new ImmunizationAccordance.VaccineEvidence(); }
+
+    public ImmunizationAccordance.VaccineEvidence.Table createTable()
+    { return new ImmunizationAccordance.VaccineEvidence.Table(); }
+
+    public ImmunizationAccordance.VaccineEvidence.Table.Row createRow()
+    { return new ImmunizationAccordance.VaccineEvidence.Table.Row(); }
+
+    public ImmunizationAccordance.VaccineEvidence.DoctorInfo createDoctorInfo()
+    { return new ImmunizationAccordance.VaccineEvidence.DoctorInfo(); }
 }
