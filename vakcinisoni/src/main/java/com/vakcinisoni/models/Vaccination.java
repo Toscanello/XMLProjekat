@@ -2,13 +2,11 @@ package com.vakcinisoni.models;
 
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "title",
-        "author",
-        "year",
-        "price"
+        "dose"
 })
 @XmlRootElement(name = "vaccination")
 public class Vaccination {

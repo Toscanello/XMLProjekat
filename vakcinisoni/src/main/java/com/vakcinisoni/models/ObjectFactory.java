@@ -18,24 +18,28 @@ public class ObjectFactory {
      * Create an instance of {@link Book }
      * 
      */
-    public Book createBook() {
-        return new Book();
-    }
+//    public Book createBook() {
+//        return new Book();
+//    }
+//
+//    /**
+//     * Create an instance of {@link Bookstore }
+//     *
+//     */
+//    public Bookstore createBookstore() {
+//        return new Bookstore();
+//    }
+//
+//    /**
+//     * Create an instance of {@link Book.Title }
+//     *
+//     */
+//    public Book.Title createBookTitle() {
+//        return new Book.Title();
+//    }
 
-    /**
-     * Create an instance of {@link Bookstore }
-     * 
-     */
-    public Bookstore createBookstore() {
-        return new Bookstore();
-    }
+    public DigitalCertificate createDigitalCertificate() { return new DigitalCertificate(); }
 
-    /**
-     * Create an instance of {@link Book.Title }
-     * 
-     */
-    public Book.Title createBookTitle() {
-        return new Book.Title();
-    }
+    public DigitalCertificateRequest createDigitalCertificateRequest() { return new DigitalCertificateRequest(); }
 
 }

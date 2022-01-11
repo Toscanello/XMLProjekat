@@ -1,6 +1,9 @@
 package com.vakcinisoni.controllers;
 
 import com.vakcinisoni.models.Bookstore;
+import com.vakcinisoni.models.Chain.DigitalCertificateParser;
+import com.vakcinisoni.models.Chain.ParserChain;
+import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.util.AuthenticationUtilities;
 import com.vakcinisoni.util.AuthenticationUtilities.ConnectionProperties;
 
@@ -74,15 +77,16 @@ public class FilesController {
             } else {
 
                 System.out.println("[INFO] Showing the document as XML resource: ");
-//                System.out.println(res.getContent());
 
-                Bookstore bookstore = (Bookstore) ObjectParser.parseToObject(res, "com.vakcinisoni.models");
-                System.out.println("\n\nREADING BOOKSTORE\n");
-                System.out.println(bookstore);
-                return new ResponseEntity<>(bookstore, HttpStatus.OK);
+                ParserChain chain = new DigitalCertificateParser();
+                Object obj = chain.parse(res);
+
+                System.out.println("\n\nREADING OBJECT\n");
+                System.out.println(obj);
+                return new ResponseEntity<>(obj, HttpStatus.OK);
 
             }
-        } catch (JAXBException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             //don't forget to clean up!
