@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<accordance xmlns="http://www.vakcinisoni.com/ImmunizationAccordance"
+<accordance xmlns="http://www.vakcinisoni.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationAccordance ImmunizationAccordance.xsd">
+    xsi:schemaLocation="http://www.vakcinisoni.com ImmunizationAccordance.xsd">
     <jmbg>2509999880166</jmbg>
     <surname>Peric</surname>
     <name>Pera</name>

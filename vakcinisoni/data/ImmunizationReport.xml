@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<immunizationReport xmlns="http://www.vakcinisoni.com/ImmunizationReport"
+<immunizationReport xmlns="http://www.vakcinisoni.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationReport ImmunizationReport.xsd">
+    xsi:schemaLocation="http://www.vakcinisoni.com ImmunizationReport.xsd">
     <startDate>2021-12-01</startDate>
     <finishDate>2021-12-31</finishDate>
     <immunizationRequests>2758</immunizationRequests>

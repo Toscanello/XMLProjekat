@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<certificate xmlns="http://www.vakcinisoni.com/DigitalCert"
+<certificate xmlns="http://www.vakcinisoni.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com/DigitalCert DigitalCert.xsd">
+    xsi:schemaLocation="http://www.vakcinisoni.com DigitalCert.xsd">
     <id>1</id>
     <qrCode>http://www.vakcinisoni.com/DigitalCert/2509999880166</qrCode>
     <fullName>Pera Peric</fullName>
