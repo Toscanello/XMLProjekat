@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vaccinationReport xmlns="http://www.vakcinisoni.com/VaccineReport"
+<vaccinationReport xmlns="http://www.vakcinisoni.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com/VaccineReport VaccineReport.xsd">
+    xsi:schemaLocation="http://www.vakcinisoni.com VaccineReport.xsd">
     <fullName>Filip Volaric</fullName>
     <birthDate>1999-09-25</birthDate>
     <gender>0</gender>

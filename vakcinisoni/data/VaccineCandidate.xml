@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vaccineCandidate xmlns="http://www.vakcinisoni.com/VaccineCandidate"
+<vaccineCandidate xmlns="http://www.vakcinisoni.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com/VaccineCandidate VaccineCandidate.xsd">
+    xsi:schemaLocation="http://www.vakcinisoni.com VaccineCandidate.xsd">
     <residence>0</residence>
     <jmbg>2509999880166</jmbg>
     <name>Filip</name>
