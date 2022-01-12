@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<certificateRequest xmlns="http://www.vakcinisoni.com"
+<certificateRequest xmlns="http://www.vakcinisoni.com/DigitalCertRequest"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com DigitalCertRequest.xsd">
-    <fullName>Filip Volaric</fullName>
+    xsi:schemaLocation="http://www.vakcinisoni.com/DigitalCertRequest DigitalCertRequest.xsd"
+    xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
+    about="http://www.vakcinisoni.com/DigitalCertRequest/1"
+    dateTime="2022-01-05T17:55:55"
+    accepted="true"
+    >
+    <fullName property="pred:fullName">Filip Volaric</fullName>
     <birthDate>1999-09-25</birthDate>
     <gender>0</gender>
-    <jmbg>2509999880166</jmbg>
+    <jmbg property="pred:jmbg">2509999880166</jmbg>
     <passportNum>00112233</passportNum>
     <reason>I want to travel</reason>
-    <place>Ruma</place>
+    <place property="pred:place">Ruma</place>
     <requestDate>2021-12-05</requestDate>
 </certificateRequest>

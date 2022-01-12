@@ -21,6 +21,13 @@ public class AuthenticationUtilities {
         public String driver;
         public String uri;
 
+        public String endpoint;
+        public String dataset;
+
+        public String queryEndpoint;
+        public String updateEndpoint;
+        public String dataEndpoint;
+
         public ConnectionProperties(Properties props) {
             super();
 
@@ -33,6 +40,18 @@ public class AuthenticationUtilities {
             uri = String.format(connectionUri, host, port);
 
             driver = props.getProperty("conn.driver").trim();
+
+            dataset = props.getProperty("conn.dataset").trim();
+            endpoint = props.getProperty("conn.endpoint").trim();
+
+            queryEndpoint = String.join("/", endpoint, dataset, props.getProperty("conn.query").trim());
+            updateEndpoint = String.join("/", endpoint, dataset, props.getProperty("conn.update").trim());
+            dataEndpoint = String.join("/", endpoint, dataset, props.getProperty("conn.data").trim());
+
+            System.out.println("[INFO] Parsing connection properties:");
+            System.out.println("[INFO] Query endpoint: " + queryEndpoint);
+            System.out.println("[INFO] Update endpoint: " + updateEndpoint);
+            System.out.println("[INFO] Graph store endpoint: " + dataEndpoint);
         }
     }
 
@@ -42,7 +61,7 @@ public class AuthenticationUtilities {
      * @return the configuration object
      */
     public static ConnectionProperties loadProperties() throws IOException {
-        File propsName = new File("src/exist.properties");
+        File propsName = new File("src/connection.properties");
 
         InputStream propsStream = new FileInputStream(propsName);
 

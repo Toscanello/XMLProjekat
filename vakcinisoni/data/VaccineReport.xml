@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vaccinationReport xmlns="http://www.vakcinisoni.com"
+<vaccinationReport xmlns="http://www.vakcinisoni.com/VaccineReport"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com VaccineReport.xsd">
-    <fullName>Filip Volaric</fullName>
-    <birthDate>1999-09-25</birthDate>
+    xsi:schemaLocation="http://www.vakcinisoni.com/VaccineReport VaccineReport.xsd"
+    xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
+    about="http://www.vakcinisoni.com/ImmunizationReport/1712999850166/2">
+    <fullName property="pred:fullName">Ivan Luburic</fullName>
+    <birthDate>1999-12-17</birthDate>
     <gender>0</gender>
-    <jmbg>2509999880166</jmbg>
+    <jmbg property="pred:jmbg">1712999850166</jmbg>
     <doses>
         <dose>
             <date>2021-11-06</date>
@@ -16,8 +18,8 @@
             <batch>2732</batch>
         </dose>
     </doses>
-    <institution>DZ Ruma</institution>
+    <institution>DZ Bosko Vrebalov</institution>
     <vaccine>Pfizer</vaccine>
-    <confirmationDate>2021-12-06</confirmationDate>
-    <qrCode>http://www.vakcinisoni.com/VaccineReport/2509999880166</qrCode>
+    <confirmationDate property="pred:confirmationDate">2021-12-06</confirmationDate>
+    <qrCode>http://www.vakcinisoni.com/VaccineReport/1712999850166/2</qrCode>
 </vaccinationReport>
