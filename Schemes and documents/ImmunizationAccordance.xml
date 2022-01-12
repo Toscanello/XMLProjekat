@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <accordance xmlns="http://www.vakcinisoni.com/ImmunizationAccordance"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationAccordance ImmunizationAccordance.xsd">
-    <jmbg>2509999880166</jmbg>
-    <surname>Peric</surname>
-    <name>Pera</name>
+    xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationAccordance ImmunizationAccordance.xsd"
+    xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
+    about="http://www.vakcinisoni.com/ImmunizationAccordance/1">
+    <jmbg property="pred:jmbg">2509999880166</jmbg>
+    <surname property="pred:surname">Peric</surname>
+    <name property="pred:name">Pera</name>
     <parentName>Petar</parentName>
     <gender>0</gender>
     <birthDate>1999-08-07</birthDate>
     <birthPlace>Sremska Mitrovica</birthPlace>
     <address>Perina 17</address>
     <post>Jalija</post>
-    <city>Sremska Mitrovica</city>
+    <city property="pred:city">Sremska Mitrovica</city>
     <homeNumber>022 420420</homeNumber>
     <phoneNum>0642042042</phoneNum>
     <email>peraperic@gmail.com</email>
@@ -23,7 +25,7 @@
     <medicineName>Pfizer</medicineName>
     <date>2021-12-07</date>
     <vaccineEvidence>
-        <institution>DZ SM</institution>
+        <institution property="pred:institution">DZ SM</institution>
         <vaccinationNum>1100</vaccinationNum>
         <doctorInfo>
             <fullName>Mika Mikic</fullName>
