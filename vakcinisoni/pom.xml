@@ -54,6 +54,13 @@
 			<version>1.23.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>Saxon-HE</artifactId>
+			<version>9.6.0-1</version>
+		</dependency>
+		<!-- Thanks for using https://jar-download.com -->
+
 	</dependencies>
 
 	<build>
