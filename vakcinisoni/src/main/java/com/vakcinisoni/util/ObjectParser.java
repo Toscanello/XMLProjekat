@@ -13,10 +13,7 @@ import java.io.OutputStream;
 public class ObjectParser {
 
     public static Object parseToObject(XMLResource resource, String pathToClass) throws JAXBException, XMLDBException {
-        // e.g. pathToClass = "rs.ac.uns.ftn.examples.xmldb.bookstore"
-
         JAXBContext context = JAXBContext.newInstance(pathToClass);
-
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
         return unmarshaller.unmarshal(resource.getContentAsDOM());

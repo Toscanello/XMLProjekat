@@ -14,30 +14,6 @@ public class ObjectFactory {
     public ObjectFactory() {
     }
 
-    /**
-     * Create an instance of {@link Book }
-     * 
-     */
-//    public Book createBook() {
-//        return new Book();
-//    }
-//
-//    /**
-//     * Create an instance of {@link Bookstore }
-//     *
-//     */
-//    public Bookstore createBookstore() {
-//        return new Bookstore();
-//    }
-//
-//    /**
-//     * Create an instance of {@link Book.Title }
-//     *
-//     */
-//    public Book.Title createBookTitle() {
-//        return new Book.Title();
-//    }
-
     public DigitalCertificate createDigitalCertificate() { return new DigitalCertificate(); }
 
     public DigitalCertificateRequest createDigitalCertificateRequest() { return new DigitalCertificateRequest(); }
@@ -55,4 +31,21 @@ public class ObjectFactory {
 
     public ImmunizationAccordance.VaccineEvidence.DoctorInfo createDoctorInfo()
     { return new ImmunizationAccordance.VaccineEvidence.DoctorInfo(); }
+
+    public ImmunizationReport createImmunizationReport() { return new ImmunizationReport(); }
+
+    public ImmunizationReport.Manufacturers createManufacturers() { return new ImmunizationReport.Manufacturers(); }
+
+    public ImmunizationReport.Manufacturers.Manufacturer createManufacturer()
+    { return new ImmunizationReport.Manufacturers.Manufacturer(); }
+
+    public VaccineCandidate createVaccineCandidate() { return new VaccineCandidate(); }
+
+    public Options createOptions() { return new Options(); }
+
+    public VaccinationReport createVaccinationReport() { return new VaccinationReport(); }
+
+    public Doses createDoses() { return new Doses(); }
+
+    public Dose createDose() { return new Dose(); }
 }

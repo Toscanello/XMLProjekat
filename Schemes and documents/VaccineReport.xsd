@@ -6,7 +6,15 @@
     <xs:element name="vaccinationReport">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="fullName">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:fullName" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="birthDate" type="xs:date"/>
                 <xs:element name="gender">
                     <xs:simpleType>
@@ -17,11 +25,13 @@
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="jmbg">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="\d{13}"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:jmbg" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
                 <xs:element name="doses">
                     <xs:complexType>
@@ -45,9 +55,18 @@
                 </xs:element>
                 <xs:element name="institution" type="xs:string"/>
                 <xs:element name="vaccine" type="xs:string"/>
-                <xs:element name="confirmationDate" type="xs:date"/>
+                <xs:element name="confirmationDate">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute fixed="pred:confirmationDate" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="qrCode" type="xs:string"/>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

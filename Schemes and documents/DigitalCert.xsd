@@ -38,7 +38,15 @@
             <xs:sequence>
                 <xs:element name="id" type="xs:long"/>
                 <xs:element name="qrCode" type="xs:string"/>
-                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="fullName">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:fullName" name="property" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="gender">
                     <xs:simpleType>
                         <xs:restriction base="xs:int">
@@ -49,11 +57,13 @@
                 </xs:element>
                 <xs:element name="dateOfBirth" type="xs:date"/>
                 <xs:element name="jmbg">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="\d{13}"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:jmbg" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
                 <xs:element name="passportNum" type="xs:string"/>
                 <xs:element name="vaccination">
@@ -67,6 +77,8 @@
                 <xs:element minOccurs="0" ref="vx:AntigenTest"/>
                 <xs:element minOccurs="0" ref="vx:ProteinTest"/>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="dateTime" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="TDose">
