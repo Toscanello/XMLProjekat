@@ -14,14 +14,32 @@
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="jmbg">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="\d{13}"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:jmbg" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
-                <xs:element name="name" type="xs:string"/>
-                <xs:element name="surname" type="xs:string"/>
+                <xs:element name="name">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:name" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="surname">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:surname" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="email" type="xs:string"> </xs:element>
                 <xs:element name="phoneNum">
                     <xs:simpleType>
@@ -37,7 +55,15 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="location" type="xs:string"/>
+                <xs:element name="location">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:location" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="options">
                     <xs:complexType>
                         <xs:sequence>
@@ -48,6 +74,7 @@
                 <xs:element name="isBloodDonor" type="xs:boolean"/>
                 <xs:element name="date" type="xs:date"/>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

@@ -8,17 +8,35 @@
             <xs:sequence>
                 <xs:choice>
                     <xs:element name="jmbg">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:pattern value="\d{13}"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute fixed="pred:jmbg" name="property"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="foreignCitizenship" nillable="true" type="vx:citizenship"
                         minOccurs="1"/>
                 </xs:choice>
-                <xs:element name="surname" type="xs:string"/>
-                <xs:element name="name" type="xs:string"/>
+                <xs:element name="surname">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:surname" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="name">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:name" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="parentName" type="xs:string"/>
                 <xs:element name="gender">
                     <xs:simpleType>
@@ -32,7 +50,15 @@
                 <xs:element name="birthPlace" type="xs:string"/>
                 <xs:element name="address" type="xs:string"/>
                 <xs:element name="post" type="xs:string"/>
-                <xs:element name="city" type="xs:string"/>
+                <xs:element name="city">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute fixed="pred:city" name="property"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="homeNumber" type="xs:string"/>
                 <xs:element name="phoneNum" type="xs:string"/>
                 <xs:element name="email" type="xs:string"/>
@@ -60,7 +86,15 @@
                 <xs:element name="vaccineEvidence">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="institution" type="xs:string"/>
+                            <xs:element name="institution">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute fixed="pred:institution" name="property"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="vaccinationNum" type="xs:string"/>
                             <xs:element name="doctorInfo">
                                 <xs:complexType>
@@ -119,6 +153,7 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="citizenship">
