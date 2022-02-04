@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<immunizationReport xmlns="http://www.vakcinisoni.com/ImmunizationReport"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationReport ImmunizationReport.xsd"
+    xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
+    about="http://www.vakcinisoni.com/ImmunizationReport/2021-12-01/2021-12-31">
+    <startDate property="pred:startDate">2021-12-01</startDate>
+    <finishDate property="pred:finishDate">2021-12-31</finishDate>
+    <immunizationRequests property="pred:immunizationRequests">2758</immunizationRequests>
+    <certificateRequests property="pred:certificateRequests">453</certificateRequests>
+    <certificatesIssued property="pred:certificatesIssued">428</certificatesIssued>
+    <vaccinesTaken>3225</vaccinesTaken>
+    <firstTimeVaccineTaken>1789</firstTimeVaccineTaken>
+    <manufacturers>
+        <manufacturer>
+            <name>Pfizer BioNTech</name>
+            <numberOfVaccines>1625</numberOfVaccines>
+        </manufacturer>
+        <manufacturer>
+            <name>Sinopharm</name>
+            <numberOfVaccines>1100</numberOfVaccines>
+        </manufacturer>
+        <manufacturer>
+            <name>Sputnik V</name>
+            <numberOfVaccines>356</numberOfVaccines>
+        </manufacturer>
+    </manufacturers>
+    <reportDate>2021-12-07</reportDate>
+</immunizationReport>
