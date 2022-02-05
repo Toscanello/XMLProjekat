@@ -31,4 +31,20 @@ public class ObjectParser {
 
         return os;
     }
+
+    public static OutputStream parseToXml(Object object, String pathToClass, boolean declaration) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(pathToClass);
+        OutputStream os = new ByteArrayOutputStream();
+
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        marshaller.setProperty("com.sun.xml.bind.xmlDeclaration", declaration);
+
+
+        // marshal the contents to an output stream
+        marshaller.marshal(object, os);
+
+        return os;
+    }
+
 }

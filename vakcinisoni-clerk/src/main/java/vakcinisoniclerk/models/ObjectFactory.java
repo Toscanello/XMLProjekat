@@ -48,4 +48,8 @@ public class ObjectFactory {
     public Doses createDoses() { return new Doses(); }
 
     public Dose createDose() { return new Dose(); }
+
+    public Vaccine createVaccine() { return new Vaccine(); }
+
+    public Vaccines createVaccines() { return new Vaccines(); }
 }
