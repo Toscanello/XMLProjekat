@@ -37,7 +37,7 @@ public class DbService {
 
 
     public static Object readFromDb(String collectionName, String fileName) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-        String collectionId = "/db/clerk/" + collectionName;
+        String collectionId = "/db/sample/clerk/" + collectionName;
         String documentId = fileName + ".xml";
 
         Class<?> cl = Class.forName(conn.driver);
@@ -96,11 +96,11 @@ public class DbService {
         return null;
     }
 
-    public static Object writeToDb(Object obj, String collectionName, String fileName) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-        String collectionId = "/db/clerk/" + collectionName;
-        String documentId = fileName + ".xml";
+    public static Object writeToDb(Object obj, String collectionName, String documentId) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+        String collectionId = "/db/sample/clerk/" + collectionName;
+        documentId = documentId + ".xml";
 
-        String filePath = "data/" + fileName + ".xml";
+        String filePath = "data/" + documentId + ".xml";
 
         // initialize database driver
         System.out.println("[INFO] Loading driver class: " + conn.driver);
@@ -159,7 +159,7 @@ public class DbService {
         return null;
     }
 
-    private static Collection getOrCreateCollection(String collectionUri) throws XMLDBException {
+    public static Collection getOrCreateCollection(String collectionUri) throws XMLDBException {
         return getOrCreateCollection(collectionUri, 0);
     }
 

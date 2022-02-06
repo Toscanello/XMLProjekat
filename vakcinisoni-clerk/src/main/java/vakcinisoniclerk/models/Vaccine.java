@@ -1,27 +1,21 @@
 package vakcinisoniclerk.models;
 
 
-import vakcinisoniclerk.models.ImmunizationReport.Manufacturers.Manufacturer;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "vaccine")
 public class Vaccine {
 
     private long id;
-    private Manufacturer manufacturer;
+    private String manufacturer;
+    private String name;
     private int quantity;
 
     public Vaccine() {};
 
-    public Vaccine(Manufacturer manufacturer, int quantity) {
+    public Vaccine(long id, String manufacturer, String vaccineName, int quantity) {
         this.manufacturer = manufacturer;
-        this.quantity = quantity;
-    }
-
-    public Vaccine(long id, Manufacturer manufacturer, int quantity) {
-        this.id = id;
-        this.manufacturer = manufacturer;
+        this.name = vaccineName;
         this.quantity = quantity;
     }
 
@@ -33,12 +27,20 @@ public class Vaccine {
         this.id = id;
     }
 
-    public Manufacturer getManufacturer() {
+    public String getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(Manufacturer manufacturer) {
+    public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getQuantity() {
@@ -48,5 +50,4 @@ public class Vaccine {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 }
