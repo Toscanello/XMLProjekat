@@ -2,6 +2,7 @@ package vakcinisoniclerk.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
@@ -19,8 +20,7 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static vakcinisoniclerk.models.template.XUpdateTemplate.INSERT_AFTER;
-import static vakcinisoniclerk.models.template.XUpdateTemplate.UPDATE;
+import static vakcinisoniclerk.models.template.XUpdateTemplate.*;
 
 @Service
 @Path("/vaccines")
@@ -110,9 +110,9 @@ public class VaccinesServiceImpl implements IVaccinesService {
         return vaccines;
     }
 
-    @GET
+    @PUT
     @Path("/{id}")
-    public Vaccine updateVaccineQuantity(@PathParam("id") String id, @QueryParam("quantity") int quantity) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+    public Vaccine updateVaccineQuantity(@PathParam("id") String id, @RequestBody Vaccine vaccine) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         // initialize collection and document identifiers
         String collectionId = "/db/clerk/store";
         String documentId = "vaccines.xml";
@@ -130,12 +130,15 @@ public class VaccinesServiceImpl implements IVaccinesService {
 
         try {
             // defining xpath context
-            String vaccineToUpdate = "/vaccines/vaccine[id='" + id + "']/quantity";
+            String vaccineToUpdate = "/vaccines/vaccine[id='" + id + "']";
+            String quantityToUpdate = vaccineToUpdate + "/quantity";
+            String manufacturerNameToUpdate = vaccineToUpdate + "/manufacturer/name";
 
             System.out.println("[INFO] Vaccine for update");
             System.out.println(vaccineToUpdate);
 
-            String updateQuantity = quantity + "";
+            String updateQuantity = vaccine.getQuantity() + "";
+            String updateManufacturerName = vaccine.getManufacturer().getName();
 
             // get the collection
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
@@ -149,7 +152,8 @@ public class VaccinesServiceImpl implements IVaccinesService {
 
             // compile and execute xupdate expressions
             System.out.println("[INFO] Inserting fragments after " + vaccineToUpdate + " node.");
-            long mods = xupdateService.updateResource(documentId, String.format(UPDATE, vaccineToUpdate, updateQuantity));
+            long mods = xupdateService.updateResource(documentId, String.format(UPDATE, quantityToUpdate, updateQuantity));
+            long mods2 = xupdateService.updateResource(documentId, String.format(UPDATE, manufacturerNameToUpdate, updateManufacturerName));
             System.out.println("[INFO] " + mods + " modifications processed.");
         } finally {
 
@@ -164,5 +168,53 @@ public class VaccinesServiceImpl implements IVaccinesService {
         }
         return null;
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Vaccine deleteVaccine(@PathParam("id") String id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+        // initialize collection and document identifiers
+        String collectionId = "/db/clerk/store";
+        String documentId = "vaccines.xml";
+
+        // initialize database driver
+        System.out.println("[INFO] Loading driver class: " + conn.driver);
+        Class<?> cl = Class.forName(conn.driver);
+
+        Database database = (Database) cl.newInstance();
+        database.setProperty("create-database", "true");
+
+        DatabaseManager.registerDatabase(database);
+
+        Collection col = null;
+
+        try {
+            // defining xpath context
+            String vaccineToDelete = "/vaccines/vaccine[id='" + id + "']";
+
+            // get the collection
+            System.out.println("[INFO] Retrieving the collection: " + collectionId);
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty("indent", "yes");
+
+            // get an instance of xupdate query service
+            System.out.println("[INFO] Fetching XUpdate service for the collection.");
+            XUpdateQueryService xupdateService = (XUpdateQueryService) col.getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+
+            long mods = xupdateService.updateResource(documentId, String.format(REMOVE, vaccineToDelete));
+        } finally {
+
+            // don't forget to cleanup
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
 
 }
