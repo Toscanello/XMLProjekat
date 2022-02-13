@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<certificate xmlns="http://www.vakcinisoni.com/DigitalCert"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.vakcinisoni.com/DigitalCert DigitalCert.xsd"
+    xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
+    about="http://www.vakcinisoni.com/DigitalCert/2509999880166"
+    dateTime="2022-01-05T17:55:55">
+    <id>1</id>
+    <qrCode>http://www.vakcinisoni.com/DigitalCert/2509999880166</qrCode>
+    <fullName property="pred:fullName">Pera Peric</fullName>
+    <gender>0</gender>
+    <dateOfBirth>1999-08-07</dateOfBirth>
+    <jmbg property="pred:jmbg">0708999850006</jmbg>
+    <passportNum>00112233</passportNum>
+    <vaccination>
+        <dose count="1">
+            <type>Pfizer</type>
+            <manufacturer>BIONTECH MANUFACTURING</manufacturer>
+            <batch>2245</batch>
+            <date>2021-11-06</date>
+            <institution>DZ Ruma</institution>
+        </dose>
+    </vaccination>
+    <PCRTest>
+        <testInfo>
+            <sampleType>iz nosa</sampleType>
+            <testManufacturer>Mitrovcani</testManufacturer>
+            <sampleDate>2021-12-07</sampleDate>
+            <resultDate>2021-12-07</resultDate>
+            <result>false</result>
+            <laboratory>Bela ruza</laboratory>
+        </testInfo>
+    </PCRTest>
+</certificate>
