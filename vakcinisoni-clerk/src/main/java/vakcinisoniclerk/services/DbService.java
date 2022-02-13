@@ -96,8 +96,7 @@ public class DbService {
         return null;
     }
 
-    public static Object writeToDb(Object obj, String collectionName, String documentId) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-        String collectionId = "/db/sample/clerk/" + collectionName;
+    public static Object writeToDb(Object obj, String collectionId, String documentId) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         documentId = documentId + ".xml";
 
         String filePath = "data/" + documentId + ".xml";
