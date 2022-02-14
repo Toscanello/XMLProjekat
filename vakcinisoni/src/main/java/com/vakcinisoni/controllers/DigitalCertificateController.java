@@ -4,14 +4,12 @@ import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.models.DigitalCertificates;
 import com.vakcinisoni.repository.impl.DigitalCertificateRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.xmldb.api.base.XMLDBException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @RestController

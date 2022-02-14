@@ -492,7 +492,6 @@ public class ImmunizationAccordance {
                 }
             }
         }
-
     }
 
 

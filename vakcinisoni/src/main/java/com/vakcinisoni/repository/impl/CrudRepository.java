@@ -30,7 +30,7 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
 
     AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
-    private DatabaseUtils databaseUtils = new DatabaseUtils();
+    protected DatabaseUtils databaseUtils = new DatabaseUtils();
 
     protected String collectionId;
 
