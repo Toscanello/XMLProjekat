@@ -5,6 +5,7 @@ import com.vakcinisoni.models.VaccineCandidate;
 import com.vakcinisoni.repository.impl.TermRepository;
 import com.vakcinisoni.repository.impl.VaccineCandidateRepository;
 import com.vakcinisoni.services.IVaccineCandidateService;
+import com.vakcinisoni.services.MailerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.base.XMLDBException;
@@ -28,8 +29,9 @@ public class VaccineCandidateService implements IVaccineCandidateService {
             term.setTaken(true);
             String xPathSelector = "/term/taken";
             termRepository.update(term.getStart() + "", xPathSelector, "true");
+            MailerService.sendConfirmationEmailToVaccineCandidate(candidate, term, "ATTACHMENT");
             return term;
-            //return valid term
+            //return valid term -- DONE
             //send confirmation email
             //SEE IF THERE IS ENOUGH DOSE OF VACCINE FROM CLERK ^
         }

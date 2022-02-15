@@ -1,7 +1,9 @@
 package com.vakcinisoni.models;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @XmlRootElement(name="term")
 public class Term {
@@ -55,6 +57,18 @@ public class Term {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        String retVal = "TERMIN: " + formatLongToDate(start) + " - " + formatLongToDate(finish);
+        return retVal;
+    }
+
+    private String formatLongToDate(long longDate){
+        Date date = new Date(longDate);
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        return format.format(date);
     }
 }
 

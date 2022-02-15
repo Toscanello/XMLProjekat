@@ -144,20 +144,26 @@ public class VaccineCandidate {
 
     @Override
     public String toString() {
-        return "VaccineCandidate{" +
-                "residence='" + residence + '\'' +
-                ", jmbg='" + jmbg + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", homeNum='" + homeNum + '\'' +
-                ", location='" + location + '\'' +
-                ", options=" + options +
-                ", isBloodDonor=" + isBloodDonor +
-                ", date='" + date + '\'' +
-                '}';
+        String retVal = "";
+        retVal += getStringFromResidence(residence);
+        retVal += "\nIme i prezime: " + name + " " + surname;
+        retVal += "\nBroj mobilnog: " + phoneNum;
+        retVal += "\nBroj fiksnog: " + homeNum;
+        retVal += "\nTipovi vakcine: " + options;
+        retVal += isBloodDonor ? "\nJeste davalac krvi" : "\nNije davalac krvi";
+        retVal += "\nDatum podnosenja interesovanja: " + date;
+        return retVal;
     }
 
-
+    private String getStringFromResidence(String residence){
+        if(residence.equals("1")){
+            return "Strani drzavljanin sa boravkom u RS";
+        }
+        else if (residence.equals("2")){
+            return "Strani drzavljanin bez boravka u RS";
+        }
+        else {
+            return "Drzavljanin Republike Srbije";
+        }
+    }
 }

@@ -59,7 +59,7 @@ public class TermRepository extends CrudRepository<Term>{
                                 && term.getStart() > parsedDate
                                 && term.getLocation().equals(candidate.getLocation()))
                 .collect(Collectors.toList());
-        if(futureFreeTerms.get(0) != null)
+        if(futureFreeTerms.size() > 0)
             return futureFreeTerms.get(0);
         else{
             Term lastTerm = new Term();
@@ -72,5 +72,14 @@ public class TermRepository extends CrudRepository<Term>{
             save(newTerm);
             return newTerm;
         }
+    }
+
+    public Term createTermForNewVaccination(long currentDate, String location) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        long nextDose = currentDate + 14*24*60*60*1000;
+        //is term taken
+        Term newTerm = new Term(nextDose, nextDose + 30*60*1000, true, location);
+
+        save(newTerm);
+        return newTerm;
     }
 }

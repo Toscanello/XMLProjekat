@@ -26,7 +26,7 @@ public class Options {
         StringBuilder builder = new StringBuilder("");
 
         for (String m : getManufacturer()) {
-            builder.append("\nManufacturer: " + m);
+            builder.append("\nProizvodjac: " + m);
         }
 
         return builder.toString();
