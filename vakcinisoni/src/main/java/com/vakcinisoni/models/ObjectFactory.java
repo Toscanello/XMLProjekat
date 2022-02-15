@@ -50,4 +50,6 @@ public class ObjectFactory {
     public Dose createDose() { return new Dose(); }
 
     public Citizen createCitizen() { return new Citizen(); }
+
+    public Term createTerm() { return new Term(); }
 }
