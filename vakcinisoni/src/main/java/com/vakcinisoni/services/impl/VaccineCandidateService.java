@@ -1,6 +1,7 @@
 package com.vakcinisoni.services.impl;
 
 import com.vakcinisoni.models.Term;
+import com.vakcinisoni.models.Vaccine;
 import com.vakcinisoni.models.VaccineCandidate;
 import com.vakcinisoni.models.Vaccines;
 import com.vakcinisoni.repository.impl.TermRepository;
@@ -24,6 +25,8 @@ public class VaccineCandidateService implements IVaccineCandidateService {
     @Autowired
     public TermRepository termRepository;
 
+    RestTemplate restTemplate = new RestTemplate();
+
 //    @Autowired
 //    public RestTemplate template;
 
@@ -34,15 +37,20 @@ public class VaccineCandidateService implements IVaccineCandidateService {
             Term term = termRepository.findFirstFree(candidate);
             term.setTaken(true);
             String xPathSelector = "/term/taken";
-            termRepository.update(term.getStart() + "", xPathSelector, "true");
-            MailerService.sendConfirmationEmailToVaccineCandidate(candidate, term, "ATTACHMENT");
 
-//            ResponseEntity<Vaccines> vaccines = (ResponseEntity<Vaccines>) template.getForEntity("http://localhost:3001/vaccines", Vaccines.class);
-//            System.out.println(vaccines);
-            return term;
-            //return valid term -- DONE
-            //send confirmation email
-            //SEE IF THERE IS ENOUGH DOSE OF VACCINE FROM CLERK ^
+            ResponseEntity<Vaccines> vaccines = restTemplate.getForEntity("http://localhost:3001/vaccines", Vaccines.class);
+            Vaccines vaccineList = vaccines.getBody();
+
+            for(Vaccine vaccine : vaccineList.getVaccine()){
+                System.out.println(vaccine);
+                if(candidate.getOptions().getManufacturer().contains(vaccine.getManufacturer()) && vaccine.getQuantity() > 0){
+                    termRepository.update(term.getStart() + "", xPathSelector, "true");
+                    MailerService.sendConfirmationEmailToVaccineCandidate(candidate, term, "ATTACHMENT");
+                    return term;
+                }
+            }
+            return new Term();
+            //check if he has no doses taken
         }
         catch(XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException | ParseException e){
             e.printStackTrace();
