@@ -1,7 +1,9 @@
 package com.vakcinisoni.services.impl;
 
 import com.vakcinisoni.models.ImmunizationAccordance;
+import com.vakcinisoni.models.VaccinationReport;
 import com.vakcinisoni.repository.impl.ImmunizationAccordanceRepository;
+import com.vakcinisoni.repository.impl.VaccinationReportRepository;
 import com.vakcinisoni.services.IMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.List;
 public class MedicalService implements IMedicalService {
     @Autowired
     ImmunizationAccordanceRepository immunizationAccordanceRepository;
+    @Autowired
+    VaccinationReportRepository vaccinationReportRepository;
 
     @Override
     public ImmunizationAccordance findOneByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -31,6 +35,8 @@ public class MedicalService implements IMedicalService {
                     immunizationAccordance.getVaccineEvidence().getTable().getRow().add(i,rows.get(i));
             }
             immunizationAccordanceRepository.save(immunizationAccordance);
+            VaccinationReport vaccinationReport = new VaccinationReport(immunizationAccordance);
+            vaccinationReportRepository.save(vaccinationReport);
             return immunizationAccordance;
         }
         return null;

@@ -16,6 +16,12 @@ public class Dose {
     @XmlElement(required = true)
     protected String batch;
 
+    public Dose(){}
+    public Dose(String date,String batch){
+        this.date = date;
+        this.batch = batch;
+    }
+
     public String getDate() {
         return date;
     }

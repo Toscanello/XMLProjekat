@@ -3,6 +3,10 @@ package com.vakcinisoni.models;
 import org.exist.xquery.DescendantOrSelfSelector;
 
 import javax.xml.bind.annotation.*;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -44,6 +48,23 @@ public class VaccinationReport {
 
     @XmlElement(required = true)
     protected String qrCode;
+
+    public VaccinationReport(){}
+    public VaccinationReport(ImmunizationAccordance im){
+        this.fullName = im.getName()+" "+im.getSurname();
+        this.birthDate=im.getBirthDate();
+        this.gender = String.valueOf(im.getGender());
+        this.jmbg = im.getJmbg();
+        this.institution = im.getVaccineEvidence().getInstitution();
+        this.vaccine =im.getVaccineEvidence().getTable().getRow().get(0).getVaccineName();
+        this.doses = new Doses();
+        for (ImmunizationAccordance.VaccineEvidence.Table.Row row:im.getVaccineEvidence().getTable().getRow()){
+            this.doses.addDose(new Dose(row.getDateIssued(),row.getBatch()));
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.confirmationDate = dtf.format(LocalDateTime.now());
+        this.qrCode = "nekiqrkod";// sredi ovo posle
+    }
 
     public String getFullName() {
         return fullName;

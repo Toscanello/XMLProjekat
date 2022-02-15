@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Repository
 public class ImmunizationAccordanceRepository extends CrudRepository<ImmunizationAccordance>{
     private static final String IMMUNIZATION_ACCORDANCE_COLLECTION_NAME = "immunization-accordance";
-    public ImmunizationAccordanceRepository() throws IOException {
+    public ImmunizationAccordanceRepository() throws IOException{
         super(IMMUNIZATION_ACCORDANCE_COLLECTION_NAME);
     }
 
