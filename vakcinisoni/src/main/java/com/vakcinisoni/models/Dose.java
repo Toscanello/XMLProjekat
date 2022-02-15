@@ -28,6 +28,22 @@ public class Dose {
     @XmlElement(required = true)
     protected String institution;
 
+    public Dose() {
+    }
+
+    public Dose(String date, String batch) {
+        this.date = date;
+        this.batch = batch;
+    }
+
+    public Dose(String type, String manufacturer, String date, String batch, String institution) {
+        this.type = type;
+        this.manufacturer = manufacturer;
+        this.date = date;
+        this.batch = batch;
+        this.institution = institution;
+    }
+
     public String getDate() {
         return date;
     }
