@@ -16,6 +16,7 @@ import org.xmldb.api.base.XMLDBException;
 @RestController
 @RequestMapping(value = "immunization",produces = {MediaType.APPLICATION_XML_VALUE})
 public class MedicalWorkerController{
+
     @Autowired
     private IMedicalService service;
 
