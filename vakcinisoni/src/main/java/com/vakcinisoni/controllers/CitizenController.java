@@ -22,14 +22,14 @@ public class CitizenController {
     private ICitizenService service;
 
     @PostMapping(value="/register", consumes="application/xml", produces="application/xml")
-    public ResponseEntity<String> register(@RequestBody Citizen citizen) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public ResponseEntity<String> register(@RequestBody Citizen citizen) {
         String jwt = service.register(citizen);
 
         return new ResponseEntity<>(jwt, HttpStatus.OK);
     }
 
     @PostMapping(value = "/login", consumes="application/xml", produces="application/xml")
-    public ResponseEntity<String> login(@RequestBody Credentials credentials) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public ResponseEntity<String> login(@RequestBody Credentials credentials) {
         String jwt = service.login(credentials);
 
         return new ResponseEntity<>(jwt, HttpStatus.OK);
