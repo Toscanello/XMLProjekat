@@ -158,7 +158,15 @@ public class DbService {
         return null;
     }
 
-    public static Collection getOrCreateCollection(String collectionUri) throws XMLDBException {
+    public static Collection getOrCreateCollection(String collectionUri) throws XMLDBException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+        Class<?> cl = Class.forName(conn.driver);
+
+        // encapsulation of the database driver functionality
+        Database database = (Database) cl.newInstance();
+        database.setProperty("create-database", "true");
+
+        // entry point for the API which enables you to get the Collection reference
+        DatabaseManager.registerDatabase(database);
         return getOrCreateCollection(collectionUri, 0);
     }
 

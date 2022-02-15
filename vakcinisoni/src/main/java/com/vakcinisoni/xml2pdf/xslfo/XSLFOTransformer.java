@@ -12,6 +12,7 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
+import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
 import javax.xml.transform.Result;
@@ -26,26 +27,30 @@ import javax.xml.transform.stream.StreamSource;
  * renderovanje PDF-a primenom XSL-FO transformacije na XML dokumentu.
  *
  */
+@Service
 public class XSLFOTransformer {
 	
 	private FopFactory fopFactory;
 	
 	private TransformerFactory transformerFactory;
 	
-	public static final String INPUT_FILE = "data/ImmunizationAccordance.xml";
+	public String INPUT_FILE;//= "data/DigitalCert.xml"
 	
-	public static final String XSL_FILE = "data/xsl/ImmunizationAccordance.xsl";
+	public String XSL_FILE ;//= "data/xsl/DigitalCert.xsl"
 	
-	public static final String OUTPUT_FILE = "data/gen/ImmunizationAccordance.pdf";
+	public String OUTPUT_FILE; // = "data/gen/DigitalCert.pdf";
 	
 	
-	public XSLFOTransformer() throws SAXException, IOException {
+	public XSLFOTransformer(String inputFile, String xslFile, String outputFile) throws SAXException, IOException {
 		
 		// Initialize FOP factory object
 		fopFactory = FopFactory.newInstance(new File("src/main/java/com/vakcinisoni/xml2pdf/fop.xconf"));
 		
 		// Setup the XSLT transformer factory
 		transformerFactory = new TransformerFactoryImpl();
+		INPUT_FILE = inputFile;
+		XSL_FILE = xslFile;
+		OUTPUT_FILE = outputFile;
 	}
 
 	private void generatePDF() throws Exception {
@@ -96,8 +101,27 @@ public class XSLFOTransformer {
 
 	}
 
-	public static void main(String[] args) throws Exception {
-		new XSLFOTransformer().generatePDF();
+	public String getINPUT_FILE() {
+		return INPUT_FILE;
 	}
 
+	public void setINPUT_FILE(String INPUT_FILE) {
+		this.INPUT_FILE = INPUT_FILE;
+	}
+
+	public String getXSL_FILE() {
+		return XSL_FILE;
+	}
+
+	public void setXSL_FILE(String XSL_FILE) {
+		this.XSL_FILE = XSL_FILE;
+	}
+
+	public String getOUTPUT_FILE() {
+		return OUTPUT_FILE;
+	}
+
+	public void setOUTPUT_FILE(String OUTPUT_FILE) {
+		this.OUTPUT_FILE = OUTPUT_FILE;
+	}
 }
