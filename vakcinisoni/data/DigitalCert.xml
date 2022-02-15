@@ -20,6 +20,20 @@
             <date>2021-11-06</date>
             <institution>DZ Ruma</institution>
         </dose>
+        <dose count="2">
+            <type>KURCINA</type>
+            <manufacturer>BIONTECH MANUFACTURING</manufacturer>
+            <batch>2245</batch>
+            <date>2021-11-06</date>
+            <institution>DZ Ruma</institution>
+        </dose>
+        <dose count="3">
+            <type>KURCINA</type>
+            <manufacturer>BIONTECH MANUFACTURING</manufacturer>
+            <batch>2245</batch>
+            <date>2021-11-06</date>
+            <institution>DZ Ruma</institution>
+        </dose>
     </vaccination>
     <PCRTest>
         <testInfo>
