@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
 
 import java.io.IOException;
+
 @Component
 public class CitizenRepository extends CrudRepository<Citizen>{
 

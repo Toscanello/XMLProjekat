@@ -2,11 +2,13 @@ package com.vakcinisoni.repository.impl;
 
 import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.services.DbService;
+import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
 
 import java.io.IOException;
 import java.util.Collection;
 
+@Component
 public class DigitalCertificateRepository extends CrudRepository<DigitalCertificate>{
 
     private static final String DIGITAL_CERTIFICATE_COLLECTION_NAME = "certificates";
