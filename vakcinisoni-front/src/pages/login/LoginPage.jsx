@@ -13,24 +13,24 @@ function LoginPage(){
     function handleSubmit(e){
         e.preventDefault();
         var credentials = {username, password}
-        console.log(credentials);
+
         postLoginObject(credentials, (response) => {
             if(response.data){
                 saveMemberToLocalStorage(response.data);
                 navigate('home');
             }
-        })
+        });
     }
 
     return (
         <div>
             <h1>Prijava</h1>
-            <input type="text" placeholder="Korisnicko ime" className=""
+            <input type="text" placeholder="JMBG" className=""
                 onChange={(e) => setUsername(e.target.value)}/>
             <input type="password" placeholder="Lozinka" className=""
                 onChange={(e) => setPassword(e.target.value)}/>
             <button className="" onClick={handleSubmit}>Prijavi se</button>
-            <Link to="/register" className="">Registruj se</Link>
+            <Link to="/registration" className="">Registruj se</Link>
         </div>
     );
 }

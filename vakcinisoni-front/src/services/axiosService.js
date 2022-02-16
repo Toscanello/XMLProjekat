@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = "http://localhost:3000";
-const qs = require('querystring');
+//const qs = require('querystring');
 
 export function getObjects(path, callback=defaultCallback, errorCallback=defaultErrorCallback){
     axios
