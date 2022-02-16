@@ -6,11 +6,11 @@ import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XPathQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import vakcinisoniclerk.models.Vaccine;
+import vakcinisoniclerk.models.Vaccines;
 import vakcinisoniclerk.repository.impl.VaccineRepository;
 import vakcinisoniclerk.services.contracts.IVaccinesService;
 import vakcinisoniclerk.util.AuthenticationUtilities;
 
-import javax.ws.rs.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,6 @@ import java.util.List;
 import static vakcinisoniclerk.models.template.XUpdateTemplate.*;
 
 @Service
-@Path("/vaccines")
 public class VaccinesServiceImpl implements IVaccinesService {
 
     AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
@@ -30,25 +29,16 @@ public class VaccinesServiceImpl implements IVaccinesService {
     public VaccinesServiceImpl() throws IOException {
     }
 
-    @GET
-    @Path("/")
-    @Produces("application/xml")
-    public List<Vaccine> getAllVaccines() throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-        return (ArrayList<Vaccine>) vaccineRepository.findAll("/vaccine");
+    public Vaccines getAllVaccines() throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+        List<Vaccine> allVaccines = (ArrayList<Vaccine>) vaccineRepository.findAll("/vaccine");
+        return new Vaccines(allVaccines);
     }
-
-    @POST
-    @Path("/")
-    @Consumes("application/xml")
     public Vaccine createNewVaccine(Vaccine vaccine) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         // TODO: throw custom exception
         return vaccineRepository.save(vaccine);
     }
 
-    @PUT
-    @Path("/{id}/quantity")
-    @Consumes("application/xml")
-    public Vaccine updateVaccineQuantity(@PathParam("id") String id, @QueryParam("quantity") int quantity)
+    public Vaccine updateVaccineQuantity(String id, int quantity)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         String xPathSelector = "/vaccine[id='" + id + "']/quantity";
         String newQuantity = quantity + "";
@@ -57,10 +47,7 @@ public class VaccinesServiceImpl implements IVaccinesService {
         return null;
     }
 
-    @PUT
-    @Path("/{id}/decrement")
-    @Consumes("application/xml")
-    public String decrementQuantityByOne(@PathParam("id") String id)
+    public String decrementQuantityByOne(String id)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         String collectionId = "/db/sample/clerk/" + VACCINES_COLLECTION_NAME;
         String documentId = id + ".xml";
@@ -110,16 +97,12 @@ public class VaccinesServiceImpl implements IVaccinesService {
         return "Decremented vaccines inventory number by 1";
     }
 
-    @DELETE
-    @Path("/{id}")
-    public String deleteNewVaccine(@PathParam("id") Long id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+    public String deleteVaccine(Long id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         vaccineRepository.delete(id);
         return "Deleted";
     }
 
-    @GET
-    @Path("/findOne/{id}")
-    public Vaccine findOneVaccine(@PathParam("id") String id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+    public Vaccine findOneVaccine(String id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
         return vaccineRepository.findOne(id);
     }
 }
