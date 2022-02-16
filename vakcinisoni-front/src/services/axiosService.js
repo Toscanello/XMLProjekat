@@ -1,4 +1,5 @@
 import axios from 'axios';
+import xml2js from "xml2js";
 
 const API_URL = "http://localhost:3000";
 //const qs = require('querystring');
@@ -29,6 +30,12 @@ export function postObject(path, xmlData, callback=defaultCallback, errorCallbac
     axios
     .post(`${API_URL}/${path}`, xmlData, {headers: {'Content-Type' : 'application/xml'}})
     .then(response => {
+        let parser = new xml2js.Parser();
+
+        parser.parseString(response.data, function(err, result) { 
+            console.log(result);
+        })
+
         callback(response);
     })
     .catch(error => {

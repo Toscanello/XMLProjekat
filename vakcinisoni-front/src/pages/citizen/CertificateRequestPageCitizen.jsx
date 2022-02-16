@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postCertificateRequestObject } from "../../services/certificateRequestService";
-import { Parser } from "xml2js";
+import { parseXmlToJs } from "../../services/parseService";
 
 function CertificateRequestPageCitizen(){
 
@@ -17,6 +17,10 @@ function CertificateRequestPageCitizen(){
         e.preventDefault();
         console.log(certificateRequest);
         postCertificateRequestObject(certificateRequest, (response) => {
+            console.log(response.data);
+            parseXmlToJs(response.data, (result) => {
+                alert(result.certificateRequest.fullName);
+            })
         })
     }
 
