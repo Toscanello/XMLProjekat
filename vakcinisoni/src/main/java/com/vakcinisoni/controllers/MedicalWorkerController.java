@@ -2,6 +2,7 @@ package com.vakcinisoni.controllers;
 
 import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.models.ImmunizationAccordance;
+import com.vakcinisoni.models.VaccinationReport;
 import com.vakcinisoni.repository.impl.CrudRepository;
 import com.vakcinisoni.repository.impl.ImmunizationAccordanceRepository;
 import com.vakcinisoni.services.IDigitalCertificateService;
@@ -31,6 +32,11 @@ public class MedicalWorkerController{
     @PostMapping(value = "/accordance/{jmbg}",consumes = "application/xml")
     public ResponseEntity<ImmunizationAccordance> addVaccineEvidence(@PathVariable String jmbg, @RequestBody ImmunizationAccordance.VaccineEvidence vaccineEvidence) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         return new ResponseEntity<>(service.addVaccineEvidence(jmbg,vaccineEvidence),HttpStatus.OK);
+    }
+
+    @GetMapping(value="/report/{jmbg}")
+    public ResponseEntity<VaccinationReport> findVaccinationReportByJmbg(@PathVariable String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new ResponseEntity<>(service.findVaccinationReportByJmbg(jmbg), HttpStatus.OK);
     }
 
 }

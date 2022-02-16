@@ -41,4 +41,9 @@ public class MedicalService implements IMedicalService {
         }
         return null;
     }
+
+    @Override
+    public VaccinationReport findVaccinationReportByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return vaccinationReportRepository.findOneByJmbg(jmbg);
+    }
 }
