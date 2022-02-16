@@ -17,9 +17,9 @@ public class VaccineRepository extends CrudRepository<Vaccine> {
     }
 
     @Override
-    public Collection<Vaccine> findAll() throws XMLDBException, ClassNotFoundException,
+    public Collection<Vaccine> findAll(String xpathExp) throws XMLDBException, ClassNotFoundException,
             InstantiationException, IllegalAccessException {
-        return super.findAll();
+        return super.findAll(xpathExp);
     }
 
     @Override

@@ -15,5 +15,5 @@ public interface IVaccinesService {
     Vaccine createNewVaccine(Vaccine vaccine) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
     Vaccine updateVaccineQuantity(@PathParam("id") String id, @QueryParam("quantity") int quantity) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
     String decrementQuantityByOne(@PathParam("id") String id) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
-    Vaccine deleteNewVaccine(@PathParam("id") int id) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
+    String deleteNewVaccine(@PathParam("id") Long id) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 }

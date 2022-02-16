@@ -43,7 +43,7 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
     }
 
     @Override
-    public Collection<T> findAll() throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public Collection<T> findAll(String xpathExp) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         Collection<T> retList = new ArrayList<>();
 
         databaseUtils.createDatabaseConnection();
@@ -59,7 +59,6 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
             // make the service aware of namespaces, using the default one
             xpathService.setNamespace("", TARGET_NAMESPACE);
 
-            String xpathExp = "/vaccine";
             ResourceSet result = xpathService.query(xpathExp);
             ResourceIterator i = result.getIterator();
             Resource res = null;
@@ -154,8 +153,30 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        String documentId = id + ".xml";
 
+        databaseUtils.createDatabaseConnection();
+
+        org.xmldb.api.base.Collection col = null;
+
+        try {
+            // get the collection
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty("indent", "yes");
+            col.removeResource(col.getResource(documentId));
+            System.out.println("[INFO] Removed document from the collection");
+        } finally {
+
+            // don't forget to cleanup
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override

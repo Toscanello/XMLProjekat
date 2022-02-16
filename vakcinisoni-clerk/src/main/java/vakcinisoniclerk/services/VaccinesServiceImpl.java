@@ -1,22 +1,16 @@
 package vakcinisoniclerk.services;
 
-import org.checkerframework.checker.units.qual.C;
-import org.exist.xmldb.EXistResource;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.*;
-import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XPathQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import vakcinisoniclerk.models.Vaccine;
-import vakcinisoniclerk.models.constants.Constants;
 import vakcinisoniclerk.repository.impl.VaccineRepository;
 import vakcinisoniclerk.services.contracts.IVaccinesService;
 import vakcinisoniclerk.util.AuthenticationUtilities;
-import vakcinisoniclerk.util.ObjectParser;
 
 import javax.ws.rs.*;
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +34,7 @@ public class VaccinesServiceImpl implements IVaccinesService {
     @Path("/")
     @Produces("application/xml")
     public List<Vaccine> getAllVaccines() throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-        return (ArrayList<Vaccine>) vaccineRepository.findAll();
+        return (ArrayList<Vaccine>) vaccineRepository.findAll("/vaccine");
     }
 
     @POST
@@ -118,36 +112,9 @@ public class VaccinesServiceImpl implements IVaccinesService {
 
     @DELETE
     @Path("/{id}")
-    public Vaccine deleteNewVaccine(@PathParam("id") int id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-        String collectionId = "/db/sample/clerk/" + VACCINES_COLLECTION_NAME;
-        String documentId = id + ".xml";
-
-        Class<?> cl = Class.forName(conn.driver);
-        Database database = (Database) cl.newInstance();
-        database.setProperty("create-database", "true");
-        DatabaseManager.registerDatabase(database);
-
-        Collection col = null;
-
-        try {
-            // get the collection
-            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
-            col.setProperty("indent", "yes");
-            col.removeResource(col.getResource(documentId));
-            System.out.println("[INFO] Removed document from the collection");
-
-        } finally {
-
-            // don't forget to cleanup
-            if(col != null) {
-                try {
-                    col.close();
-                } catch (XMLDBException xe) {
-                    xe.printStackTrace();
-                }
-            }
-        }
-        return null;
+    public String deleteNewVaccine(@PathParam("id") Long id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+        vaccineRepository.delete(id);
+        return "Deleted";
     }
 
     @GET
