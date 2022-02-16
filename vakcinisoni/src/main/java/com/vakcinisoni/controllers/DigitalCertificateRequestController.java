@@ -1,6 +1,7 @@
 package com.vakcinisoni.controllers;
 
 import com.vakcinisoni.models.DigitalCertificateRequest;
+import com.vakcinisoni.models.DigitalCertificateRequests;
 import com.vakcinisoni.services.IDigitalCertificateRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,12 @@ public class DigitalCertificateRequestController {
 
     @Autowired
     private IDigitalCertificateRequestService service;
+
+    @GetMapping(value = "/count")
+    public ResponseEntity<Integer> countAll() {
+        DigitalCertificateRequests requests = service.findAll();
+        return new ResponseEntity<>(requests.getCertificateRequest().size(), HttpStatus.OK);
+    }
 
     @PostMapping(value="/", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<DigitalCertificateRequest> save(@RequestBody DigitalCertificateRequest request){

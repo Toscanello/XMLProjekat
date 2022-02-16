@@ -25,12 +25,14 @@ public class ImmunizationReportServiceImpl implements IImunizationReportService 
         ResponseEntity<Integer> vaccineCandidatesCount = restTemplate.getForEntity("http://localhost:3000/candidates/count/", Integer.class);
         ResponseEntity<Accordances> accordances = restTemplate.getForEntity("http://localhost:3000/accordances/", Accordances.class);
         ResponseEntity<DigitalCertificates> digitalCertificates = restTemplate.getForEntity("http://localhost:3000/certificates/read/", DigitalCertificates.class);
+        ResponseEntity<Integer> digitalCertificateRequestsCount = restTemplate.getForEntity("http://localhost:3000/certificate-requests/count/", Integer.class);
+
 
         List<ImmunizationAccordance> accordancesList = Objects.requireNonNull(accordances.getBody()).getAccordance();
         Collection<DigitalCertificate> digitalCertificateList = Objects.requireNonNull(digitalCertificates.getBody()).getCertificate();
 
         int digitalCertificatesNumber = digitalCertificateList.size();
-        int digitalCertificatesRequestsNumber = 0;
+        int digitalCertificatesRequestsNumber = digitalCertificateRequestsCount.getBody();
         int totalVaccinesGiven = 0;
         Map<Integer, Integer> dosesTable = new HashMap<>();
         Map<String, Integer> dosesByManufacturer = new HashMap<>();
