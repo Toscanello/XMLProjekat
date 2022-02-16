@@ -21,7 +21,7 @@ public class TermController {
 
 
     @PostMapping(value="/", consumes = "application/xml", produces = "application/xml")
-    public ResponseEntity<Term> createNew(@RequestBody Term term) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public ResponseEntity<Term> createNew(@RequestBody Term term) {
         Term ret = service.save(term);
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }

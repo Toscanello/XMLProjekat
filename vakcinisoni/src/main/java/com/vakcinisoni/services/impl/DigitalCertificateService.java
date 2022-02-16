@@ -4,6 +4,7 @@ import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.models.DigitalCertificates;
 import com.vakcinisoni.repository.impl.DigitalCertificateRepository;
 import com.vakcinisoni.services.IDigitalCertificateService;
+import com.vakcinisoni.services.QrService;
 import com.vakcinisoni.xml2pdf.xslfo.XSLFOTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class DigitalCertificateService implements IDigitalCertificateService {
     public DigitalCertificateRepository repository;
 
     public XSLFOTransformer transformer = new XSLFOTransformer("data/DigitalCert.xml", "data/xsl/DigitalCert.xsl", "data/gen/DigitalCert.pdf");
+
+    public static final String PATH_TO_QR = "data/xsl/images/qr-code.jpg";
+    public static final String URL_BASE = "http://www.vakcinisoni/com/DigitalCertificate/";
 
     public DigitalCertificateService() throws IOException, SAXException {
     }
@@ -53,6 +57,9 @@ public class DigitalCertificateService implements IDigitalCertificateService {
         try {
             transformer.setINPUT_FILE("data/" + id + ".xml");
             File res = repository.getXml(id);
+            //GENERATE QR
+            String fullUrl = URL_BASE + id;
+            QrService.makeNewQr(fullUrl, PATH_TO_QR);
             transformer.generatePDF();
             return "success";
         } catch (Exception e) {

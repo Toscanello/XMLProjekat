@@ -47,7 +47,7 @@
                                     </fo:table-cell>
                                     <fo:table-cell text-align="center">
                                         <fo:block>
-                                            <fo:external-graphic src="../../../../../../data/xsl/images/qr-code.png" content-height="scale-to-fit" height="100px"  content-width="100px" scaling="non-uniform"/>
+                                            <fo:external-graphic src="../../../../../../data/xsl/images/qr-code.jpg" content-height="scale-to-fit" height="100px"  content-width="100px" scaling="non-uniform"/>
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
