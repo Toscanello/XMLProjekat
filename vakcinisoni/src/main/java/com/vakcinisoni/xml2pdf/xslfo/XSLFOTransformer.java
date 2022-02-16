@@ -27,7 +27,6 @@ import javax.xml.transform.stream.StreamSource;
  * renderovanje PDF-a primenom XSL-FO transformacije na XML dokumentu.
  *
  */
-@Service
 public class XSLFOTransformer {
 	
 	private FopFactory fopFactory;
@@ -53,7 +52,7 @@ public class XSLFOTransformer {
 		OUTPUT_FILE = outputFile;
 	}
 
-	private void generatePDF() throws Exception {
+	public void generatePDF() throws Exception {
 
 		System.out.println("[INFO] " + XSLFOTransformer.class.getSimpleName());
 		

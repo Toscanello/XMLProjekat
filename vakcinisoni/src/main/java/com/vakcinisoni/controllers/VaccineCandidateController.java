@@ -22,6 +22,8 @@ public class VaccineCandidateController {
         return new ResponseEntity<>(freeTerm, HttpStatus.OK);
     }
 
-//    @GetMapping(value="/count", produces = "application/xml")
-//    public ResponseEntity<VaccineCandidates>
+    @GetMapping(value="/count")
+    public ResponseEntity<Integer> count(){
+        return new ResponseEntity<>(service.countDistinct(), HttpStatus.OK);
+    }
 }

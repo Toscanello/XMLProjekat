@@ -8,4 +8,6 @@ public interface IDigitalCertificateService {
     DigitalCertificates findAll();
 
     DigitalCertificate save(DigitalCertificate certificate);
+
+    String download(String id);
 }

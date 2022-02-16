@@ -29,4 +29,10 @@ public class DigitalCertificateController {
 
         return new ResponseEntity<>(dc, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/download/{id}")
+    public ResponseEntity<String> download(@PathVariable String id){
+        String ret = service.download(id);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
 }

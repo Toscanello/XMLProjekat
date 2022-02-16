@@ -1,7 +1,9 @@
 package com.vakcinisoni.repository;
 
 import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
+import java.io.File;
 import java.util.Collection;
 
 public interface ICrudRepository<T> {
@@ -16,4 +18,5 @@ public interface ICrudRepository<T> {
 
     public T findOne(String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 
+    public File getXml(String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 }

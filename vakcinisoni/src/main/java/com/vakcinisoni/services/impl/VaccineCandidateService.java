@@ -27,9 +27,6 @@ public class VaccineCandidateService implements IVaccineCandidateService {
 
     RestTemplate restTemplate = new RestTemplate();
 
-//    @Autowired
-//    public RestTemplate template;
-
     @Override
     public Term save(VaccineCandidate candidate) {
         try{
@@ -58,7 +55,15 @@ public class VaccineCandidateService implements IVaccineCandidateService {
         return null;
     }
 
-    //TermRepository
+    @Override
+    public int countDistinct() {
+        try {
+            return candidateRepository.countDistinct();
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 
 }

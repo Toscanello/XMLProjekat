@@ -1,6 +1,7 @@
 package com.vakcinisoni.models;
 
 import javax.xml.bind.annotation.*;
+import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -165,5 +166,18 @@ public class VaccineCandidate {
         else {
             return "Drzavljanin Republike Srbije";
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VaccineCandidate that = (VaccineCandidate) o;
+        return Objects.equals(jmbg, that.jmbg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(jmbg);
     }
 }

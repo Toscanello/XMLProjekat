@@ -7,4 +7,6 @@ public interface IVaccineCandidateService {
 
     Term save(VaccineCandidate candidate);
 
+    int countDistinct();
+
 }

@@ -4,10 +4,15 @@ import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.models.DigitalCertificates;
 import com.vakcinisoni.repository.impl.DigitalCertificateRepository;
 import com.vakcinisoni.services.IDigitalCertificateService;
+import com.vakcinisoni.xml2pdf.xslfo.XSLFOTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 
 @Service
@@ -16,19 +21,18 @@ public class DigitalCertificateService implements IDigitalCertificateService {
     @Autowired
     public DigitalCertificateRepository repository;
 
+    public XSLFOTransformer transformer = new XSLFOTransformer("data/DigitalCert.xml", "data/xsl/DigitalCert.xsl", "data/gen/DigitalCert.pdf");
+
+    public DigitalCertificateService() throws IOException, SAXException {
+    }
+
     @Override
     public DigitalCertificates findAll() {
         try {
             Collection<DigitalCertificate> coll = repository.findAll("/certificate");
             return new DigitalCertificates(coll);
 
-        } catch (XMLDBException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
@@ -38,15 +42,21 @@ public class DigitalCertificateService implements IDigitalCertificateService {
     public DigitalCertificate save(DigitalCertificate certificate) {
         try {
             return repository.save(certificate); // validations??
-        } catch (XMLDBException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String download(String id) {
+        try {
+            transformer.setINPUT_FILE("data/" + id + ".xml");
+            File res = repository.getXml(id);
+            transformer.generatePDF();
+            return "success";
+        } catch (Exception e) {
+            return "fail";
+        }
     }
 }
