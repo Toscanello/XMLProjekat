@@ -8,12 +8,16 @@ import com.vakcinisoni.repository.impl.TermRepository;
 import com.vakcinisoni.repository.impl.VaccineCandidateRepository;
 import com.vakcinisoni.services.IVaccineCandidateService;
 import com.vakcinisoni.services.MailerService;
+import com.vakcinisoni.xml2pdf.xslfo.XSLFOTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 
 @Service
@@ -26,6 +30,11 @@ public class VaccineCandidateService implements IVaccineCandidateService {
     public TermRepository termRepository;
 
     RestTemplate restTemplate = new RestTemplate();
+
+    public XSLFOTransformer transformer = new XSLFOTransformer("data/VaccineCandidate.xml", "data/xsl/VaccineCandidate.xsl", "data/gen/VaccineCandidate.pdf");
+
+    public VaccineCandidateService() throws IOException, SAXException {
+    }
 
     @Override
     public Term save(VaccineCandidate candidate) {
@@ -63,6 +72,18 @@ public class VaccineCandidateService implements IVaccineCandidateService {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public String download(String id) {
+        try {
+            transformer.setINPUT_FILE("data/" + id + ".xml");
+            File res = candidateRepository.getXml(id);
+            transformer.generatePDF();
+            return "success";
+        } catch (Exception e) {
+            return "fail";
+        }
     }
 
 

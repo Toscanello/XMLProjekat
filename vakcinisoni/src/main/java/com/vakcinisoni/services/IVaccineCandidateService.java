@@ -9,4 +9,6 @@ public interface IVaccineCandidateService {
 
     int countDistinct();
 
+    String download(String id);
+
 }

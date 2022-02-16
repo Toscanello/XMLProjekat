@@ -8,4 +8,6 @@ public interface IVaccinationReportService {
     VaccinationReports findAllByJmbg(String jmbg);
 
     VaccinationReport save(VaccinationReport report);
+
+    String download(String id);
 }

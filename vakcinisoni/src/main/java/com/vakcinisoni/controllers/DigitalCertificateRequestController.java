@@ -5,10 +5,7 @@ import com.vakcinisoni.services.IDigitalCertificateRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "certificate-requests")
@@ -21,5 +18,11 @@ public class DigitalCertificateRequestController {
     public ResponseEntity<DigitalCertificateRequest> save(@RequestBody DigitalCertificateRequest request){
         DigitalCertificateRequest saved = service.save(request);
         return new ResponseEntity<>(saved, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "download/{id}")
+    public ResponseEntity<String> download(@PathVariable String id){
+        String ret = service.download(id);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }

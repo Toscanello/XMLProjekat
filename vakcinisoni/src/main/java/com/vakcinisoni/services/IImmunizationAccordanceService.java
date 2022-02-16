@@ -8,4 +8,6 @@ public interface IImmunizationAccordanceService {
     ImmunizationAccordance save(ImmunizationAccordance accordance);
 
     Accordances findAll();
+
+    String download(String id);
 }

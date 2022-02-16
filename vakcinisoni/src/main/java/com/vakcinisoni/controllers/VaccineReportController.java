@@ -30,4 +30,10 @@ public class VaccineReportController {
 
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/download/{id}")
+    public ResponseEntity<String> download(@PathVariable String id){
+        String ret = service.download(id);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
 }

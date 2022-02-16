@@ -26,4 +26,10 @@ public class VaccineCandidateController {
     public ResponseEntity<Integer> count(){
         return new ResponseEntity<>(service.countDistinct(), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/download/{id}")
+    public ResponseEntity<String> download(@PathVariable String id){
+        String ret = service.download(id);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
 }

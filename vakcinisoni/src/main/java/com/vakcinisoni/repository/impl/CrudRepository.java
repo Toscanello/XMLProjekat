@@ -236,9 +236,6 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
             if(res == null) {
                 System.out.println("[WARNING] Document '" + documentId + "' can not be found!");
             } else {
-                System.out.println("\n\nfewfwqefwqefwqfqewfqwfweqfwqefwqfwqwqefq");
-                System.out.println(res.getContent());
-                System.out.println("\n\n");
                 File newFile = new File("data/" + documentId);
                 FileWriter writer = new FileWriter("data/" + documentId);
                 writer.write(res.getContent().toString());
