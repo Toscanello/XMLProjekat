@@ -2,6 +2,7 @@ package com.vakcinisoni.controllers;
 
 import com.vakcinisoni.models.Term;
 import com.vakcinisoni.repository.impl.TermRepository;
+import com.vakcinisoni.services.ITermService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,12 @@ import org.xmldb.api.base.XMLDBException;
 public class TermController {
 
     @Autowired
-    private TermRepository repository;
+    private ITermService service;
 
 
     @PostMapping(value="/", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<Term> createNew(@RequestBody Term term) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        Term ret = repository.save(term);
+        Term ret = service.save(term);
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }
