@@ -1,10 +1,13 @@
 package com.vakcinisoni.services.impl;
 
 import com.vakcinisoni.models.ImmunizationAccordance;
+import com.vakcinisoni.models.Term;
 import com.vakcinisoni.models.VaccinationReport;
 import com.vakcinisoni.repository.impl.ImmunizationAccordanceRepository;
+import com.vakcinisoni.repository.impl.TermRepository;
 import com.vakcinisoni.repository.impl.VaccinationReportRepository;
 import com.vakcinisoni.services.IMedicalService;
+import com.vakcinisoni.services.MailerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.base.XMLDBException;
@@ -17,6 +20,10 @@ public class MedicalService implements IMedicalService {
     ImmunizationAccordanceRepository immunizationAccordanceRepository;
     @Autowired
     VaccinationReportRepository vaccinationReportRepository;
+    @Autowired
+    TermRepository termRepository;
+    @Autowired
+    MailerService mailerService;
 
     @Override
     public ImmunizationAccordance findOneByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -37,6 +44,8 @@ public class MedicalService implements IMedicalService {
             immunizationAccordanceRepository.save(immunizationAccordance);
             VaccinationReport vaccinationReport = new VaccinationReport(immunizationAccordance);
             vaccinationReportRepository.save(vaccinationReport);
+            //Term term = termRepository.createTermForNewVaccination(System.currentTimeMillis(),immunizationAccordance.getCity());
+            //MailerService.sendEmailForNewTerm(term,immunizationAccordance.getEmail(),immunizationAccordance.getName());
             return immunizationAccordance;
         }
         return null;

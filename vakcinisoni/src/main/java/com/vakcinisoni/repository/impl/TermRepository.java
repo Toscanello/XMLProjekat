@@ -3,6 +3,7 @@ package com.vakcinisoni.repository.impl;
 import com.vakcinisoni.models.Term;
 import com.vakcinisoni.models.VaccineCandidate;
 import com.vakcinisoni.services.DbService;
+import com.vakcinisoni.services.MailerService;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
 
