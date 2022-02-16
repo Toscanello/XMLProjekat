@@ -60,7 +60,7 @@ public class MetadataExtractor {
 
         String filePath = "gen/grddl_metadata.rdf";
 
-        InputStream in = new FileInputStream(new File("data/DigitalCert.xml"));
+        InputStream in = new FileInputStream(new File("data/VaccineCandidate.xml"));
 
         OutputStream out = new FileOutputStream(filePath);
 

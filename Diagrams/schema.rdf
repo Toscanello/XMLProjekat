@@ -1,0 +1,8 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.vakcinisoni.com/DigitalCert/2509999880166">
+    <pred:fullName xmlns:pred="http://www.vakcinisoni.com/rdf/predicate" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Pera Peric</pred:fullName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.vakcinisoni.com/DigitalCert/2509999880166">
+    <pred:jmbg xmlns:pred="http://www.vakcinisoni.com/rdf/predicate" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">0708999850006</pred:jmbg>
+  </rdf:Description>
+</rdf:RDF>

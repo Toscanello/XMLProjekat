@@ -10,13 +10,12 @@ public class VaccineCandidateParser extends ParserChain {
 
     @Override
     public Object parse(XMLResource resource) {
-
+        setNext(new CitizenParser());
         try{
             return (VaccineCandidate) ObjectParser.parseToObject(resource, Constants.PATH_TO_MODELS);
         }
         catch (Exception e){
-            e.printStackTrace();
+            return next.parse(resource);
         }
-        return null;
     }
 }

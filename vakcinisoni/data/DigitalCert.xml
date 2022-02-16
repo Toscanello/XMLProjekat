@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<certificate xmlns="http://www.vakcinisoni.com/DigitalCert"
+<certificate xmlns="http://www.vakcinisoni.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.vakcinisoni.com/DigitalCert DigitalCert.xsd"
     xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
@@ -15,6 +15,20 @@
     <vaccination>
         <dose count="1">
             <type>Pfizer</type>
+            <manufacturer>BIONTECH MANUFACTURING</manufacturer>
+            <batch>2245</batch>
+            <date>2021-11-06</date>
+            <institution>DZ Ruma</institution>
+        </dose>
+        <dose count="2">
+            <type>KURCINA</type>
+            <manufacturer>BIONTECH MANUFACTURING</manufacturer>
+            <batch>2245</batch>
+            <date>2021-11-06</date>
+            <institution>DZ Ruma</institution>
+        </dose>
+        <dose count="3">
+            <type>KURCINA</type>
             <manufacturer>BIONTECH MANUFACTURING</manufacturer>
             <batch>2245</batch>
             <date>2021-11-06</date>
