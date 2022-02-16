@@ -1,4 +1,4 @@
-package vakcinisoniclerk.services.contracts;
+package vakcinisoniclerk.services;
 
 import vakcinisoniclerk.models.dto.DeclineCertificateRequestDto;
 

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vakcinisoniclerk.models.dto.DeclineCertificateRequestDto;
-import vakcinisoniclerk.services.contracts.ICertificatesService;
+import vakcinisoniclerk.services.ICertificatesService;
 
 @RestController
 @RequestMapping(value = "certificates")

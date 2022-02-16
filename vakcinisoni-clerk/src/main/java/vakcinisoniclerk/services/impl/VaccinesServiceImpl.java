@@ -1,4 +1,4 @@
-package vakcinisoniclerk.services;
+package vakcinisoniclerk.services.impl;
 
 import org.springframework.stereotype.Service;
 import org.xmldb.api.DatabaseManager;
@@ -8,7 +8,7 @@ import org.xmldb.api.modules.XUpdateQueryService;
 import vakcinisoniclerk.models.Vaccine;
 import vakcinisoniclerk.models.Vaccines;
 import vakcinisoniclerk.repository.impl.VaccineRepository;
-import vakcinisoniclerk.services.contracts.IVaccinesService;
+import vakcinisoniclerk.services.IVaccinesService;
 import vakcinisoniclerk.util.AuthenticationUtilities;
 
 import java.io.IOException;

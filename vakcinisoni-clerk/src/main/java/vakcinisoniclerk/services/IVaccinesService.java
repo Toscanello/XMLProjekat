@@ -1,10 +1,8 @@
-package vakcinisoniclerk.services.contracts;
+package vakcinisoniclerk.services;
 
 import org.xmldb.api.base.XMLDBException;
 import vakcinisoniclerk.models.Vaccine;
 import vakcinisoniclerk.models.Vaccines;
-
-import java.util.List;
 
 public interface IVaccinesService {
 

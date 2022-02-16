@@ -1,8 +1,9 @@
-package vakcinisoniclerk.services;
+package vakcinisoniclerk.services.impl;
 
 import org.springframework.stereotype.Service;
 import vakcinisoniclerk.models.dto.DeclineCertificateRequestDto;
-import vakcinisoniclerk.services.contracts.ICertificatesService;
+import vakcinisoniclerk.services.MailerService;
+import vakcinisoniclerk.services.ICertificatesService;
 
 @Service
 public class CertificatesServiceImpl implements ICertificatesService {

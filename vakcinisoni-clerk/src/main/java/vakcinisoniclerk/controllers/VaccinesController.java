@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.xmldb.api.base.XMLDBException;
 import vakcinisoniclerk.models.Vaccine;
 import vakcinisoniclerk.models.Vaccines;
-import vakcinisoniclerk.services.VaccinesServiceImpl;
-
-import java.util.List;
+import vakcinisoniclerk.services.impl.VaccinesServiceImpl;
 
 @RestController
 @RequestMapping(value = "vaccines")
