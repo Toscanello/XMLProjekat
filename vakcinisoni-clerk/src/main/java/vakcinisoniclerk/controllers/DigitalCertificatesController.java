@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vakcinisoniclerk.models.DigitalCertificateRequests;
 import vakcinisoniclerk.models.VaccinationReports;
 import vakcinisoniclerk.models.dto.DeclineCertificateRequestDto;
 import vakcinisoniclerk.services.ICertificatesService;
@@ -20,14 +21,19 @@ public class DigitalCertificatesController {
         return new ResponseEntity<>(certificatesService.getByJmbg(jmbg), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{requestId}/accept")
-    public ResponseEntity<String> acceptCertificateRequest(@PathVariable("requestId") String requestId) {
-        return new ResponseEntity<>(certificatesService.acceptCertificateRequest(requestId), HttpStatus.OK);
+    @GetMapping(value = "/fetchRequests", produces = "application/xml")
+    public ResponseEntity<DigitalCertificateRequests> findAllRequests() {
+        return new ResponseEntity<>(certificatesService.getRequests(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/{requestId}/decline", consumes = "application/xml")
-    public ResponseEntity<String> declineCertificateRequest(@PathVariable("requestId") String requestId, @RequestBody DeclineCertificateRequestDto declineRequest) {
-        return new ResponseEntity<>(certificatesService.declineCertificateRequest(requestId, declineRequest), HttpStatus.OK);
+    @GetMapping(value = "/{documentId}/accept")
+    public ResponseEntity<String> acceptCertificateRequest(@PathVariable("documentId") String jmbg) {
+        return new ResponseEntity<>(certificatesService.acceptCertificateRequest(documentId), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/{documentId}/decline", consumes = "application/xml")
+    public ResponseEntity<String> declineCertificateRequest(@PathVariable("documentId") String jmbg, @RequestBody DeclineCertificateRequestDto declineRequest) {
+        return new ResponseEntity<>(certificatesService.declineCertificateRequest(documentId, declineRequest), HttpStatus.OK);
     }
 
 }
