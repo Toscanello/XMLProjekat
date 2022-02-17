@@ -23,9 +23,17 @@ public class DigitalCertificateController {
         return new ResponseEntity<>(dc, HttpStatus.OK);
     }
 
+
     @PostMapping(value = "/write", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<DigitalCertificate> save(@RequestBody DigitalCertificate certificate) {
         DigitalCertificate dc = service.save(certificate);
+
+        return new ResponseEntity<>(dc, HttpStatus.OK);
+    }
+
+    @GetMapping(value="/read/{jmbg}", produces = "application/xml")
+    public ResponseEntity<DigitalCertificates> findAllByJmbg(@PathVariable String jmbg){
+        DigitalCertificates dc = service.findAllByJmbg(jmbg);
 
         return new ResponseEntity<>(dc, HttpStatus.OK);
     }

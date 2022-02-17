@@ -5,8 +5,12 @@ import com.vakcinisoni.services.DbService;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.io.IOException;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Component
 public class DigitalCertificateRepository extends CrudRepository<DigitalCertificate>{
@@ -32,5 +36,13 @@ public class DigitalCertificateRepository extends CrudRepository<DigitalCertific
         certificate.setId(id + "");
 
         return super.save(certificate);
+    }
+
+    public List<DigitalCertificate> findAllByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        List<DigitalCertificate> all = (ArrayList<DigitalCertificate>) this.findAll("/certificate");
+
+        List<DigitalCertificate> retVal = all.stream()
+                .filter(cert -> cert.getJmbg().equals(jmbg)).collect(Collectors.toList());
+        return retVal;
     }
 }

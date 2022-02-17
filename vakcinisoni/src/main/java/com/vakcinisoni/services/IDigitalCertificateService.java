@@ -12,4 +12,6 @@ public interface IDigitalCertificateService {
     String download(String id);
 
     String downloadHtml(String id);
+
+    DigitalCertificates findAllByJmbg(String jmbg);
 }
