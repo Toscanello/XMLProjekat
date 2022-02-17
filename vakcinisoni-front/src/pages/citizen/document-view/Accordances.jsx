@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { getAccordancesForUser } from "../../../services/accordanceService";
 import { downloadPdf, downloadHtml } from "../../../services/axiosService";
 import { parseXmlToJs } from "../../../services/parseService";
-
-const HTTP_SERVER_PATH = "http://172.20.176.1:8081/";
+import { HTTP_SERVER_PATH } from "../../../utils/constants";
 
 function Accordances(){
 
@@ -35,14 +34,11 @@ function Accordances(){
         downloadHtml("accordances", e.target.id, (response)=>{
             if(response.status === 200){
                 console.log(response.data);
-                window.open(`${HTTP_SERVER_PATH}ImmunizationAccordance.html`);
+                window.open(`${HTTP_SERVER_PATH}${response.data}`);
             }
         })
     }
-    function handlePreview(e){
-        console.log(e);
 
-    }
     return(
         <>
             {accordances.map(accordance => {
@@ -50,7 +46,6 @@ function Accordances(){
                     <h2>{accordance.jmbg + "_" + accordance.date}</h2>
                     <button onClick={handleSavePdf} id={accordance.jmbg + "_" + accordance.date}>Sacuvaj PDF</button>
                     <button onClick={handleSaveHtml} id={accordance.jmbg + "_" + accordance.date}>Sacuvaj XHTML</button><br/>
-                    <button onClick={handlePreview}>Pregledaj</button>
                 </div>
             })}
         </>

@@ -1,4 +1,4 @@
-import { postObject } from "./axiosService";
+import { getObjects, postObject } from "./axiosService";
 
 const PATH = "certificate-requests";
 
@@ -26,4 +26,10 @@ export function postCertificateRequestObject(request, callback){
     `;
 
     postObject(`${PATH}/`, xmlData, callback);
+}
+
+export function getRequestsForUser(callback){
+    let jmbg = "2509999880166";
+
+    getObjects(`${PATH}/${jmbg}`, callback);
 }

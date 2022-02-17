@@ -80,8 +80,7 @@ public class HTMLTransformer {
 			StreamResult result = new StreamResult(new FileOutputStream(HTML_FILE));
 			transformer.transform(source, result);
 
-			File exitFile = new File(HTML_FILE);
-			return exitFile.getAbsolutePath();
+			return "success";
 			
 		} catch (TransformerFactoryConfigurationError | TransformerException e) {
 			e.printStackTrace();
