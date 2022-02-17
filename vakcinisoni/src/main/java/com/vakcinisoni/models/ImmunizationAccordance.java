@@ -31,6 +31,11 @@ import java.util.List;
 @XmlRootElement(name = "accordance")
 public class ImmunizationAccordance {
 
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+    @XmlAttribute(name = "about")
+    protected String about;
+
     @XmlElement(required = true)
     protected String jmbg;
 
@@ -59,7 +64,7 @@ public class ImmunizationAccordance {
     protected String post;
 
     @XmlElement(required = true)
-    protected String city;
+    protected City city;
 
     @XmlElement(required = true)
     protected String homeNumber;
@@ -93,6 +98,11 @@ public class ImmunizationAccordance {
 
     @XmlElement(required = true)
     protected VaccineEvidence vaccineEvidence;
+
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
 
     public String getJmbg() {
         return jmbg;
@@ -166,11 +176,11 @@ public class ImmunizationAccordance {
         this.post = post;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -263,6 +273,22 @@ public class ImmunizationAccordance {
 
     public void setVaccineEvidence(VaccineEvidence vaccineEvidence) {
         this.vaccineEvidence = vaccineEvidence;
+    }
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "city")
+    public static class City {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty(){return this.property;}
+        public void setProperty(String property){this.property=property;}
+        public String getValue(){return this.value;}
+        public void setValue(String value){this.value=value;}
+
     }
 
 

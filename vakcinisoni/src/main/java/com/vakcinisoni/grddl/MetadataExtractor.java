@@ -1,11 +1,13 @@
 package com.vakcinisoni.grddl;
 
 import com.vakcinisoni.api.rdf.FusekiWriter;
+import com.vakcinisoni.models.ImmunizationAccordance;
 import com.vakcinisoni.util.AuthenticationUtilities;
 import org.apache.xalan.processor.TransformerFactoryImpl;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
+import javax.xml.bind.JAXB;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -75,5 +77,19 @@ public class MetadataExtractor {
         System.out.println("[INFO] End.");
 
     }
+
+    /*public static void main(String[] args) throws Exception {
+        ImmunizationAccordance im = new ImmunizationAccordance();
+        ImmunizationAccordance.City city = new ImmunizationAccordance.City();
+        city.setProperty("pred:city");
+        city.setValue("Ruma");
+        im.setCity(city);
+        im.setPred("http://www.vakcinisoni.com/rdf/predicate");
+
+        StringWriter sw = new StringWriter();
+        JAXB.marshal(im,sw);
+        System.out.println(sw.toString());
+        new MetadataExtractor().test(sw.toString());
+    }*/
 
 }
