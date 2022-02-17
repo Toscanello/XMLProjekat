@@ -1,6 +1,8 @@
 package com.vakcinisoni.repository.impl;
 
+import com.vakcinisoni.models.DigitalCertificateRequest;
 import com.vakcinisoni.models.VaccineCandidate;
+import com.vakcinisoni.models.VaccineCandidates;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
 
@@ -8,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class VaccineCandidateRepository extends CrudRepository<VaccineCandidate>{
@@ -28,6 +31,14 @@ public class VaccineCandidateRepository extends CrudRepository<VaccineCandidate>
             }
         }
         return distinct.size();
+    }
+
+    public List<VaccineCandidate> findForJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        List<VaccineCandidate> all = (ArrayList<VaccineCandidate>)this.findAll("/vaccineCandidate");
+        List<VaccineCandidate> retVal = all.stream()
+                .filter(vc -> vc.getJmbg().equals(jmbg))
+                .collect(Collectors.toList());
+        return retVal;
     }
 
 }
