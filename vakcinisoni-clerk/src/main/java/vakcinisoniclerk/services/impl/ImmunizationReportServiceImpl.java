@@ -1,10 +1,13 @@
 package vakcinisoniclerk.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.xmldb.api.base.XMLDBException;
 import vakcinisoniclerk.models.*;
+import vakcinisoniclerk.repository.impl.ImmunizationReportRepository;
 import vakcinisoniclerk.services.IImunizationReportService;
 
 import java.text.ParseException;
@@ -17,6 +20,30 @@ import java.util.*;
 public class ImmunizationReportServiceImpl implements IImunizationReportService {
 
     RestTemplate restTemplate = new RestTemplate();
+
+    @Autowired
+    private ImmunizationReportRepository repository;
+
+    @Override
+    public ImmunizationReport save(ImmunizationReport report) {
+        try {
+            return repository.save(report);
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Reports findAll() {
+        try {
+            Collection<ImmunizationReport> reports = repository.findAll("/immunizationReport");
+            return new Reports((List<ImmunizationReport>) reports);
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ImmunizationReport generateReport(String dateFrom, String dateUntil) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, ParseException {
         Date dateFromD = new SimpleDateFormat("yyyy-MM-dd").parse(dateFrom);
@@ -78,6 +105,7 @@ public class ImmunizationReportServiceImpl implements IImunizationReportService 
                 digitalCertificatesRequestsNumber+"", digitalCertificatesNumber+"",
                 totalVaccinesGiven+"", dosesTable.get(1).toString(), manufacturers, dtf.format(now));
 
+        this.save(report);
         return report;
     }
 }
