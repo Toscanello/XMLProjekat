@@ -17,6 +17,9 @@ function NavigationHeader(){
                 <li>
                     <Link to={`/view-documents`}>Pregledaj dokumente</Link>
                 </li>
+                <li className="right">
+                    <Link to={`/`}>Izloguj se</Link>
+                </li>
             </ul>
         </nav>                 
     );

@@ -1,5 +1,8 @@
 import { useState } from "react";
+import NavigationHeader from "../../components/header/NavigationHeader";
 import { postAccordanceObject } from "../../services/accordanceService";
+
+
 function AccordancePageCitizen(){
 
     const [accordance, setAccordance] = useState({
@@ -35,6 +38,8 @@ function AccordancePageCitizen(){
     }
 
     return(
+        <>
+        <NavigationHeader />
         <div className="for-container">
         <h2 className="title">SAGLASNOST ZA SPROVODJENJE PREPORUCENE IMUNIZACIJE</h2>
         <p className="sub-title">(popunjava pacijent)</p>
@@ -173,7 +178,8 @@ function AccordancePageCitizen(){
             <input className="button" type="submit" value="Pošalji" />
 
         </form>
-    </div>
+        </div>
+    </>
     );
 
 }

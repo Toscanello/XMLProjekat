@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postCandidateObject } from "../../services/candidateService";
+import NavigationHeader from "../../components/header/NavigationHeader";
 
 function VaccineCandidatePageCitizen(){
 
@@ -38,6 +39,7 @@ function VaccineCandidatePageCitizen(){
 
     return(
         <>
+            <NavigationHeader />
             <div>
                 <input type="radio" id="rs" name="citizen" value="0" defaultChecked 
                     onChange={(e) => setCandidate({...candidate, residence: e.target.value})}/>

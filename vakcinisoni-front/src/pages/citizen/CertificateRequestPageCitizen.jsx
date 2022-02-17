@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postCertificateRequestObject } from "../../services/certificateRequestService";
 import { parseXmlToJs } from "../../services/parseService";
+import NavigationHeader from "../../components/header/NavigationHeader";
 
 function CertificateRequestPageCitizen(){
 
@@ -25,7 +26,10 @@ function CertificateRequestPageCitizen(){
     }
 
     return(
-    <div className="for-container">
+    <>
+        <NavigationHeader />
+        <div className="for-container">
+        
         <h2>Zahtev za Sertifikat</h2>
 
         <form action="" onSubmit={handleSubmit}>
@@ -57,7 +61,8 @@ function CertificateRequestPageCitizen(){
             <input className="button" type="submit" value="Pošalji" />
 
         </form>
-    </div>
+        </div>
+    </>
     );
 
 }
