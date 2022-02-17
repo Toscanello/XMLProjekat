@@ -69,6 +69,17 @@ export function downloadPdf(path, documentId, callback=defaultCallback, errorCal
     });
 }
 
+export function downloadHtml(path, documentId, callback=defaultCallback, errorCallback=defaultErrorCallback){
+    axios
+    .get(`${API_URL}/${path}/downloadhtml/${documentId}`)
+    .then(response => {
+        callback(response);
+    })
+    .catch(error => {
+        errorCallback(error);
+    });
+}
+
 function defaultCallback(response){
     if(response.status === 200){
         console.log("OK");

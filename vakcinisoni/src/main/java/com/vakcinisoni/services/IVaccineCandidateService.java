@@ -11,4 +11,5 @@ public interface IVaccineCandidateService {
 
     String download(String id);
 
+    String downloadHtml(String id);
 }

@@ -1,0 +1,22 @@
+<accordance xmlns="http://www.vakcinisoni.com">
+    <jmbg>2509999880166</jmbg>
+    <surname>volaric</surname>
+    <name>filip</name>
+    <parentName>kresimir</parentName>
+    <gender>1</gender>
+    <birthDate>25-09-1999</birthDate>
+    <birthPlace>Ruma</birthPlace>
+    <address>vrdnicka 18</address>
+    <post>kudos</post>
+    <city>ruma</city>
+    <homeNumber>022475580</homeNumber>
+    <phoneNum>0641345948</phoneNum>
+    <email>filip.kresa@gmail.com</email>
+    <workStatus>4</workStatus>
+    <employedAt>5</employedAt>
+    <socialSecurity>true</socialSecurity>
+    <residenceName>Rumska</residenceName>
+    <isAccordant>true</isAccordant>
+    <medicineName>FAJZERA</medicineName>
+    <date>2022-02-16</date>
+</accordance>

@@ -10,4 +10,6 @@ public interface IVaccinationReportService {
     VaccinationReport save(VaccinationReport report);
 
     String download(String id);
+
+    String downloadHtml(String id);
 }

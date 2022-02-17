@@ -10,4 +10,6 @@ public interface IDigitalCertificateService {
     DigitalCertificate save(DigitalCertificate certificate);
 
     String download(String id);
+
+    String downloadHtml(String id);
 }

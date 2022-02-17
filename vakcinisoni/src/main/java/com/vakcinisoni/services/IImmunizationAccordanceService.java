@@ -12,4 +12,6 @@ public interface IImmunizationAccordanceService {
     Accordances findAllForJmbg(String jmbg);
 
     String download(String id);
+
+    String downloadHtml(String id);
 }

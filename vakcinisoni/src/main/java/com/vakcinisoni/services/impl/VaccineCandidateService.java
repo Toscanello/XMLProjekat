@@ -8,6 +8,7 @@ import com.vakcinisoni.repository.impl.TermRepository;
 import com.vakcinisoni.repository.impl.VaccineCandidateRepository;
 import com.vakcinisoni.services.IVaccineCandidateService;
 import com.vakcinisoni.services.MailerService;
+import com.vakcinisoni.xml2pdf.itext.HTMLTransformer;
 import com.vakcinisoni.xml2pdf.xslfo.XSLFOTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,8 @@ public class VaccineCandidateService implements IVaccineCandidateService {
     RestTemplate restTemplate = new RestTemplate();
 
     public XSLFOTransformer transformer = new XSLFOTransformer("data/VaccineCandidate.xml", "data/xsl/VaccineCandidate.xsl", "data/gen/VaccineCandidate.pdf");
+
+    public HTMLTransformer htmlTransformer = new HTMLTransformer();
 
     public VaccineCandidateService() throws IOException, SAXException {
     }
@@ -81,6 +84,24 @@ public class VaccineCandidateService implements IVaccineCandidateService {
             File res = candidateRepository.getXml(id);
             transformer.generatePDF();
             return "success";
+        } catch (Exception e) {
+            return "fail";
+        }
+    }
+
+    @Override
+    public String downloadHtml(String id) {
+        try {
+            htmlTransformer.setINPUT_FILE("data/" + id + ".xml");
+            htmlTransformer.setXSL_FILE("data/xslt-html/VaccineCandidate.xsl");
+            String outputFileName = "VaccineCandidate" + id + ".html";
+            htmlTransformer.setHTML_FILE("data/gen/itext/" + outputFileName);
+            File res = candidateRepository.getXml(id);
+            String path = htmlTransformer.generateHTML();
+            if(path != null && !path.equals("")){
+                return outputFileName;
+            }
+            return "fail";
         } catch (Exception e) {
             return "fail";
         }
