@@ -27,6 +27,12 @@ public class ImmunizationAccordanceController {
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
+    @GetMapping(value="/{jmbg}", produces ="application/xml")
+    public ResponseEntity<Accordances> getAllForJmbg(@PathVariable String jmbg){
+        Accordances ret = service.findAllForJmbg(jmbg);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/download/{id}")
     public ResponseEntity<String> download(@PathVariable String id){
         String ret = service.download(id);

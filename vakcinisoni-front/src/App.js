@@ -6,6 +6,8 @@ import RegistrationPage from './pages/login/RegisterPage';
 import VaccineCandidatePageCitizen from './pages/citizen/VaccineCandidatePageCitizen';
 import CertificateRequestPageCitizen from './pages/citizen/CertificateRequestPageCitizen';
 import AccordancePageCitizen from './pages/citizen/AccordancePageCitizen';
+import ViewDocumentsCitizen from './pages/citizen/ViewDocumentsCitizen';
+import Accordances from './pages/citizen/document-view/Accordances';
 
 import './assets/style.css';
 
@@ -20,6 +22,8 @@ function App() {
           <Route exact path="/candidate" element={<VaccineCandidatePageCitizen />}/>
           <Route exact path="/certificate-request" element={<CertificateRequestPageCitizen />} />
           <Route exact path="/accordance" element={<AccordancePageCitizen></AccordancePageCitizen>} />
+          <Route exact path="/view-documents" element={<ViewDocumentsCitizen/>} />
+          <Route exact path="/view-documents/accordances" element={<Accordances />} />
         </Routes>
       </Router>
       

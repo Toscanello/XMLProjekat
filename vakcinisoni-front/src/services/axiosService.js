@@ -58,6 +58,17 @@ export function deleteObject(path, objectId, callback=defaultCallback, errorCall
     });
 }
 
+export function downloadPdf(path, documentId, callback=defaultCallback, errorCallback=defaultErrorCallback){
+    axios
+    .get(`${API_URL}/${path}/download/${documentId}`)
+    .then(response => {
+        callback(response);
+    })
+    .catch(error => {
+        errorCallback(error);
+    });
+}
+
 function defaultCallback(response){
     if(response.status === 200){
         console.log("OK");

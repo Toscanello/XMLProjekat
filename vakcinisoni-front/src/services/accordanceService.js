@@ -1,4 +1,4 @@
-import { postObject } from "./axiosService";
+import { getObjects, postObject } from "./axiosService";
 
 const PATH = "accordances";
 
@@ -35,4 +35,10 @@ export function postAccordanceObject(accordance, callback){
     `;
     
     postObject(`${PATH}/`, xmlData, callback);
+}
+
+export function getAccordancesForUser(callback){
+    let jmbg = "2509999880166";
+
+    getObjects(`${PATH}/${jmbg}`, callback);
 }
