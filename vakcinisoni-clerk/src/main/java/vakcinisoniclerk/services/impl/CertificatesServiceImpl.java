@@ -48,7 +48,10 @@ public class CertificatesServiceImpl implements ICertificatesService {
 
         Vaccination vaccination = new Vaccination(certificateDoses);
 
-        DigitalCertificate newDigitalCertificate = new DigitalCertificate("1", vaccinationReport.getQrCode(), vaccinationReport.getFullName(),
+        ResponseEntity<DigitalCertificates> digitalCertificates = restTemplate.getForEntity("http://localhost:3000/certificates/read/", DigitalCertificates.class);
+
+
+        DigitalCertificate newDigitalCertificate = new DigitalCertificate(digitalCertificates.getBody().getCertificate().size() + 1 + "", vaccinationReport.getQrCode(), vaccinationReport.getFullName(),
                 Gender.convertNumberToEnum(vaccinationReport.getGender()), vaccinationReport.getBirthDate(), jmbg, certificateRequest.getPassportNum(),
                 vaccination);
 
