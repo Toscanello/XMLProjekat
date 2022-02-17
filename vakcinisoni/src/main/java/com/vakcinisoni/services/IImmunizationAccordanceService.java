@@ -9,5 +9,7 @@ public interface IImmunizationAccordanceService {
 
     Accordances findAll();
 
+    Accordances findAllForJmbg(String jmbg);
+
     String download(String id);
 }

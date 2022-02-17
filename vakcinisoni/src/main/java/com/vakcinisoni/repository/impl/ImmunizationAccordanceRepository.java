@@ -48,6 +48,16 @@ public class ImmunizationAccordanceRepository extends CrudRepository<Immunizatio
             return null;
         return newList.get(0);
     }
+
+    public List<ImmunizationAccordance> findForJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        List<ImmunizationAccordance> all = (ArrayList<ImmunizationAccordance>)this.findAll("/accordance");
+        List<ImmunizationAccordance> retVal = all.stream()
+                .filter(acc -> acc.getJmbg().equals(jmbg))
+                .collect(Collectors.toList());
+        return retVal;
+
+    }
+
     public ImmunizationAccordance findLastAccordance(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         List<ImmunizationAccordance> allAccordance = (ArrayList<ImmunizationAccordance>)this.findAll("/accordance");
         List<ImmunizationAccordance> newList = allAccordance.stream().filter(acc->(acc.getJmbg().equals(jmbg))&&(acc.getVaccineEvidence().getInstitution()!=null)).collect(Collectors.toList());

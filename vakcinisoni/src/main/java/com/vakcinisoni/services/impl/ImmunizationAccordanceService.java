@@ -47,6 +47,17 @@ public class ImmunizationAccordanceService implements IImmunizationAccordanceSer
     }
 
     @Override
+    public Accordances findAllForJmbg(String jmbg) {
+        try {
+            List<ImmunizationAccordance> accordanceList = (ArrayList<ImmunizationAccordance>)repository.findForJmbg(jmbg);
+            return new Accordances(accordanceList);
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public String download(String id) {
         try {
             transformer.setINPUT_FILE("data/" + id + ".xml");

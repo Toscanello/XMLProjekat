@@ -24,8 +24,10 @@ public class CitizenController {
     @PostMapping(value="/register", consumes="application/xml", produces="application/xml")
     public ResponseEntity<String> register(@RequestBody Citizen citizen) {
         String jwt = service.register(citizen);
-
-        return new ResponseEntity<>(jwt, HttpStatus.OK);
+        if(!jwt.equals("")){
+            return new ResponseEntity<>(jwt, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(jwt, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping(value = "/login", consumes="application/xml", produces="application/xml")

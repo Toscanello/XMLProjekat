@@ -21,6 +21,9 @@ public class CitizenService implements ICitizenService {
     @Override
     public String register(Citizen citizen) {
         try {
+            if(citizen.getEmail().equals("") || citizen.getPassword().length() < 5 || citizen.getJmbg().length() < 12){
+                return "";
+            }
             Citizen c = repository.save(citizen);
             String jwt = "";
             if(c != null){
