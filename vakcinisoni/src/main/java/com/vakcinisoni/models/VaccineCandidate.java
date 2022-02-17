@@ -1,5 +1,9 @@
 package com.vakcinisoni.models;
 
+import com.vakcinisoni.models.metadata.Jmbg;
+import com.vakcinisoni.models.metadata.Name;
+import com.vakcinisoni.models.metadata.Surname;
+
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -18,17 +22,24 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "vaccineCandidate")
 public class VaccineCandidate {
+
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+
+    @XmlAttribute(name = "about")
+    protected String about;
+
     @XmlElement(required = true)
     protected String residence;
 
     @XmlElement(required = true)
-    protected String jmbg;
+    protected Jmbg jmbg;
 
     @XmlElement(required = true)
-    protected String name;
+    protected Name name;
 
     @XmlElement(required = true)
-    protected String surname;
+    protected Surname surname;
 
     @XmlElement(required = true)
     protected String email;
@@ -40,7 +51,7 @@ public class VaccineCandidate {
     protected String homeNum;
 
     @XmlElement(required = true)
-    protected String location;
+    protected Location location;
 
     @XmlElement(required = true)
     protected Options options;
@@ -51,6 +62,11 @@ public class VaccineCandidate {
     @XmlElement(required = true)
     protected String date;
 
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
+
     public String getResidence() {
         return residence;
     }
@@ -59,27 +75,27 @@ public class VaccineCandidate {
         this.residence = residence;
     }
 
-    public String getJmbg() {
+    public Jmbg getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(Jmbg jmbg) {
         this.jmbg = jmbg;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 
-    public String getSurname() {
+    public Surname getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(Surname surname) {
         this.surname = surname;
     }
 
@@ -107,11 +123,11 @@ public class VaccineCandidate {
         this.homeNum = homeNum;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -164,6 +180,30 @@ public class VaccineCandidate {
         }
         else {
             return "Drzavljanin Republike Srbije";
+        }
+    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "location")
+    public static class Location{
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
         }
     }
 }

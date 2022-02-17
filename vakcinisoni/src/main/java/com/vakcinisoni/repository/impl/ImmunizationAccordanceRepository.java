@@ -59,7 +59,7 @@ public class ImmunizationAccordanceRepository extends CrudRepository<Immunizatio
 
     public ImmunizationAccordance findOneByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         List<ImmunizationAccordance> allAccordances = (ArrayList<ImmunizationAccordance>) this.findAll("/accordance");
-        List<ImmunizationAccordance> newList = allAccordances.stream().filter(acc->acc.getJmbg().equals(jmbg)).collect(Collectors.toList());
+        List<ImmunizationAccordance> newList = allAccordances.stream().filter(acc->acc.getJmbg().getValue().equals(jmbg)).collect(Collectors.toList());
         newList.sort((a1,a2)->a2.getDate().compareTo(a1.getDate()));
         if(newList.isEmpty() || newList.get(0).getVaccineEvidence().getInstitution()!=null)
             return null;
@@ -67,7 +67,7 @@ public class ImmunizationAccordanceRepository extends CrudRepository<Immunizatio
     }
     public ImmunizationAccordance findLastAccordance(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         List<ImmunizationAccordance> allAccordance = (ArrayList<ImmunizationAccordance>)this.findAll("/accordance");
-        List<ImmunizationAccordance> newList = allAccordance.stream().filter(acc->(acc.getJmbg().equals(jmbg))&&(acc.getVaccineEvidence().getInstitution()!=null)).collect(Collectors.toList());
+        List<ImmunizationAccordance> newList = allAccordance.stream().filter(acc->(acc.getJmbg().getValue().equals(jmbg))&&(acc.getVaccineEvidence().getInstitution()!=null)).collect(Collectors.toList());
         newList.sort((a1,a2)->a2.getDate().compareTo(a1.getDate()));
         if(newList.isEmpty())
             return null;

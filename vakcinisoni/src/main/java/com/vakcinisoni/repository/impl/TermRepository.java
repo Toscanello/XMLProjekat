@@ -69,7 +69,7 @@ public class TermRepository extends CrudRepository<Term>{
                     lastTerm = t;
                 }
             }
-            Term newTerm = new Term(lastTerm.getStart()+30*60*60*1000, lastTerm.getFinish()+30*60*60*1000, true, candidate.getLocation());
+            Term newTerm = new Term(lastTerm.getStart()+30*60*60*1000, lastTerm.getFinish()+30*60*60*1000, true, candidate.getLocation().getValue());
             save(newTerm);
             return newTerm;
         }

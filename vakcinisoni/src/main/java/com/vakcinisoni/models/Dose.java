@@ -13,6 +13,9 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "dose")
 public class Dose {
 
+    @XmlAttribute(name = "count")
+    protected String count;
+
     @XmlElement(required = true)
     protected String type;
 
@@ -43,6 +46,9 @@ public class Dose {
         this.batch = batch;
         this.institution = institution;
     }
+
+    public String getCount(){return this.count;}
+    public void setCount(String count){this.count=count;}
 
     public String getDate() {
         return date;

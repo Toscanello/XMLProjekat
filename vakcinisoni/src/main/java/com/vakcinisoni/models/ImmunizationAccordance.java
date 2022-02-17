@@ -1,5 +1,9 @@
 package com.vakcinisoni.models;
 
+import com.vakcinisoni.models.metadata.Jmbg;
+import com.vakcinisoni.models.metadata.Name;
+import com.vakcinisoni.models.metadata.Surname;
+
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,17 +37,18 @@ public class ImmunizationAccordance {
 
     @XmlAttribute(name = "xmlns:pred")
     protected String pred;
+
     @XmlAttribute(name = "about")
     protected String about;
 
     @XmlElement(required = true)
-    protected String jmbg;
+    protected Jmbg jmbg;
 
     @XmlElement(required = true)
-    protected String surname;
+    protected Surname surname;
 
     @XmlElement(required = true)
-    protected String name;
+    protected Name name;
 
     @XmlElement(required = true)
     protected String parentName;
@@ -104,27 +109,27 @@ public class ImmunizationAccordance {
     public String getAbout(){return this.about;}
     public void setAbout(String about){this.about = about;}
 
-    public String getJmbg() {
+    public Jmbg getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(Jmbg jmbg) {
         this.jmbg = jmbg;
     }
 
-    public String getSurname() {
+    public Surname getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(Surname surname) {
         this.surname = surname;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 
@@ -303,7 +308,7 @@ public class ImmunizationAccordance {
     public static class VaccineEvidence {
 
         @XmlElement(required = true)
-        protected String institution;
+        protected Institution institution;
         @XmlElement(required = true)
         protected String vaccinationNum;
         @XmlElement(required = true)
@@ -311,11 +316,11 @@ public class ImmunizationAccordance {
         @XmlElement(required = true)
         protected Table table;
 
-        public String getInstitution() {
+        public Institution getInstitution() {
             return institution;
         }
 
-        public void setInstitution(String institution) {
+        public void setInstitution(Institution institution) {
             this.institution = institution;
         }
 
@@ -347,6 +352,31 @@ public class ImmunizationAccordance {
 
         public void setTable(Table table) {
             this.table = table;
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlRootElement(name = "institution")
+        public static class Institution{
+            @XmlAttribute(name = "property")
+            private String property;
+            @XmlValue
+            private String value;
+
+            public String getProperty() {
+                return property;
+            }
+
+            public void setProperty(String property) {
+                this.property = property;
+            }
+
+            public String getValue() {
+                return value;
+            }
+
+            public void setValue(String value) {
+                this.value = value;
+            }
         }
 
         @XmlAccessorType(XmlAccessType.FIELD)
