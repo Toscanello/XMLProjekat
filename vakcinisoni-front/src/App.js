@@ -5,6 +5,7 @@ import HomePageCitizen from './pages/citizen/HomePageCitizen';
 import RegistrationPage from './pages/login/RegisterPage';
 import VaccineCandidatePageCitizen from './pages/citizen/VaccineCandidatePageCitizen';
 import CertificateRequestPageCitizen from './pages/citizen/CertificateRequestPageCitizen';
+import AccordancePageCitizen from './pages/citizen/AccordancePageCitizen';
 
 import './assets/style.css';
 
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/registration" element={<RegistrationPage />}/>
           <Route exact path="/candidate" element={<VaccineCandidatePageCitizen />}/>
           <Route exact path="/certificate-request" element={<CertificateRequestPageCitizen />} />
+          <Route exact path="/accordance" element={<AccordancePageCitizen></AccordancePageCitizen>} />
         </Routes>
       </Router>
       

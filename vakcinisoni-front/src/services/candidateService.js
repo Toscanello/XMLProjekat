@@ -1,6 +1,6 @@
 import { postObject } from "./axiosService"
 
-const PATH = "candidates"
+const PATH = "candidates";
 
 export function postCandidateObject(candidate, callback){
     const today = "2022-02-16";

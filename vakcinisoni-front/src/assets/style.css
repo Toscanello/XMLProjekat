@@ -4,11 +4,11 @@
   padding: 0;
   background: #19282f;
   position: absolute;
-  top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 500px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin-top: 50px;
+  width: 700px;
   background-color: white;
   padding: 20px;
   border-radius: 15px;
@@ -16,11 +16,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.for-container h2 {
-  text-align: center;
-}
-
-.for-container input {
+.for-container input[type="text"] {
   width: 100%;
   margin: 0;
   margin-top: 5px;
@@ -28,12 +24,26 @@
   height: 20px;
 }
 
-.for-container textarea {
+.for-container input[type="submit"] {
   width: 100%;
-  resize: none;
 }
 
-.for-container .button {
+.for-container input[type="radio"] {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.sub-title {
+  margin-top: 0;
+  text-align: center;
+}
+
+.button {
   cursor: pointer;
   background-color: #275063;
   -webkit-transition: 0.3s ease;
@@ -58,6 +68,6 @@
   border: none;
 }
 
-.for-container .button:hover {
+.button:hover {
   background-color: #19323e;
 }

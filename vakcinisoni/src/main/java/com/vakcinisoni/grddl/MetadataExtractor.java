@@ -1,5 +1,7 @@
 package com.vakcinisoni.grddl;
 
+import com.vakcinisoni.api.rdf.FusekiWriter;
+import com.vakcinisoni.util.AuthenticationUtilities;
 import org.apache.xalan.processor.TransformerFactoryImpl;
 import org.xml.sax.SAXException;
 
@@ -60,7 +62,7 @@ public class MetadataExtractor {
 
         String filePath = "gen/grddl_metadata.rdf";
 
-        InputStream in = new FileInputStream(new File("data/VaccineCandidate.xml"));
+        InputStream in = new FileInputStream(new File("data/DigitalCert.xml"));
 
         OutputStream out = new FileOutputStream(filePath);
 
@@ -70,10 +72,12 @@ public class MetadataExtractor {
 
         System.out.println("[INFO] End.");
 
+        new FusekiWriter("grddl").run(AuthenticationUtilities.loadProperties());
     }
 
     public static void main(String[] args) throws Exception {
         new MetadataExtractor().test();
+
     }
 
 }

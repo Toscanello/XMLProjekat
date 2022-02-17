@@ -28,7 +28,6 @@ function VaccineCandidatePageCitizen(){
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(candidate);
         if(candidate.options.includes("any")){
             candidate.options = ["Pfizer-BioNTech", "Sputnik V", "AstraZeneca", "Moderna"];
         }
