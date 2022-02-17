@@ -25,22 +25,20 @@ public class HTMLTransformer {
 	
 	private static TransformerFactory transformerFactory;
 	
-	public static final String INPUT_FILE = "data/VaccineReport.xml";
+	public String INPUT_FILE;// = "data/VaccineReport.xml";
 	
-	public static final String XSL_FILE = "data/xslt-html/VaccineReport.xsl";
+	public String XSL_FILE;// = "data/xslt-html/VaccineReport.xsl";
 	
-	public static final String HTML_FILE = "data/gen/itext/VaccineReport.html";
-	
-	static {
-		/* Inicijalizacija DOM fabrike */
+	public String HTML_FILE;// = "data/gen/itext/VaccineReport.html";
+
+	public HTMLTransformer(){
 		documentFactory = DocumentBuilderFactory.newInstance();
 		documentFactory.setNamespaceAware(true);
 		documentFactory.setIgnoringComments(true);
 		documentFactory.setIgnoringElementContentWhitespace(true);
-		
+
 		/* Inicijalizacija Transformer fabrike */
 		transformerFactory = TransformerFactory.newInstance();
-		
 	}
 
     public org.w3c.dom.Document buildDocument(String filePath) {
@@ -64,12 +62,12 @@ public class HTMLTransformer {
 		return document;
 	}
     
-    public void generateHTML(String xmlPath, String xslPath) throws FileNotFoundException {
+    public String generateHTML() throws FileNotFoundException {
 
 		try {
 
 			// Initialize Transformer instance
-			StreamSource transformSource = new StreamSource(new File(xslPath));
+			StreamSource transformSource = new StreamSource(new File(XSL_FILE));
 			Transformer transformer = transformerFactory.newTransformer(transformSource);
 			transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -78,29 +76,58 @@ public class HTMLTransformer {
 			transformer.setOutputProperty(OutputKeys.METHOD, "xhtml");
 
 			// Transform DOM to HTML
-			DOMSource source = new DOMSource(buildDocument(xmlPath));
+			DOMSource source = new DOMSource(buildDocument(INPUT_FILE));
 			StreamResult result = new StreamResult(new FileOutputStream(HTML_FILE));
 			transformer.transform(source, result);
+
+			File exitFile = new File(HTML_FILE);
+			return exitFile.getAbsolutePath();
 			
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
+		} catch (TransformerFactoryConfigurationError | TransformerException e) {
 			e.printStackTrace();
 		}
-    
-    }
-    
-    public static void main(String[] args) throws IOException, DocumentException {
+		return "";
+	}
 
-    	System.out.println("[INFO] " + HTMLTransformer.class.getSimpleName());
+//	public String generateXHTML() throws IOException, DocumentException{
+//		//HTMLTransformer pdfTransformer = new HTMLTransformer();
+//
+//		return generateHTML(INPUT_FILE, XSL_FILE);
+//
+////		return HTML_FILE;
+//	}
 
-		HTMLTransformer pdfTransformer = new HTMLTransformer();
-		
-		pdfTransformer.generateHTML(INPUT_FILE, XSL_FILE);
+	public String getINPUT_FILE() {
+		return INPUT_FILE;
+	}
 
-		System.out.println("[INFO] End.");
-    }
+	public void setINPUT_FILE(String INPUT_FILE) {
+		this.INPUT_FILE = INPUT_FILE;
+	}
+
+	public String getXSL_FILE() {
+		return XSL_FILE;
+	}
+
+	public void setXSL_FILE(String XSL_FILE) {
+		this.XSL_FILE = XSL_FILE;
+	}
+
+	public String getHTML_FILE() {
+		return HTML_FILE;
+	}
+
+	public void setHTML_FILE(String HTML_FILE) {
+		this.HTML_FILE = HTML_FILE;
+	}
+
+	//	public static void main(String[] args) throws IOException, DocumentException {
+//
+//    	System.out.println("[INFO] " + HTMLTransformer.class.getSimpleName());
+//
+//
+//
+//		System.out.println("[INFO] End.");
+//    }
     
 }
