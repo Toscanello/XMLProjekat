@@ -14,6 +14,12 @@ public class Vaccination {
     @XmlElement(required = true)
     protected List<Dose> dose;
 
+    public Vaccination() {}
+
+    public Vaccination(List<Dose> dose) {
+        this.dose = dose;
+    }
+
     public List<Dose> getDose() {
         return dose;
     }

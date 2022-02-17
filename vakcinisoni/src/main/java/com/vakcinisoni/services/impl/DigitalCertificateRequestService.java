@@ -27,6 +27,8 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
     public DigitalCertificateRequestService() throws IOException, SAXException {
     }
 
+
+
     @Override
     public DigitalCertificateRequests findAll() {
         try {
@@ -37,6 +39,11 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public DigitalCertificateRequests findAllByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new DigitalCertificateRequests(repository.findByJmbg(jmbg));
     }
 
     @Override

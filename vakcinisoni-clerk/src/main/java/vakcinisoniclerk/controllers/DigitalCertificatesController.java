@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vakcinisoniclerk.models.VaccinationReports;
 import vakcinisoniclerk.models.dto.DeclineCertificateRequestDto;
 import vakcinisoniclerk.services.ICertificatesService;
 
@@ -13,6 +14,11 @@ public class DigitalCertificatesController {
 
     @Autowired
     private ICertificatesService certificatesService;
+
+    @GetMapping(value = "/vaccination-reports", produces = "application/xml")
+    public ResponseEntity<VaccinationReports> findByJmbg(@RequestParam("jmbg") String jmbg) {
+        return new ResponseEntity<>(certificatesService.getByJmbg(jmbg), HttpStatus.OK);
+    }
 
     @GetMapping(value = "/{requestId}/accept")
     public ResponseEntity<String> acceptCertificateRequest(@PathVariable("requestId") String requestId) {

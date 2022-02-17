@@ -42,6 +42,19 @@ public class DigitalCertificate {
     @XmlElement(required = true)
     protected Vaccination vaccination;
 
+    public DigitalCertificate() {}
+
+    public DigitalCertificate(String id, String qrCode, String fullName, Gender gender, String dateOfBirth, String jmbg, String passportNum, Vaccination vaccination) {
+        this.id = id;
+        this.qrCode = qrCode;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.jmbg = jmbg;
+        this.passportNum = passportNum;
+        this.vaccination = vaccination;
+    }
+
     public String getId() {
         return id;
     }
