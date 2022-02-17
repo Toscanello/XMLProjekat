@@ -5,6 +5,7 @@ import com.vakcinisoni.models.DigitalCertificates;
 import com.vakcinisoni.repository.impl.DigitalCertificateRepository;
 import com.vakcinisoni.services.IDigitalCertificateService;
 import com.vakcinisoni.services.QrService;
+import com.vakcinisoni.xml2pdf.itext.HTMLTransformer;
 import com.vakcinisoni.xml2pdf.xslfo.XSLFOTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ public class DigitalCertificateService implements IDigitalCertificateService {
     public DigitalCertificateRepository repository;
 
     public XSLFOTransformer transformer = new XSLFOTransformer("data/DigitalCert.xml", "data/xsl/DigitalCert.xsl", "data/gen/DigitalCert.pdf");
+
+    public HTMLTransformer htmlTransformer = new HTMLTransformer();
 
     public static final String PATH_TO_QR = "data/xsl/images/qr-code.jpg";
     public static final String URL_BASE = "http://www.vakcinisoni/com/DigitalCertificate/";
@@ -62,6 +65,24 @@ public class DigitalCertificateService implements IDigitalCertificateService {
             QrService.makeNewQr(fullUrl, PATH_TO_QR);
             transformer.generatePDF();
             return "success";
+        } catch (Exception e) {
+            return "fail";
+        }
+    }
+
+    @Override
+    public String downloadHtml(String id){
+        try {
+            htmlTransformer.setINPUT_FILE("data/" + id + ".xml");
+            htmlTransformer.setXSL_FILE("data/xslt-html/DigitalCert.xsl");
+            String outputFileName = "DigitalCert" + id + ".html";
+            htmlTransformer.setHTML_FILE("data/gen/itext/" + outputFileName);
+            File res = repository.getXml(id);
+            String path = htmlTransformer.generateHTML();
+            if(path != null && !path.equals("")){
+                return outputFileName;
+            }
+            return "fail";
         } catch (Exception e) {
             return "fail";
         }

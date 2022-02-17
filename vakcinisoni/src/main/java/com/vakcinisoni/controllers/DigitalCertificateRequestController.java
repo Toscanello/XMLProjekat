@@ -44,6 +44,12 @@ public class DigitalCertificateRequestController {
         return new ResponseEntity<>(saved, HttpStatus.OK);
     }
 
+    @GetMapping(value="/{jmbg}",  produces = "application/xml")
+    public ResponseEntity<DigitalCertificateRequests> getAllForJmbg(@PathVariable String jmbg){
+        DigitalCertificateRequests ret = service.findAllForJmbg(jmbg);
+        return new ResponseEntity<DigitalCertificateRequests>(ret, HttpStatus.OK);
+    }
+
     @GetMapping(value = "download/{id}")
     public ResponseEntity<String> download(@PathVariable String id){
         String ret = service.download(id);
@@ -54,5 +60,12 @@ public class DigitalCertificateRequestController {
     public ResponseEntity<String> delete(@PathVariable String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         service.delete(documentId);
         return new ResponseEntity<>("deleted", HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "/downloadhtml/{id}")
+    public ResponseEntity<String> downloadHtml(@PathVariable String id){
+        String ret = service.downloadHtml(id);
+
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }

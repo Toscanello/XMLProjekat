@@ -15,4 +15,8 @@ public interface IDigitalCertificateRequestService {
     String download(String id);
 
     void delete(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
+    
+    String downloadHtml(String id);
+
+    DigitalCertificateRequests findAllForJmbg(String jmbg);
 }

@@ -6,12 +6,13 @@ import com.vakcinisoni.models.DigitalCertificateRequests;
 import com.vakcinisoni.models.DigitalCertificates;
 import com.vakcinisoni.repository.impl.DigitalCertificateRequestRepository;
 import com.vakcinisoni.services.IDigitalCertificateRequestService;
+import com.vakcinisoni.xml2pdf.itext.HTMLTransformer;
 import com.vakcinisoni.xml2pdf.xslfo.XSLFOTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
-
+import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -23,6 +24,8 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
     public DigitalCertificateRequestRepository repository;
 
     public XSLFOTransformer transformer = new XSLFOTransformer("data/DigitalCertificateRequest.xml", "data/xsl/DigitalCertificateRequest.xsl", "data/gen/DigitalCertificateRequest.pdf");
+
+    public HTMLTransformer htmlTransformer = new HTMLTransformer();
 
     public DigitalCertificateRequestService() throws IOException, SAXException {
     }
@@ -69,5 +72,33 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
     @Override
     public void delete(String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         repository.delete(documentId);
+    }
+    
+    public String downloadHtml(String id) {
+        try {
+            htmlTransformer.setINPUT_FILE("data/" + id + ".xml");
+            htmlTransformer.setXSL_FILE("data/xslt-html/DigitalCertificateRequest.xsl");
+            String outputFileName = "DigitalCertificateRequest" + id + ".html";
+            htmlTransformer.setHTML_FILE("data/gen/itext/" + outputFileName);
+            File res = repository.getXml(id);
+            String path = htmlTransformer.generateHTML();
+            if(path != null && !path.equals("")){
+                return outputFileName;
+            }
+            return "fail";
+        } catch (Exception e) {
+            return "fail";
+        }
+    }
+
+    @Override
+    public DigitalCertificateRequests findAllForJmbg(String jmbg) {
+        try {
+            List<DigitalCertificateRequest> requestList = repository.findForJmbg(jmbg);
+            return new DigitalCertificateRequests(requestList);
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

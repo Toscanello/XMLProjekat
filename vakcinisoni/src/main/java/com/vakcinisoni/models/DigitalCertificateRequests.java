@@ -1,25 +1,32 @@
 package com.vakcinisoni.models;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Collection;
+import java.util.List;
 
-@XmlRootElement(name="certificate-requests")
+@XmlRootElement(name = "certificateRequests")
 public class DigitalCertificateRequests {
 
-    private Collection<DigitalCertificateRequest> certificateRequest;
+    private List<DigitalCertificateRequest> certificateRequest;
 
-    public DigitalCertificateRequests() {
+    public DigitalCertificateRequests(){
+
     }
-
-    public DigitalCertificateRequests(Collection<DigitalCertificateRequest> certificateRequest) {
+    public DigitalCertificateRequests(List<DigitalCertificateRequest> certificateRequest) {
         this.certificateRequest = certificateRequest;
     }
 
-    public Collection<DigitalCertificateRequest> getCertificateRequest() {
+    public List<DigitalCertificateRequest> getCertificateRequest() {
         return certificateRequest;
     }
 
-    public void setCertificateRequest(Collection<DigitalCertificateRequest> certificateRequest) {
+    public void setCertificateRequest(List<DigitalCertificateRequest> certificateRequest) {
         this.certificateRequest = certificateRequest;
+    }
+
+    @Override
+    public String toString() {
+        return "DigitalCertificateRequests{" +
+                "certificateRequest=" + certificateRequest +
+                '}';
     }
 }

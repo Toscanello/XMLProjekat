@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getAccordancesForUser } from "../../../services/accordanceService";
-import { downloadPdf } from "../../../services/axiosService";
+import { downloadPdf, downloadHtml } from "../../../services/axiosService";
 import { parseXmlToJs } from "../../../services/parseService";
+import { HTTP_SERVER_PATH } from "../../../utils/constants";
 
 function Accordances(){
 
@@ -26,14 +27,25 @@ function Accordances(){
         })
     }
 
+    function handleSaveHtml(e){
+        e.preventDefault();
+        console.log(e.target.id);
+        console.log("POZVANA FUNKCIJAAA")
+        downloadHtml("accordances", e.target.id, (response)=>{
+            if(response.status === 200){
+                console.log(response.data);
+                window.open(`${HTTP_SERVER_PATH}${response.data}`);
+            }
+        })
+    }
+
     return(
         <>
             {accordances.map(accordance => {
                 return <div>
                     <h2>{accordance.jmbg + "_" + accordance.date}</h2>
                     <button onClick={handleSavePdf} id={accordance.jmbg + "_" + accordance.date}>Sacuvaj PDF</button>
-                    <button>Sacuvaj XHTML</button><br/>
-                    <button>Pregledaj</button>
+                    <button onClick={handleSaveHtml} id={accordance.jmbg + "_" + accordance.date}>Sacuvaj XHTML</button><br/>
                 </div>
             })}
         </>
