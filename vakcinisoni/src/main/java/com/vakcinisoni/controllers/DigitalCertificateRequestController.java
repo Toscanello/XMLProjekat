@@ -49,4 +49,10 @@ public class DigitalCertificateRequestController {
         String ret = service.download(id);
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/{documentId}")
+    public ResponseEntity<String> delete(@PathVariable String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        service.delete(documentId);
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
+    }
 }

@@ -155,8 +155,30 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        String documentId = id + ".xml";
 
+        databaseUtils.createDatabaseConnection();
+
+        org.xmldb.api.base.Collection col = null;
+
+        try {
+            // get the collection
+            col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
+            col.setProperty("indent", "yes");
+            col.removeResource(col.getResource(documentId));
+            System.out.println("[INFO] Removed document from the collection");
+        } finally {
+
+            // don't forget to cleanup
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface ICrudRepository<T> {
 
     public boolean update(String documentId, String xPathSelector, String newValue) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 
-    public void delete(Long id);
+    public void delete(String id) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 
     public T findOne(String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException;
 

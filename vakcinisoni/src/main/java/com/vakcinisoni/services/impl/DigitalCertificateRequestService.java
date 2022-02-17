@@ -27,8 +27,6 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
     public DigitalCertificateRequestService() throws IOException, SAXException {
     }
 
-
-
     @Override
     public DigitalCertificateRequests findAll() {
         try {
@@ -66,5 +64,10 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
         } catch (Exception e) {
             return "fail";
         }
+    }
+
+    @Override
+    public void delete(String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        repository.delete(documentId);
     }
 }

@@ -24,7 +24,7 @@ public class CertificatesServiceImpl implements ICertificatesService {
         return reports;
     }
 
-    public DigitalCertificateRequests getCertificates() {
+    public DigitalCertificateRequests getRequests() {
         ResponseEntity<DigitalCertificateRequests> digitalRequests = restTemplate.getForEntity("http://localhost:3000/certificate-requests/", DigitalCertificateRequests.class);
         DigitalCertificateRequests requests = digitalRequests.getBody();
         return requests;
@@ -36,7 +36,8 @@ public class CertificatesServiceImpl implements ICertificatesService {
         return requests;
     }
 
-    public String acceptCertificateRequest(String jmbg){
+    public String acceptCertificateRequest(String documentId){
+        String jmbg = documentId.split("-")[0];
         VaccinationReport vaccinationReport = this.getByJmbg(jmbg).getVaccinationReport().get(0);
         DigitalCertificateRequest certificateRequest = this.getCertificatesByJmbg(jmbg).getCertificateRequest().get(0);
 
@@ -61,12 +62,14 @@ public class CertificatesServiceImpl implements ICertificatesService {
 
         // TODO: send email
         MailerService.sendAcceptedMail("baronidmn@gmail.com", "Svetozar", "asdf");
+        restTemplate.delete("http://localhost:3000/certificate-requests/" + documentId + "/");
 
         return "email sent";
     }
 
-    public String declineCertificateRequest(String jmbg, DeclineCertificateRequestDto declineRequest) {
+    public String declineCertificateRequest(String documentId, DeclineCertificateRequestDto declineRequest) {
         // TODO: delete request doc from database
+        restTemplate.delete("http://localhost:3000/certificate-requests/" + documentId + "/");
 
         // TODO: send email
         MailerService.sendDeclineMail("svetozar.vulin@gmail.com", "Svetozar", declineRequest.getMessage());
