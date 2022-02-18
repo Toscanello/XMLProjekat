@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postCandidateObject } from "../../services/candidateService";
 import NavigationHeader from "../../components/header/NavigationHeader";
+import { parseXmlToJs } from "../../services/parseService";
 
 function VaccineCandidatePageCitizen(){
 
@@ -33,8 +34,11 @@ function VaccineCandidatePageCitizen(){
             candidate.options = ["Pfizer-BioNTech", "Sputnik V", "AstraZeneca", "Moderna"];
         }
         postCandidateObject(candidate, (response) => {
-            alert(response.data);
-        })
+            console.log(response.data);
+            parseXmlToJs(response.data.replaceAll('ns2:', ''), (result) => {
+                alert("PROVERITE EMAIL.");
+            });
+        });
     }
 
     return(

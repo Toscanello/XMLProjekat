@@ -27,7 +27,7 @@ function RegistrationPage(){
     }
 
     return (
-        <div>
+        <div className="for-container">
             <h1>Registracija</h1>
             <input type="text" placeholder="Ime" className=""
                 onChange={(e) => setCitizen({...citizen, name: e.target.value})}/>
@@ -53,7 +53,7 @@ function RegistrationPage(){
             <input type="password" placeholder="Lozinka" className=""
                 onChange={(e) => setCitizen({...citizen, password: e.target.value})}/>
 
-            <button className="" onClick={handleSubmit}>Registruj se</button>
+            <button className="button" onClick={handleSubmit}>Registruj se</button>
         </div>
     );
 }

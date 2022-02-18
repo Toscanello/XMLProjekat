@@ -23,13 +23,13 @@ function LoginPage(){
     }
 
     return (
-        <div>
+        <div className="for-container">
             <h1>Prijava</h1>
-            <input type="text" placeholder="JMBG" className=""
+            <input type="text" placeholder="JMBG"
                 onChange={(e) => setUsername(e.target.value)}/>
             <input type="password" placeholder="Lozinka" className=""
                 onChange={(e) => setPassword(e.target.value)}/>
-            <button className="" onClick={handleSubmit}>Prijavi se</button>
+            <button className="button" onClick={handleSubmit}>Prijavi se</button>
             <Link to="/registration" className="">Registruj se</Link>
         </div>
     );
