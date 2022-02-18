@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { postCandidateObject } from "../../services/candidateService";
 import NavigationHeader from "../../components/header/NavigationHeader";
 
@@ -6,10 +6,10 @@ function VaccineCandidatePageCitizen(){
 
     const[candidate, setCandidate] = useState({
         residence: 0,
-        jmbg: "",
-        name: "",
-        surname: "",
-        email: "", //AUTOCOMPLETE
+        jmbg: localStorage.getItem('jmbg'),
+        name: localStorage.getItem('name'),
+        surname: localStorage.getItem('surname'),
+        email: localStorage.getItem('email'), //AUTOCOMPLETE
         phoneNum: "",
         homeNum: "",
         location: "",
@@ -28,6 +28,7 @@ function VaccineCandidatePageCitizen(){
     }
 
     function handleSubmit(e){
+        console.log(localStorage.getItem('jmbg'));
         e.preventDefault();
         if(candidate.options.includes("any")){
             candidate.options = ["Pfizer-BioNTech", "Sputnik V", "AstraZeneca", "Moderna"];
@@ -58,16 +59,16 @@ function VaccineCandidatePageCitizen(){
                     <label htmlFor="2">Strani drzavljanin bez boravka u RS</label>
                 </div>
 
-                <input type="text" placeholder="Jmbg" className=""
+                <input type="text" placeholder="Jmbg" className="" defaultValue={candidate.jmbg}
                     onChange={(e) => setCandidate({...candidate, jmbg: e.target.value})}/>
 
-                <input type="text" placeholder="Ime" className=""
+                <input type="text" placeholder="Ime" className="" defaultValue={candidate.name}
                     onChange={(e) => setCandidate({...candidate, name: e.target.value})}/>
                 
-                <input type="text" placeholder="Prezime" className=""
+                <input type="text" placeholder="Prezime" className="" defaultValue={candidate.surname}
                     onChange={(e) => setCandidate({...candidate, surname: e.target.value})}/>
                 
-                <input type="text" placeholder="Email" className=""
+                <input type="text" placeholder="Email" className="" defaultValue={candidate.email}
                     onChange={(e) => setCandidate({...candidate, email: e.target.value})}/>
                     
                 <input type="text" placeholder="Broj mobilnog" className=""

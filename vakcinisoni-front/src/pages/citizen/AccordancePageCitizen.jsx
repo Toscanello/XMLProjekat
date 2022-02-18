@@ -6,19 +6,19 @@ import { postAccordanceObject } from "../../services/accordanceService";
 function AccordancePageCitizen(){
 
     const [accordance, setAccordance] = useState({
-        jmbg: "", //or passportNum but still tag is jmbg
-        surname: "",
-        name: "",
+        jmbg: localStorage.getItem('jmbg'), //or passportNum but still tag is jmbg
+        surname: localStorage.getItem('surname'),
+        name: localStorage.getItem('name'),
         parentName: "",
         gender: 0,
-        birthDate: "",
+        birthDate: localStorage.getItem('dateOfBirth'),
         birthPlace: "",
         address: "",
         post: "",
         city: "",
         homeNumber: "",
         phoneNum: "",
-        email: "",
+        email: localStorage.getItem("email"),
         workStatus: 0,
         employedAt: 0,
         socialSecurity: false,
@@ -55,15 +55,15 @@ function AccordancePageCitizen(){
 
             <br/><br/>
             <label htmlFor="jmbgOrPassport">JMBG/Broj pasosa</label>
-            <input type="text"  
+            <input type="text"  defaultValue={accordance.jmbg}
                 onChange={(e) => setAccordance({...accordance, jmbg: e.target.value})}/><br/>
 
             <label htmlFor="surname">Prezime:</label><br/>
-            <input type="text"
+            <input type="text" defaultValue={accordance.surname}
                 onChange={(e) => setAccordance({...accordance, surname: e.target.value})}/><br/>
 
             <label htmlFor="name">Ime:</label><br/>
-            <input type="text"
+            <input type="text" defaultValue={accordance.name}
                 onChange={(e) => setAccordance({...accordance, name: e.target.value})}/><br/>
 
             <label htmlFor="parent-name">Ime roditelja:</label><br/>
@@ -79,7 +79,7 @@ function AccordancePageCitizen(){
             <label htmlFor="female">Zensko</label><br/>
 
             <label htmlFor="dob">Datum rodjenja:</label><br/>
-            <input type="text"
+            <input type="text" defaultValue={accordance.birthDate}
                 onChange={(e) => setAccordance({...accordance, birthDate: e.target.value})}/><br/>
 
             <label htmlFor="pob">Mesto rodjenja:</label><br/>
@@ -107,7 +107,7 @@ function AccordancePageCitizen(){
                 onChange={(e) => setAccordance({...accordance, phoneNum: e.target.value})}/><br/>
 
             <label htmlFor="email">Email</label><br/>
-            <input type="text" 
+            <input type="text" defaultValue={accordance.email}
                 onChange={(e) => setAccordance({...accordance, email: e.target.value})}/><br/>
 
             <label htmlFor="work">Radni status:</label><br/>
