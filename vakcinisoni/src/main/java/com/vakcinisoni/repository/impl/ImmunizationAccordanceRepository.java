@@ -29,7 +29,7 @@ public class ImmunizationAccordanceRepository extends CrudRepository<Immunizatio
         org.xmldb.api.base.Collection col = null;
         try {
             col = DbService.getOrCreateCollection(collectionId);
-            String id = entity.getJmbg()+"_"+entity.getDate();
+            String id = entity.getJmbg().getValue()+"_"+entity.getDate();
 
             DbService.writeToDb(entity, collectionId, id);
             StringWriter sw = new StringWriter();

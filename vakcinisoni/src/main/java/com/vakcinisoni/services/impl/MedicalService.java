@@ -43,7 +43,7 @@ public class MedicalService implements IMedicalService {
             VaccinationReport vaccinationReport = new VaccinationReport(immunizationAccordance);
             vaccinationReportRepository.save(vaccinationReport);
             Term term = termRepository.createTermForNewVaccination(System.currentTimeMillis(),immunizationAccordance.getCity().getValue());
-            MailerService.sendEmailForNewTerm(term,immunizationAccordance.getEmail(),immunizationAccordance.getName().getValue());
+            //MailerService.sendEmailForNewTerm(term,immunizationAccordance.getEmail(),immunizationAccordance.getName().getValue());
             return immunizationAccordance;
         }
         return null;

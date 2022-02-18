@@ -433,6 +433,7 @@ public class ImmunizationAccordance {
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
                 "row",
+                "contraindications"
         })
         @XmlRootElement(name = "table")
         public static class Table {

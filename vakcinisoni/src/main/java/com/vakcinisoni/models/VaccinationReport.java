@@ -59,10 +59,12 @@ public class VaccinationReport {
 
     public VaccinationReport(){}
     public VaccinationReport(ImmunizationAccordance im){
+        this.fullName = new Fullname();
         this.fullName.setProperty("pred:fullname");
-        this.fullName.setValue(im.getName()+" "+im.getSurname());
+        this.fullName.setValue(im.getName().getValue()+" "+im.getSurname().getValue());
         this.birthDate=im.getBirthDate();
         this.gender = String.valueOf(im.getGender());
+        this.jmbg = new Jmbg();
         this.jmbg.setProperty("pred:jmbg");
         this.jmbg.setValue(im.getJmbg().getValue());
         this.institution = im.getVaccineEvidence().getInstitution().getValue();
@@ -72,6 +74,7 @@ public class VaccinationReport {
             this.doses.addDose(new Dose(row.getDateIssued(),row.getBatch()));
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.confirmationDate = new ConfirmationDate();
         this.confirmationDate.setProperty("pred:confiramtionDate");
         this.confirmationDate.setValue(dtf.format(LocalDateTime.now()));
         this.qrCode = "nekiqrkod";// sredi ovo posle
