@@ -11,6 +11,7 @@ import Accordances from './pages/citizen/document-view/Accordances';
 import Candidates from './pages/citizen/document-view/Candidates';
 import Requests from './pages/citizen/document-view/Requests';
 import Certificates from './pages/citizen/document-view/Certificates';
+import MedicalWorker from './pages/medic/MedicalWorker';
 
 import './assets/style.css';
 
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/view-documents/certificate-requests" element={<Requests />} />
           <Route exact path="/view-documents/certificate" element={<Certificates />} />
           <Route exact path="/view-documents/candidates" element={<Candidates />} />
+          <Route exact path="/medic" element={<MedicalWorker />}/>
         </Routes>
       </Router>
       
