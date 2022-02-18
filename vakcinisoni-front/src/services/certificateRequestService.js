@@ -2,7 +2,7 @@ import { getObjects, postObject } from "./axiosService";
 
 const PATH = "certificate-requests";
 
-export function postCertificateRequestObject(request, callback){
+export function postCertificateRequestObject(request, richReason, callback){
     const today = "2022-02-16";
 
     var xmlData = `
@@ -19,7 +19,7 @@ export function postCertificateRequestObject(request, callback){
         <gender>${request.gender}</gender>
         <jmbg property="pred:jmbg">${request.jmbg}</jmbg>
         <passportNum>${request.passportNum}</passportNum>
-        <reason>${request.reason}</reason>
+        <reason>${richReason}</reason>
         <place property="pred:place">${request.place}</place>
         <requestDate>${today}</requestDate>
     </certificateRequest>
