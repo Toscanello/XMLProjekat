@@ -1,5 +1,7 @@
 package com.vakcinisoni.models;
 
+import com.vakcinisoni.models.metadata.Fullname;
+import com.vakcinisoni.models.metadata.Jmbg;
 import org.exist.xquery.DescendantOrSelfSelector;
 
 import javax.xml.bind.annotation.*;
@@ -22,8 +24,14 @@ import java.util.ArrayList;
 })
 @XmlRootElement(name = "vaccinationReport")
 public class VaccinationReport {
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+
+    @XmlAttribute(name = "about")
+    protected String about;
+
     @XmlElement(required = true)
-    protected String fullName;
+    protected Fullname fullName;
 
     @XmlElement(required = true)
     protected String birthDate;
@@ -32,7 +40,7 @@ public class VaccinationReport {
     protected String gender;
 
     @XmlElement(required = true)
-    protected String jmbg;
+    protected Jmbg jmbg;
 
     @XmlElement(required = true)
     protected Doses doses;
@@ -44,33 +52,43 @@ public class VaccinationReport {
     protected String vaccine;
 
     @XmlElement(required = true)
-    protected String confirmationDate;
+    protected ConfirmationDate confirmationDate;
 
     @XmlElement(required = true)
     protected String qrCode;
 
     public VaccinationReport(){}
     public VaccinationReport(ImmunizationAccordance im){
-        this.fullName = im.getName()+" "+im.getSurname();
+        this.fullName = new Fullname();
+        this.fullName.setProperty("pred:fullname");
+        this.fullName.setValue(im.getName().getValue()+" "+im.getSurname().getValue());
         this.birthDate=im.getBirthDate();
         this.gender = String.valueOf(im.getGender());
-        this.jmbg = im.getJmbg();
-        this.institution = im.getVaccineEvidence().getInstitution();
+        this.jmbg = new Jmbg();
+        this.jmbg.setProperty("pred:jmbg");
+        this.jmbg.setValue(im.getJmbg().getValue());
+        this.institution = im.getVaccineEvidence().getInstitution().getValue();
         this.vaccine =im.getVaccineEvidence().getTable().getRow().get(0).getVaccineName();
         this.doses = new Doses();
         for (ImmunizationAccordance.VaccineEvidence.Table.Row row:im.getVaccineEvidence().getTable().getRow()){
             this.doses.addDose(new Dose(row.getDateIssued(),row.getBatch()));
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.confirmationDate = dtf.format(LocalDateTime.now());
+        this.confirmationDate = new ConfirmationDate();
+        this.confirmationDate.setProperty("pred:confiramtionDate");
+        this.confirmationDate.setValue(dtf.format(LocalDateTime.now()));
         this.qrCode = "nekiqrkod";// sredi ovo posle
     }
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
 
-    public String getFullName() {
+    public Fullname getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public void setFullName(Fullname fullName) {
         this.fullName = fullName;
     }
 
@@ -90,11 +108,11 @@ public class VaccinationReport {
         this.gender = gender;
     }
 
-    public String getJmbg() {
+    public Jmbg getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(Jmbg jmbg) {
         this.jmbg = jmbg;
     }
 
@@ -122,11 +140,11 @@ public class VaccinationReport {
         this.vaccine = vaccine;
     }
 
-    public String getConfirmationDate() {
+    public ConfirmationDate getConfirmationDate() {
         return confirmationDate;
     }
 
-    public void setConfirmationDate(String confirmationDate) {
+    public void setConfirmationDate(ConfirmationDate confirmationDate) {
         this.confirmationDate = confirmationDate;
     }
 
@@ -151,5 +169,30 @@ public class VaccinationReport {
                 ", confirmationDate='" + confirmationDate + '\'' +
                 ", qrCode='" + qrCode + '\'' +
                 '}';
+    }
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "confirmationDate")
+    public static class ConfirmationDate{
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
     }
 }

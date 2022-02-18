@@ -17,7 +17,7 @@ public class RDFController {
 
     @GetMapping("/write/{filename}")
     public ResponseEntity<Object> write(@PathVariable String filename) throws IOException {
-        FusekiWriter writer = new FusekiWriter(filename);
+        FusekiWriter writer = new FusekiWriter(filename,"1");
         writer.run(AuthenticationUtilities.loadProperties());
         return new ResponseEntity<>("", HttpStatus.OK);
     }

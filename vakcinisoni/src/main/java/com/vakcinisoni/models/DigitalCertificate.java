@@ -1,6 +1,8 @@
 package com.vakcinisoni.models;
 
 import com.vakcinisoni.models.enums.Gender;
+import com.vakcinisoni.models.metadata.Fullname;
+import com.vakcinisoni.models.metadata.Jmbg;
 
 import javax.xml.bind.annotation.*;
 
@@ -18,6 +20,14 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "certificate")
 public class DigitalCertificate {
 
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+
+    @XmlAttribute(name = "about")
+    protected String about;
+    @XmlAttribute(name = "dateTime")
+    protected String dateTime;
+
     @XmlElement(required = true)
     protected String id;
 
@@ -25,7 +35,7 @@ public class DigitalCertificate {
     protected String qrCode;
 
     @XmlElement(required = true)
-    protected String fullName;
+    protected Fullname fullName;
 
     @XmlElement(required = true)
     protected Gender gender;
@@ -34,13 +44,20 @@ public class DigitalCertificate {
     protected String dateOfBirth;
 
     @XmlElement(required = true)
-    protected String jmbg;
+    protected Jmbg jmbg;
 
     @XmlElement(required = true)
     protected String passportNum;
 
     @XmlElement(required = true)
     protected Vaccination vaccination;
+
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
+    public String getDateTime(){return this.dateTime;}
+    public void setDateTime(String dateTime){this.dateTime = dateTime;}
 
     public String getId() {
         return id;
@@ -58,11 +75,11 @@ public class DigitalCertificate {
         this.qrCode = qrCode;
     }
 
-    public String getFullName() {
+    public Fullname getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public void setFullName(Fullname fullName) {
         this.fullName = fullName;
     }
 
@@ -82,11 +99,11 @@ public class DigitalCertificate {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getJmbg() {
+    public Jmbg getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(Jmbg jmbg) {
         this.jmbg = jmbg;
     }
 

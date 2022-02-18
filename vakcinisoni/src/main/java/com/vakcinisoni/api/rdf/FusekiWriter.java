@@ -9,6 +9,7 @@ import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,9 +18,9 @@ public class FusekiWriter {
     private String GraphUri;
     private String rdfFilePath;
 
-    public FusekiWriter(String filename){
-        this.GraphUri = "/example/"+filename+"/metadata";
-        this.rdfFilePath = "gen/"+filename+"_metadata.rdf";
+    public FusekiWriter(String filename, String id){
+        this.GraphUri = "/example/"+filename+"/metadata/"+id;
+        this.rdfFilePath = "gen/grddl_metadata.rdf";
     }
 
     public void run(AuthenticationUtilities.ConnectionProperties conn) throws IOException {

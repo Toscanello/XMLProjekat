@@ -24,7 +24,7 @@ public class DigitalCertificateRequestController {
     @GetMapping(value="/{jmbg}",  produces = "application/xml")
     public ResponseEntity<DigitalCertificateRequests> getAllForJmbg(@PathVariable String jmbg){
         DigitalCertificateRequests ret = service.findAllForJmbg(jmbg);
-        return new ResponseEntity<DigitalCertificateRequests>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @GetMapping(value = "download/{id}")

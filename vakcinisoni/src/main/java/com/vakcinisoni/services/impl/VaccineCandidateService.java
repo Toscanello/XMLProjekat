@@ -1,9 +1,6 @@
 package com.vakcinisoni.services.impl;
 
-import com.vakcinisoni.models.Term;
-import com.vakcinisoni.models.Vaccine;
-import com.vakcinisoni.models.VaccineCandidate;
-import com.vakcinisoni.models.Vaccines;
+import com.vakcinisoni.models.*;
 import com.vakcinisoni.repository.impl.TermRepository;
 import com.vakcinisoni.repository.impl.VaccineCandidateRepository;
 import com.vakcinisoni.services.IVaccineCandidateService;
@@ -17,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -75,6 +73,17 @@ public class VaccineCandidateService implements IVaccineCandidateService {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public VaccineCandidates findAllForJmbg(String jmbg) {
+        try {
+            List<VaccineCandidateWithId> candidates = candidateRepository.findForJmbg(jmbg);
+            return new VaccineCandidates(candidates);
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
