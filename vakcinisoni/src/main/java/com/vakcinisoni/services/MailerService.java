@@ -39,8 +39,8 @@ public class MailerService {
             helper.setFrom("baronimndjr@gmail.com");
             helper.setTo(candidate.getEmail());
             helper.setSubject("Interesovanje za vakcinu");
-            helper.setText("Postovani " + candidate.getName() + "\n\nPodneli ste prijavu za vakcinaciju.\n\nNa pukntu za vakcinaciju" +
-                    " se mozete pojaviti u navedenom terminu na mestu za vrsenje imunizacije u " + candidate.getLocation() +
+            helper.setText("Postovani " + candidate.getName().getValue() + "\n\nPodneli ste prijavu za vakcinaciju.\n\nNa pukntu za vakcinaciju" +
+                    " se mozete pojaviti u navedenom terminu na mestu za vrsenje imunizacije u " + candidate.getLocation().getValue() +
                     "\nVase informacije\n" + candidate.toString() + "\n\n" + term.toString());
         }catch (MessagingException e){
             e.printStackTrace();

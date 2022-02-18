@@ -58,7 +58,7 @@ public class TermRepository extends CrudRepository<Term>{
                 .stream()
                 .filter(term -> !term.isTaken()
                                 && term.getStart() > parsedDate
-                                && term.getLocation().equals(candidate.getLocation()))
+                                && term.getLocation().equals(candidate.getLocation().getValue()))
                 .collect(Collectors.toList());
         if(futureFreeTerms.size() > 0)
             return futureFreeTerms.get(0);

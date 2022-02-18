@@ -7,6 +7,7 @@ import com.vakcinisoni.services.IDigitalCertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.xmldb.api.base.XMLDBException;
 
@@ -33,6 +34,7 @@ public class DigitalCertificateController {
         return new ResponseEntity<>(dc, HttpStatus.OK);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value="/read/{jmbg}", produces = "application/xml")
     public ResponseEntity<DigitalCertificates> findAllByJmbg(@PathVariable String jmbg){
         DigitalCertificates dc = service.findAllByJmbg(jmbg);

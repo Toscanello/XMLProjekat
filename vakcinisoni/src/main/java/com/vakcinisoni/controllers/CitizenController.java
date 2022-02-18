@@ -22,17 +22,18 @@ public class CitizenController {
     private ICitizenService service;
 
     @PostMapping(value="/register", consumes="application/xml", produces="application/xml")
-    public ResponseEntity<String> register(@RequestBody Citizen citizen) {
+    public ResponseEntity<Citizen> register(@RequestBody Citizen citizen) {
         String jwt = service.register(citizen);
+        citizen.setToken(jwt);
         if(!jwt.equals("")){
-            return new ResponseEntity<>(jwt, HttpStatus.OK);
+            return new ResponseEntity<>(citizen, HttpStatus.OK);
         }
-        return new ResponseEntity<>(jwt, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(citizen, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping(value = "/login", consumes="application/xml", produces="application/xml")
-    public ResponseEntity<String> login(@RequestBody Credentials credentials) {
-        String jwt = service.login(credentials);
+    public ResponseEntity<Citizen> login(@RequestBody Credentials credentials) {
+        Citizen jwt = service.login(credentials);
 
         return new ResponseEntity<>(jwt, HttpStatus.OK);
     }

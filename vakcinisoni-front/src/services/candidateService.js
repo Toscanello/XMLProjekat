@@ -33,7 +33,7 @@ export function postCandidateObject(candidate, callback){
 }
 
 export function getCandidatesForUser(callback){
-    let jmbg = "2509999880166";
+    let jmbg = localStorage.getItem('jmbg');
 
     getObjects(`${PATH}/filter/${jmbg}`, callback);
 }

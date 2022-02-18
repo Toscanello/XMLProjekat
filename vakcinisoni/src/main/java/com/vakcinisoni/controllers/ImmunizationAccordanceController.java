@@ -7,6 +7,7 @@ import com.vakcinisoni.services.IImmunizationAccordanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.xmldb.api.base.XMLDBException;
 
@@ -29,6 +30,7 @@ public class ImmunizationAccordanceController {
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value="/{jmbg}", produces ="application/xml")
     public ResponseEntity<Accordances> getAllForJmbg(@PathVariable String jmbg){
         Accordances ret = service.findAllForJmbg(jmbg);
