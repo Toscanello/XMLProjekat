@@ -38,18 +38,19 @@ public class CitizenService implements ICitizenService {
     }
 
     @Override
-    public String login(Credentials credentials) {
+    public Citizen login(Credentials credentials) {
         try {
             Citizen c = repository.findOne(credentials.getJmbg());
             String jwt = "";
             if(c != null && c.getPassword().equals(credentials.getPassword())){
                 jwt = tokenUtils.generateToken(c.getJmbg());
+                c.setToken(jwt);
             }
-            return jwt;
+            return c;
 
         } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 }

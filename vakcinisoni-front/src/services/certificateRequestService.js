@@ -29,7 +29,7 @@ export function postCertificateRequestObject(request, callback){
 }
 
 export function getRequestsForUser(callback){
-    let jmbg = "2509999880166";
+    let jmbg = localStorage.getItem('jmbg');
 
     getObjects(`${PATH}/${jmbg}`, callback);
 }

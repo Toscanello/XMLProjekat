@@ -7,5 +7,5 @@ public interface ICitizenService {
 
     String register(Citizen citizen);
 
-    String login(Credentials credentials);
+    Citizen login(Credentials credentials);
 }

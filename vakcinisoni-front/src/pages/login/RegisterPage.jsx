@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { postRegisterObject } from "../../services/loginService";
 import { useNavigate } from "react-router-dom";
+import { parseXmlToJs } from "../../services/parseService";
+import { saveMemberToLocalStorage } from "../../utils/authorization";
 
 function RegistrationPage(){
     const [citizen, setCitizen] = useState({
@@ -20,7 +22,12 @@ function RegistrationPage(){
         e.preventDefault();
         postRegisterObject(citizen, (response) => {
             console.log(response.data);
-            if(response.data){
+            if(response.status === 200){
+                parseXmlToJs(response.data.replaceAll('ns2:',''), (result) => {
+                    console.log(result);
+                    //setCertificates(result.certificates.certificate);
+                    saveMemberToLocalStorage(result.citizen);
+                });
                 navigate('/home', {replace:true});
             }
         });
