@@ -3,7 +3,7 @@ import { getObjects, postObject } from "./axiosService";
 const PATH = "accordances";
 
 export function postAccordanceObject(accordance, callback){
-    const today = "2022-02-16";
+    const today = "2022-03-16";
 
     var xmlData = `
     <accordance xmlns="http://www.vakcinisoni.com"
