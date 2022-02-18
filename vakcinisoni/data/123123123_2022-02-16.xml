@@ -1,0 +1,42 @@
+<ns3:accordance xmlns:pred="http://www.vakcinisoni.com/rdf/predicate" xmlns:ns3="http://www.vakcinisoni.com" about="http://www.vakcinisoni.com/ImmunizationAccordance/123123123/2022-02-16">
+    <ns3:jmbg property="pred:jmbg">123123123</ns3:jmbg>
+    <ns3:surname property="pred:surname">Luburic</ns3:surname>
+    <ns3:name property="pred:name">Ivan</ns3:name>
+    <ns3:parentName>LUBURENZO</ns3:parentName>
+    <ns3:gender>0</ns3:gender>
+    <ns3:birthDate>23-01-1999</ns3:birthDate>
+    <ns3:birthPlace>Zrenjanin</ns3:birthPlace>
+    <ns3:address>Kurcina</ns3:address>
+    <ns3:post>Kurcic</ns3:post>
+    <ns3:city property="pred:city">KURAC</ns3:city>
+    <ns3:homeNumber>312312</ns3:homeNumber>
+    <ns3:phoneNum>3213121231</ns3:phoneNum>
+    <ns3:email>ivcapeder@gmail.com</ns3:email>
+    <ns3:workStatus>2</ns3:workStatus>
+    <ns3:employedAt>3</ns3:employedAt>
+    <ns3:socialSecurity>false</ns3:socialSecurity>
+    <ns3:residenceName>Ruma</ns3:residenceName>
+    <ns3:isAccordant>true</ns3:isAccordant>
+    <ns3:medicineName>Pfizer</ns3:medicineName>
+    <ns3:date>2022-02-16</ns3:date>
+    <ns3:vaccineEvidence>
+        <ns3:institution property="pred:institution">DZ SM</ns3:institution>
+        <ns3:vaccinationNum>1100</ns3:vaccinationNum>
+        <ns3:doctorInfo>
+            <ns3:fullName>Mika Mikic</ns3:fullName>
+            <ns3:fax>12312312321</ns3:fax>
+            <ns3:phoneNum>022 464 373</ns3:phoneNum>
+        </ns3:doctorInfo>
+        <ns3:table>
+            <ns3:row>
+                <ns3:vaccineName>Kinez</ns3:vaccineName>
+                <ns3:dateIssued>2021-11-05</ns3:dateIssued>
+                <ns3:issueMethod>0</ns3:issueMethod>
+                <ns3:bodyPart>0</ns3:bodyPart>
+                <ns3:batch>11161</ns3:batch>
+                <ns3:manufacturer>BIOTECH</ns3:manufacturer>
+                <ns3:reaction/>
+            </ns3:row>
+        </ns3:table>
+    </ns3:vaccineEvidence>
+</ns3:accordance>

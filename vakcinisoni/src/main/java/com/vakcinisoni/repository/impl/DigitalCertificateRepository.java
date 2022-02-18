@@ -52,15 +52,15 @@ public class DigitalCertificateRepository extends CrudRepository<DigitalCertific
         String finalPhrase = phrase.toLowerCase();
         List<DigitalCertificate> newList = allReports.stream()
                 .filter(vacc -> vacc.getId().toLowerCase().contains(finalPhrase)
-                        || vacc.getFullName().getValue().contains(finalPhrase)
-                        || vacc.getDateOfBirth().contains(finalPhrase)
-                        || vacc.getJmbg().getValue().contains(finalPhrase)
-                        || vacc.getPassportNum().contains(finalPhrase)
-                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getType().contains(finalPhrase))
-                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getManufacturer().contains(finalPhrase))
-                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getDate().contains(finalPhrase))
-                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getBatch().contains(finalPhrase))
-                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getInstitution().contains(finalPhrase))
+                        || vacc.getFullName().getValue().toLowerCase().contains(finalPhrase)
+                        || vacc.getDateOfBirth().toLowerCase().contains(finalPhrase)
+                        || vacc.getJmbg().getValue().toLowerCase().contains(finalPhrase)
+                        || vacc.getPassportNum().toLowerCase().contains(finalPhrase)
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getType().toLowerCase().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getManufacturer().toLowerCase().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getDate().toLowerCase().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getBatch().toLowerCase().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getInstitution().toLowerCase().contains(finalPhrase))
                 ).collect(Collectors.toList());
         return newList;
     }
