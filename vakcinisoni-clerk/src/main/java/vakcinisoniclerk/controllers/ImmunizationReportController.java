@@ -29,4 +29,11 @@ public class ImmunizationReportController {
         Reports ret = service.findAll();
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/downloadhtml/{id}")
+    public ResponseEntity<String> downloadHtml(@PathVariable String id){
+        String ret = service.downloadHtml(id);
+
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
 }

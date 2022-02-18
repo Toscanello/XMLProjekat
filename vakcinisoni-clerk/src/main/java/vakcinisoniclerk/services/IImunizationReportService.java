@@ -13,4 +13,6 @@ public interface IImunizationReportService {
     ImmunizationReport save(ImmunizationReport report);
 
     Reports findAll();
+
+    String downloadHtml(String id);
 }

@@ -1,0 +1,20 @@
+<immunizationReport xmlns="http://www.vakcinisoni.com">
+    <startDate>2021-10-3</startDate>
+    <finishDate>2021-12-02</finishDate>
+    <immunizationRequests>3</immunizationRequests>
+    <certificateRequests>0</certificateRequests>
+    <certificatesIssued>1</certificatesIssued>
+    <vaccinesTaken>2</vaccinesTaken>
+    <firstTimeVaccineTaken>2</firstTimeVaccineTaken>
+    <manufacturers>
+        <manufacturer>
+            <name>KURAC</name>
+            <numberOfVaccines>1</numberOfVaccines>
+        </manufacturer>
+        <manufacturer>
+            <name>BIOTECH</name>
+            <numberOfVaccines>1</numberOfVaccines>
+        </manufacturer>
+    </manufacturers>
+    <reportDate>2022-02-18</reportDate>
+</immunizationReport>

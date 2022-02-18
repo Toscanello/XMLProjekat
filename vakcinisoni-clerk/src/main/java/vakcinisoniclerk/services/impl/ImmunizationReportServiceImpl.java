@@ -5,11 +5,16 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 import vakcinisoniclerk.models.*;
 import vakcinisoniclerk.repository.impl.ImmunizationReportRepository;
 import vakcinisoniclerk.services.IImunizationReportService;
+import vakcinisoniclerk.xml2pdf.itext.HTMLTransformer;
+import vakcinisoniclerk.xml2pdf.xslfo.XSLFOTransformer;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -21,8 +26,16 @@ public class ImmunizationReportServiceImpl implements IImunizationReportService 
 
     RestTemplate restTemplate = new RestTemplate();
 
+    public XSLFOTransformer transformer = new XSLFOTransformer("data/ImmunizationReport.xml", "data/xsl/ImmunizationReport.xsl", "data/gen/ImmunizationReport.pdf");
+
+    public HTMLTransformer htmlTransformer = new HTMLTransformer();
+
+
     @Autowired
     private ImmunizationReportRepository repository;
+
+    public ImmunizationReportServiceImpl() throws IOException, SAXException {
+    }
 
     @Override
     public ImmunizationReport save(ImmunizationReport report) {
@@ -43,6 +56,24 @@ public class ImmunizationReportServiceImpl implements IImunizationReportService 
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String downloadHtml(String id){
+        try {
+            htmlTransformer.setINPUT_FILE("data/" + id + ".xml");
+            htmlTransformer.setXSL_FILE("data/xslt-html/ImmunizationReport.xsl");
+            String outputFileName = "ImmunizationReport" + id + ".html";
+            htmlTransformer.setHTML_FILE("data/gen/itext/" + outputFileName);
+            File res = repository.getXml(id);
+            String path = htmlTransformer.generateHTML();
+            if(path != null && !path.equals("")){
+                return outputFileName;
+            }
+            return "fail";
+        } catch (Exception e) {
+            return "fail";
+        }
     }
 
     public ImmunizationReport generateReport(String dateFrom, String dateUntil) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, ParseException {

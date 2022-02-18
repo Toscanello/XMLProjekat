@@ -20,6 +20,8 @@ import vakcinisoniclerk.util.ObjectParser;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.OutputKeys;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -235,5 +237,54 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
         return null;
     }
 
+    @Override
+    public File getXml(String documentId) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        databaseUtils.createDatabaseConnection();
 
+        documentId += ".xml";
+
+        org.xmldb.api.base.Collection col = null;
+        XMLResource res = null;
+
+        try {
+            // get the collection
+            System.out.println("[INFO] Retrieving the collection: " + collectionId);
+            col = DatabaseManager.getCollection(conn.uri + collectionId);
+            col.setProperty(OutputKeys.INDENT, "yes");
+
+            System.out.println("[INFO] Retrieving the document: " + documentId);
+            res = (XMLResource)col.getResource(documentId);
+
+            if(res == null) {
+                System.out.println("[WARNING] Document '" + documentId + "' can not be found!");
+            } else {
+                File newFile = new File("data/" + documentId);
+                FileWriter writer = new FileWriter("data/" + documentId);
+                writer.write(res.getContent().toString());
+                writer.close();
+                return newFile;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //don't forget to clean up!
+
+            if(res != null) {
+                try {
+                    ((EXistResource)res).freeResources();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+
+            if(col != null) {
+                try {
+                    col.close();
+                } catch (XMLDBException xe) {
+                    xe.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
 }

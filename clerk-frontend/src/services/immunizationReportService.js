@@ -8,3 +8,7 @@ export const generateImmunizationReport = (dateFrom, dateUntil, callback) => {
     callback
   );
 };
+
+export const getImmunizationReports = (callback) => {
+  return getObjects(`${PATH}/`, callback);
+};
