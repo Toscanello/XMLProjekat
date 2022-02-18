@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ImmunizationReport } from "./pages/ImmunizationReport";
 import { DigitalRequestsPage } from "./pages/DigitalRequestsPage";
 import { VaccinesPage } from "./pages/VaccinesPage";
+import { WelcomePage } from "./pages/WelcomePage";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<DigitalRequestsPage />} />
+          <Route exact path="/" element={<WelcomePage />} />
+          <Route exact path="/certificates" element={<DigitalRequestsPage />} />
           <Route
             exact
             path="/generate-report"

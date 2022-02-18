@@ -107,6 +107,22 @@ export function downloadPdf(
     });
 }
 
+export function downloadPdf3001(
+  path,
+  documentId,
+  callback = defaultCallback,
+  errorCallback = defaultErrorCallback
+) {
+  axios
+    .get(`${API_URL}/${path}/download/${documentId}`)
+    .then((response) => {
+      callback(response);
+    })
+    .catch((error) => {
+      errorCallback(error);
+    });
+}
+
 export function downloadHtml(
   path,
   documentId,

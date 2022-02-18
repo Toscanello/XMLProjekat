@@ -14,5 +14,7 @@ public interface IImunizationReportService {
 
     Reports findAll();
 
+    String download(String id);
+
     String downloadHtml(String id);
 }

@@ -1,19 +1,20 @@
-<vaccineCandidate xmlns="http://www.vakcinisoni.com">
-    <residence>0</residence>
+<vaccinationReport xmlns="http://www.vakcinisoni.com">
+    <fullName>Ivan Luburic</fullName>
+    <birthDate>1999-12-17</birthDate>
+    <gender>0</gender>
     <jmbg>2509999880166</jmbg>
-    <name>Filip</name>
-    <surname>Volaric</surname>
-    <email>filip.kresa@gmail.com</email>
-    <phoneNum>0641345948</phoneNum>
-    <homeNum>022433857</homeNum>
-    <location>Ruma</location>
-    <options>
-        <manufacturer>Pfizer</manufacturer>
-        <manufacturer>Sputnik V</manufacturer>
-        <manufacturer>Sinopharm</manufacturer>
-        <manufacturer>Astra Zeneca</manufacturer>
-        <manufacturer>Moderna</manufacturer>
-    </options>
-    <isBloodDonor>false</isBloodDonor>
-    <date>2021-05-12</date>
-</vaccineCandidate>
+    <doses>
+        <dose>
+            <date>2021-11-06</date>
+            <batch>1101</batch>
+        </dose>
+        <dose>
+            <date>2021-12-06</date>
+            <batch>2732</batch>
+        </dose>
+    </doses>
+    <institution>DZ Bosko Vrebalov</institution>
+    <vaccine>Pfizer</vaccine>
+    <confirmationDate>2021-12-06</confirmationDate>
+    <qrCode>http://www.vakcinisoni.com/VaccineReport/1712999850166/2</qrCode>
+</vaccinationReport>

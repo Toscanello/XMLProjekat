@@ -30,6 +30,12 @@ public class ImmunizationReportController {
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/download/{id}")
+    public ResponseEntity<String> download(@PathVariable String id){
+        String ret = service.download(id);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/downloadhtml/{id}")
     public ResponseEntity<String> downloadHtml(@PathVariable String id){
         String ret = service.downloadHtml(id);

@@ -41,6 +41,7 @@ export const VaccinesPage = () => {
 
   return (
     <>
+      <h1>Izvestaji o imunizaciji</h1>
       <table>
         <thead>
           <tr>

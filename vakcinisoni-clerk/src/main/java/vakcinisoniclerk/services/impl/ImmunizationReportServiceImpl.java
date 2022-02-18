@@ -10,6 +10,7 @@ import org.xmldb.api.base.XMLDBException;
 import vakcinisoniclerk.models.*;
 import vakcinisoniclerk.repository.impl.ImmunizationReportRepository;
 import vakcinisoniclerk.services.IImunizationReportService;
+import vakcinisoniclerk.services.QrService;
 import vakcinisoniclerk.xml2pdf.itext.HTMLTransformer;
 import vakcinisoniclerk.xml2pdf.xslfo.XSLFOTransformer;
 
@@ -30,6 +31,8 @@ public class ImmunizationReportServiceImpl implements IImunizationReportService 
 
     public HTMLTransformer htmlTransformer = new HTMLTransformer();
 
+    public static final String PATH_TO_QR = "data/xsl/images/qr-code.jpg";
+    public static final String URL_BASE = "http://www.vakcinisoni/com/ImmunizationReport/";
 
     @Autowired
     private ImmunizationReportRepository repository;
@@ -56,6 +59,21 @@ public class ImmunizationReportServiceImpl implements IImunizationReportService 
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String download(String id) {
+        try {
+            transformer.setINPUT_FILE("data/" + id + ".xml");
+            File res = repository.getXml(id);
+            //GENERATE QR
+            String fullUrl = URL_BASE + id;
+            QrService.makeNewQr(fullUrl, PATH_TO_QR);
+            transformer.generatePDF();
+            return "success";
+        } catch (Exception e) {
+            return "fail";
+        }
     }
 
     @Override

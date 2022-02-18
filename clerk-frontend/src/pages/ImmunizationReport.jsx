@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { downloadHtml, downloadHtml3001 } from "../services/axiosService";
+import {
+  downloadHtml,
+  downloadHtml3001,
+  downloadPdf3001,
+} from "../services/axiosService";
 import {
   generateImmunizationReport,
   getImmunizationReports,
@@ -32,10 +36,16 @@ export const ImmunizationReport = () => {
         window.open(`${SERVER_URL}/${response.data}`);
       }
     });
+    downloadPdf3001("immunization-reports", e.target.id, (response) => {
+      if (response.status === 200) {
+        window.open(`${SERVER_URL}/${response.data}`);
+      }
+    });
   };
 
   return (
     <>
+      <h1>Izvestaji o imunizaciji</h1>
       <input
         type="text"
         value={dateFrom}

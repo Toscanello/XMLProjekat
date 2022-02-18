@@ -59,6 +59,7 @@ export const DigitalRequestsPage = () => {
 
   return (
     <>
+      <h1>Zahtevi za izdavanje digitalnog sertifikata</h1>
       {isDeclined ? (
         <>
           <input
@@ -72,7 +73,7 @@ export const DigitalRequestsPage = () => {
       ) : null}
       <table>
         <tbody>
-          {requests &&
+          {requests ? (
             requests.map((request, i) => {
               return (
                 <>
@@ -118,7 +119,10 @@ export const DigitalRequestsPage = () => {
                   </tr>
                 </>
               );
-            })}
+            })
+          ) : (
+            <h4>Trenutno nema zahteva za digitalni sertifikat</h4>
+          )}
         </tbody>
       </table>
     </>
