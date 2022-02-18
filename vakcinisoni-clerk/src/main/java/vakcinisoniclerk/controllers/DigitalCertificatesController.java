@@ -27,12 +27,12 @@ public class DigitalCertificatesController {
     }
 
     @GetMapping(value = "/{documentId}/accept")
-    public ResponseEntity<String> acceptCertificateRequest(@PathVariable("documentId") String jmbg) {
+    public ResponseEntity<String> acceptCertificateRequest(@PathVariable("documentId") String documentId) {
         return new ResponseEntity<>(certificatesService.acceptCertificateRequest(documentId), HttpStatus.OK);
     }
 
     @PostMapping(value = "/{documentId}/decline", consumes = "application/xml")
-    public ResponseEntity<String> declineCertificateRequest(@PathVariable("documentId") String jmbg, @RequestBody DeclineCertificateRequestDto declineRequest) {
+    public ResponseEntity<String> declineCertificateRequest(@PathVariable("documentId") String documentId, @RequestBody DeclineCertificateRequestDto declineRequest) {
         return new ResponseEntity<>(certificatesService.declineCertificateRequest(documentId, declineRequest), HttpStatus.OK);
     }
 

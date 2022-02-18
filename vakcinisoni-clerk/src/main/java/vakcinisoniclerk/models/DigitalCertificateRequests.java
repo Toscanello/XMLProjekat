@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 import java.util.List;
 
-@XmlRootElement(name="certificate-requests")
+@XmlRootElement(name="certificateRequests")
 public class DigitalCertificateRequests {
 
     private List<DigitalCertificateRequest> certificateRequest;

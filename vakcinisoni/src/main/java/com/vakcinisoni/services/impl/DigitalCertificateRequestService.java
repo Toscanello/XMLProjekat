@@ -34,7 +34,7 @@ public class DigitalCertificateRequestService implements IDigitalCertificateRequ
     public DigitalCertificateRequests findAll() {
         try {
             Collection<DigitalCertificateRequest> coll = repository.findAll("/certificateRequest");
-            return new DigitalCertificateRequests(coll);
+            return new DigitalCertificateRequests((List<DigitalCertificateRequest>) coll);
 
         } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();

@@ -15,7 +15,7 @@ export const DigitalRequestsPage = () => {
   useEffect(() => {
     getCertificateRequests((response) => {
       parseXmlToJs(response.data, (result) => {
-        const request = result["certificate-requests"].certificateRequest;
+        const request = result["certificateRequests"].certificateRequest;
         console.log(request);
         setRequests(request);
       });
