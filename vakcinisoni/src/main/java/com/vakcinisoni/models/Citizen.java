@@ -23,6 +23,8 @@ public class Citizen{
 
     private String password;
 
+    private String token;
+
     public Citizen(){
 
     }
@@ -100,6 +102,14 @@ public class Citizen{
 
     public void setPassportNum(String passportNum) {
         this.passportNum = passportNum;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

@@ -18,7 +18,7 @@ function NavigationHeader(){
                     <Link to={`/view-documents`}>Pregledaj dokumente</Link>
                 </li>
                 <li className="right">
-                    <Link to={`/`}>Izloguj se</Link>
+                    <Link to={`/`} onClick={() => localStorage.clear()}>Izloguj se</Link>
                 </li>
             </ul>
         </nav>                 

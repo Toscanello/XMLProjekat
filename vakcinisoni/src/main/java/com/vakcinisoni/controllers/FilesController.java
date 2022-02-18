@@ -1,5 +1,7 @@
 package com.vakcinisoni.controllers;
 
+import com.vakcinisoni.api.rdf.FusekiReader;
+import com.vakcinisoni.api.rdf.FusekiWriter;
 import com.vakcinisoni.models.Bookstore;
 import com.vakcinisoni.models.Chain.DigitalCertificateParser;
 import com.vakcinisoni.models.Chain.ParserChain;
@@ -244,5 +246,10 @@ public class FilesController {
         } else {
             return col;
         }
+    }
+    @GetMapping(value = "/readRdf/{filename}/{id}")
+    public ResponseEntity<String> importRdf(@PathVariable String filename,@PathVariable String id) throws IOException {
+        String toReturn = new FusekiReader(filename,id).run(AuthenticationUtilities.loadProperties());
+        return new ResponseEntity<>(toReturn,HttpStatus.OK);
     }
 }

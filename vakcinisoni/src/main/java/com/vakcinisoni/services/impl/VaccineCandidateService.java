@@ -45,7 +45,7 @@ public class VaccineCandidateService implements IVaccineCandidateService {
             term.setTaken(true);
             String xPathSelector = "/term/taken";
 
-            ResponseEntity<Vaccines> vaccines = restTemplate.getForEntity("http://localhost:3001/vaccines", Vaccines.class);
+            ResponseEntity<Vaccines> vaccines = restTemplate.getForEntity("http://localhost:3001/vaccines/", Vaccines.class);
             Vaccines vaccineList = vaccines.getBody();
 
             for(Vaccine vaccine : vaccineList.getVaccine()){

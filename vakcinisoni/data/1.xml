@@ -1,25 +1,19 @@
-<ns2:certificate xmlns:pred="http://www.vakcinisoni.com/rdf/predicate" xmlns:ns2="http://www.vakcinisoni.com">
-    <ns2:id>1</ns2:id>
-    <ns2:qrCode>http://www.vakcinisoni.com/VaccineReport/1712999850166/2</ns2:qrCode>
-    <ns2:fullName>Ivan Luburic</ns2:fullName>
-    <ns2:gender>MALE</ns2:gender>
-    <ns2:dateOfBirth>1999-12-17</ns2:dateOfBirth>
-    <ns2:jmbg>2509999880166</ns2:jmbg>
-    <ns2:passportNum>00112233</ns2:passportNum>
-    <ns2:vaccination>
-        <ns2:dose>
-            <ns2:type>Pfizer</ns2:type>
-            <ns2:manufacturer>manufacturer</ns2:manufacturer>
-            <ns2:date>2021-11-06</ns2:date>
-            <ns2:batch>1101</ns2:batch>
-            <ns2:institution>DZ Bosko Vrebalov</ns2:institution>
-        </ns2:dose>
-        <ns2:dose>
-            <ns2:type>Pfizer</ns2:type>
-            <ns2:manufacturer>manufacturer</ns2:manufacturer>
-            <ns2:date>2021-12-06</ns2:date>
-            <ns2:batch>2732</ns2:batch>
-            <ns2:institution>DZ Bosko Vrebalov</ns2:institution>
-        </ns2:dose>
-    </ns2:vaccination>
-</ns2:certificate>
+<vaccineCandidate xmlns="http://www.vakcinisoni.com">
+    <residence>0</residence>
+    <jmbg>2509999880166</jmbg>
+    <name>Filip</name>
+    <surname>Volaric</surname>
+    <email>filip.kresa@gmail.com</email>
+    <phoneNum>0641345948</phoneNum>
+    <homeNum>022433857</homeNum>
+    <location>Ruma</location>
+    <options>
+        <manufacturer>Pfizer</manufacturer>
+        <manufacturer>Sputnik V</manufacturer>
+        <manufacturer>Sinopharm</manufacturer>
+        <manufacturer>Astra Zeneca</manufacturer>
+        <manufacturer>Moderna</manufacturer>
+    </options>
+    <isBloodDonor>false</isBloodDonor>
+    <date>2021-05-12</date>
+</vaccineCandidate>
