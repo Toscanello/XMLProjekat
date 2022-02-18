@@ -58,50 +58,51 @@ export const DigitalRequestsPage = () => {
       ) : null}
       <table>
         <tbody>
-          {requests.map((request, i) => {
-            return (
-              <>
-                <tr key={i}>
-                  <td>{request.fullName}</td>
-                </tr>
-                <tr key={request + i}>
-                  <td>{request.requestDate}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <button
-                      onClick={() => fetchCertificateRequest(request.jmbg)}
-                    >
-                      Pregledaj zahtev za sertifikat
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => fetchVaccinationReport(request.jmbg)}
-                    >
-                      Pregledaj vakcinacije
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() =>
-                        acceptRequest(request.jmbg + "-" + (i + 1))
-                      }
-                    >
-                      Odobri zahtev
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => setDecline(request.jmbg + "-" + (i + 1))}
-                    >
-                      Odbij zahtev
-                    </button>
-                  </td>
-                </tr>
-              </>
-            );
-          })}
+          {requests &&
+            requests.map((request, i) => {
+              return (
+                <>
+                  <tr key={i}>
+                    <td>{request.fullName}</td>
+                  </tr>
+                  <tr key={request + i}>
+                    <td>{request.requestDate}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button
+                        onClick={() => fetchCertificateRequest(request.jmbg)}
+                      >
+                        Pregledaj zahtev za sertifikat
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => fetchVaccinationReport(request.jmbg)}
+                      >
+                        Pregledaj vakcinacije
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          acceptRequest(request.jmbg + "-" + (i + 1))
+                        }
+                      >
+                        Odobri zahtev
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => setDecline(request.jmbg + "-" + (i + 1))}
+                      >
+                        Odbij zahtev
+                      </button>
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
         </tbody>
       </table>
     </>
