@@ -7,6 +7,8 @@ export const WelcomePage = () => {
       <a href="/generate-report">Izvestaji o imunizaciji</a>
       <br />
       <a href="/vaccines">Vakcine</a>
+      <br />
+      <a href="/search">Pretraga</a>
     </>
   );
 };

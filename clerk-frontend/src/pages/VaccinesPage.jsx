@@ -40,8 +40,8 @@ export const VaccinesPage = () => {
   };
 
   return (
-    <>
-      <h1>Izvestaji o imunizaciji</h1>
+    <div className="for-container">
+      <h1>Vakcine</h1>
       <table>
         <thead>
           <tr>
@@ -59,13 +59,11 @@ export const VaccinesPage = () => {
                   <td>{vaccine.name}</td>
                   <td>{vaccine.quantity}</td>
                   <td>
-                    <button onClick={() => setVaccineId(vaccine.id)}>
+                    <button
+                      className="button"
+                      onClick={() => setVaccineId(vaccine.id)}
+                    >
                       Izmeni kolicinu
-                    </button>
-                  </td>
-                  <td>
-                    <button onClick={() => handleDeleteVaccine(vaccine.id)}>
-                      Obrisi
                     </button>
                   </td>
                   {vaccineId && vaccine.id === vaccineId && (
@@ -79,7 +77,10 @@ export const VaccinesPage = () => {
                         />
                       </td>
                       <td>
-                        <button onClick={() => handleUpdateVaccineQuantity()}>
+                        <button
+                          className="button"
+                          onClick={() => handleUpdateVaccineQuantity()}
+                        >
                           Sacuvaj
                         </button>
                       </td>
@@ -90,7 +91,9 @@ export const VaccinesPage = () => {
             })}
         </tbody>
       </table>
-      <button onClick={() => setFormVisible(true)}>Kreiraj novu vakcinu</button>
+      <button className="button" onClick={() => setFormVisible(true)}>
+        Kreiraj novu vakcinu
+      </button>
       <br />
       <br />
       {formVisible && (
@@ -120,9 +123,11 @@ export const VaccinesPage = () => {
           />
           <br />
           <br />
-          <button onClick={() => handleCreateVaccine()}>Kreiraj</button>
+          <button className="button" onClick={() => handleCreateVaccine()}>
+            Kreiraj
+          </button>
         </form>
       )}
-    </>
+    </div>
   );
 };

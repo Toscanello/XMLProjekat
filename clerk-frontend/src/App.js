@@ -6,6 +6,8 @@ import SearchPage from "./pages/SearchPage";
 import { VaccinesPage } from "./pages/VaccinesPage";
 import { WelcomePage } from "./pages/WelcomePage";
 
+import "./assets/style.css";
+
 function App() {
   return (
     <div className="App">
@@ -18,7 +20,7 @@ function App() {
             path="/generate-report"
             element={<ImmunizationReport />}
           />
-          <Route exact path="/search" element={<SearchPage />}/>
+          <Route exact path="/search" element={<SearchPage />} />
           <Route exact path="/vaccines" element={<VaccinesPage />} />
         </Routes>
       </Router>

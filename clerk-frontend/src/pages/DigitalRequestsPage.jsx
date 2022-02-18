@@ -58,7 +58,7 @@ export const DigitalRequestsPage = () => {
   };
 
   return (
-    <>
+    <div className="for-container">
       <h1>Zahtevi za izdavanje digitalnog sertifikata</h1>
       {isDeclined ? (
         <>
@@ -68,7 +68,9 @@ export const DigitalRequestsPage = () => {
             placeholder="Razlog za odbijanje: "
             onChange={(e) => setDeclineMessage(e.target.value)}
           />
-          <button onClick={() => declineRequest()}>Potvrdi</button>
+          <button className="button" onClick={() => declineRequest()}>
+            Potvrdi
+          </button>
         </>
       ) : null}
       <table>
@@ -86,6 +88,7 @@ export const DigitalRequestsPage = () => {
                   <tr>
                     <td>
                       <button
+                        className="button"
                         id={request.jmbg + "-" + (i + 1)}
                         onClick={(e) => fetchCertificateRequest(e)}
                       >
@@ -94,6 +97,7 @@ export const DigitalRequestsPage = () => {
                     </td>
                     <td>
                       <button
+                        className="button"
                         id={i + 1}
                         onClick={(e) => fetchVaccinationReport(e)}
                       >
@@ -102,6 +106,7 @@ export const DigitalRequestsPage = () => {
                     </td>
                     <td>
                       <button
+                        className="button"
                         onClick={() =>
                           acceptRequest(request.jmbg + "-" + (i + 1))
                         }
@@ -111,6 +116,7 @@ export const DigitalRequestsPage = () => {
                     </td>
                     <td>
                       <button
+                        className="button"
                         onClick={() => setDecline(request.jmbg + "-" + (i + 1))}
                       >
                         Odbij zahtev
@@ -125,6 +131,6 @@ export const DigitalRequestsPage = () => {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };

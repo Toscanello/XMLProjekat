@@ -44,36 +44,44 @@ export const ImmunizationReport = () => {
   };
 
   return (
-    <>
+    <div className="for-container">
       <h1>Izvestaji o imunizaciji</h1>
       <input
         type="text"
         value={dateFrom}
         onChange={(e) => setDateFrom(e.target.value)}
-        placeholder="Date from"
+        placeholder="Pocetni datum"
       />
 
       <input
         type="text"
         value={dateUntil}
         onChange={(e) => setDateUntil(e.target.value)}
-        placeholder="Date until"
+        placeholder="Krajnji datum"
       />
 
-      <button onClick={() => generateReport()}>Generisi izvestaj</button>
-
-      <ol>
-        {reports.map((report, i) => {
-          return (
-            <li>
+      <button className="button" onClick={() => generateReport()}>
+        Generisi izvestaj
+      </button>
+      <br />
+      {reports.map((report, i) => {
+        return (
+          <>
+            <br />
+            <div>
               {report.startDate} - {report.finishDate} .
-              <button id={i + 1} onClick={(e) => fetchImmunizationReport(e)}>
-                Pregledaj
+              <button
+                id={i + 1}
+                className="button"
+                onClick={(e) => fetchImmunizationReport(e)}
+              >
+                Pregledaj i sacuvaj
               </button>
-            </li>
-          );
-        })}
-      </ol>
-    </>
+            </div>
+            <br />
+          </>
+        );
+      })}
+    </div>
   );
 };
