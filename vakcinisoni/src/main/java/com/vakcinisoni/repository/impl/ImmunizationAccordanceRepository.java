@@ -69,7 +69,7 @@ public class ImmunizationAccordanceRepository extends CrudRepository<Immunizatio
     public List<ImmunizationAccordance> findForJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         List<ImmunizationAccordance> all = (ArrayList<ImmunizationAccordance>)this.findAll("/accordance");
         List<ImmunizationAccordance> retVal = all.stream()
-                .filter(acc -> acc.getJmbg().equals(jmbg))
+                .filter(acc -> acc.getJmbg().getValue().equals(jmbg))
                 .collect(Collectors.toList());
         return retVal;
 

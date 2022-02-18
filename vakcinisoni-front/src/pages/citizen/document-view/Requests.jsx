@@ -12,7 +12,7 @@ function Requests(){
 
     useEffect(() => {
         getRequestsForUser((response) => {
-            parseXmlToJs(response.data, (result) => {
+            parseXmlToJs(response.data.replaceAll('ns3:', ''), (result) => {
                 console.log(result);
                 console.log(result.certificateRequests.certificateRequest);
                 setRequests(result.certificateRequests.certificateRequest);

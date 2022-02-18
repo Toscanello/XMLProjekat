@@ -10,7 +10,7 @@ function Candidates(){
 
     useEffect(() => {
         getCandidatesForUser((response) => {
-            parseXmlToJs(response.data, (result) => {
+            parseXmlToJs(response.data.replaceAll('ns2:', ''), (result) => {
                 console.log(result.vaccineCandidates.vaccineCandidate);
                 setCandidates(result.vaccineCandidates.vaccineCandidate);
             })

@@ -10,8 +10,9 @@ function Accordances(){
 
     useEffect(() => {
         getAccordancesForUser((response) => {
-            parseXmlToJs(response.data, (result) => {
-                console.log(result.accordances.accordance);
+            console.log(response.data);
+            parseXmlToJs(response.data.replaceAll('ns3:', ''), (result) => {
+                console.log(result);
                 setAccordances(result.accordances.accordance);
             });
         });
@@ -30,7 +31,6 @@ function Accordances(){
     function handleSaveHtml(e){
         e.preventDefault();
         console.log(e.target.id);
-        console.log("POZVANA FUNKCIJAAA")
         downloadHtml("accordances", e.target.id, (response)=>{
             if(response.status === 200){
                 console.log(response.data);
