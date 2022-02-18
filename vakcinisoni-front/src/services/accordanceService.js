@@ -38,7 +38,7 @@ export function postAccordanceObject(accordance, callback){
 }
 
 export function getAccordancesForUser(callback){
-    let jmbg = "2509999880166";
+    let jmbg = localStorage.getItem('jmbg');
 
     getObjects(`${PATH}/${jmbg}`, callback);
 }

@@ -6,6 +6,7 @@ import com.vakcinisoni.services.IDigitalCertificateRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +22,7 @@ public class DigitalCertificateRequestController {
         return new ResponseEntity<>(saved, HttpStatus.OK);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value="/{jmbg}",  produces = "application/xml")
     public ResponseEntity<DigitalCertificateRequests> getAllForJmbg(@PathVariable String jmbg){
         DigitalCertificateRequests ret = service.findAllForJmbg(jmbg);

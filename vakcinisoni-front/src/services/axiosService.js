@@ -4,8 +4,10 @@ const API_URL = "http://localhost:3000";
 const qs = require('querystring');
 
 export function getObjects(path, callback=defaultCallback, errorCallback=defaultErrorCallback){
+    var token = localStorage.getItem('token');
+
     axios
-    .get(`${API_URL}/${path}`, {"Content-Type": "application/xml; charset=utf-8"})
+    .get(`${API_URL}/${path}`, {headers: {"Content-Type": "application/xml; charset=utf-8", "Authorization": `Bearer ${token}`}})
     .then(response => {
         callback(response);
     })
@@ -94,7 +96,7 @@ function defaultCallback(response){
         console.log("BAD REQUEST");
     }
     else if(response.status === 401){
-        console.log("UNAUTHORIZED");
+        console.log("ULOGUJTE SE");
     }
     else if(response.status === 404){
         console.log("NOT FOUND");
@@ -109,4 +111,7 @@ function defaultCallback(response){
 
 function defaultErrorCallback(error){
     console.log(error);
+    if(error.response.status === 401){
+        alert("ULOGUJTE SE");
+    }
 }
