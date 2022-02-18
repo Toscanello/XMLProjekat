@@ -10,7 +10,7 @@ export function postAccordanceObject(accordance, callback){
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.vakcinisoni.com/ImmunizationAccordance ImmunizationAccordance.xsd"
         xmlns:pred="http://www.vakcinisoni.com/rdf/predicate"
-        about="http://www.vakcinisoni.com/ImmunizationAccordance/1">
+        about="http://www.vakcinisoni.com/ImmunizationAccordance/${accordance.jmbg}/${today}">
         <jmbg property="pred:jmbg">${accordance.jmbg}</jmbg>
         <surname property="pred:surname">${accordance.surname}</surname>
         <name property="pred:name">${accordance.name}</name>
