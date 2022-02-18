@@ -47,13 +47,16 @@ function SearchPage() {
   return (
     <div className="for-container">
       <input type="text" onChange={(e) => setSearchField(e.target.value)} />
-      <button onClick={handleClick}>Pretrazi</button>
+      <button className="button" onClick={handleClick}>
+        Pretrazi
+      </button>
       <h2>Saglasnosti</h2>
       {accordances.map((accordance) => {
         return (
           <div>
             <h4>{accordance.jmbg}</h4>
             <button
+              className="button"
               id={
                 "accordances/downloadhtml/" +
                 accordance.jmbg +
@@ -73,6 +76,7 @@ function SearchPage() {
           <div>
             <h4>{cert.id}</h4>
             <button
+              className="button"
               id={"certificates/downloadhtml/" + cert.id}
               onClick={displayFile}
             >
@@ -87,6 +91,7 @@ function SearchPage() {
           <div>
             <h4>{count++}</h4>
             <button
+              className="button"
               id={"vaccine-reports/downloadhtml/" + count}
               onClick={displayFile}
             >
