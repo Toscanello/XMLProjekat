@@ -18,8 +18,9 @@ public class VaccinationReportRepository extends CrudRepository<VaccinationRepor
         super(VACCINATION_REPORT_COLLECTION_NAME);
     }
     public VaccinationReport findOneByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        List<VaccinationReport> newList = findAllByJmbg(jmbg);
-        // mozda po datumu sortirati ako ima vise
+        List<VaccinationReport> allReports = (ArrayList<VaccinationReport>) this.findAll("/vaccinationReport");
+        List<VaccinationReport> newList = allReports.stream().filter(acc->acc.getJmbg().getValue().equals(jmbg)).collect(Collectors.toList());
+        newList.sort((a1,a2)->a2.getConfirmationDate().getValue().compareTo(a1.getConfirmationDate().getValue()));
         if(newList.isEmpty())
             return null;
         return newList.get(0);

@@ -1,5 +1,7 @@
 package com.vakcinisoni.repository.impl;
 
+import com.vakcinisoni.api.rdf.FusekiWriter;
+import com.vakcinisoni.grddl.MetadataExtractor;
 import com.vakcinisoni.models.Chain.DigitalCertificateParser;
 import com.vakcinisoni.models.Chain.ParserChain;
 import com.vakcinisoni.models.constants.Constants;
@@ -9,6 +11,7 @@ import com.vakcinisoni.services.DbService;
 import com.vakcinisoni.util.AuthenticationUtilities;
 import com.vakcinisoni.util.ObjectParser;
 import org.exist.xmldb.EXistResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
@@ -17,11 +20,14 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XPathQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
+
+import javax.xml.bind.JAXB;
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.OutputKeys;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import javax.xml.transform.TransformerException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,6 +37,9 @@ import static com.vakcinisoni.models.template.XUpdateTemplate.UPDATE;
 public class CrudRepository<T extends Object> implements ICrudRepository<T> {
 
     AuthenticationUtilities.ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+
+    @Autowired
+    protected MetadataExtractor metadataExtractor;
 
     protected DatabaseUtils databaseUtils = new DatabaseUtils();
 
@@ -107,6 +116,18 @@ public class CrudRepository<T extends Object> implements ICrudRepository<T> {
             long id = col.getResourceCount() + 1;
 
             DbService.writeToDb(entity, collectionId, id + "");
+
+            StringWriter sw = new StringWriter();
+            JAXB.marshal(entity,sw);
+            System.out.println(sw.toString());
+            metadataExtractor.extractMetadata(new ByteArrayInputStream(sw.toString().getBytes()),new FileOutputStream("gen/grddl_metadata.rdf"));
+            new FusekiWriter(collectionId,id+"").run(AuthenticationUtilities.loadProperties());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             // don't forget to cleanup
             if(col != null) {
