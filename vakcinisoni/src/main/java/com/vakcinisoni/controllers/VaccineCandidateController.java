@@ -19,7 +19,8 @@ public class VaccineCandidateController {
     @PostMapping(value = "/", consumes="application/xml", produces = "application/xml")
     public ResponseEntity<Term> saveAndNotify(@RequestBody VaccineCandidate candidate){
         Term freeTerm = service.save(candidate);
-
+        if (freeTerm.equals(null))
+            return new ResponseEntity<>(freeTerm, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(freeTerm, HttpStatus.OK);
     }
 

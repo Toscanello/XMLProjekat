@@ -18,6 +18,8 @@ public class DigitalCertificateRequestController {
     @PostMapping(value="/", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<DigitalCertificateRequest> save(@RequestBody DigitalCertificateRequest request){
         DigitalCertificateRequest saved = service.save(request);
+        if (saved.equals(null))
+            return new ResponseEntity<>(saved, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(saved, HttpStatus.OK);
     }
 

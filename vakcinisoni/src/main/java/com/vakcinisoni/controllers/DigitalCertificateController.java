@@ -27,7 +27,8 @@ public class DigitalCertificateController {
     @PostMapping(value = "/write", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<DigitalCertificate> save(@RequestBody DigitalCertificate certificate) {
         DigitalCertificate dc = service.save(certificate);
-
+        if (dc.equals(null))
+            return new ResponseEntity<>(dc, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(dc, HttpStatus.OK);
     }
 

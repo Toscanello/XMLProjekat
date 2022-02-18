@@ -18,6 +18,8 @@ public class ImmunizationAccordanceController {
     @PostMapping(value = "/", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<ImmunizationAccordance> save(@RequestBody ImmunizationAccordance accordance){
         ImmunizationAccordance ret = service.save(accordance);
+        if (ret.equals(null))
+            return new ResponseEntity<>(ret, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 

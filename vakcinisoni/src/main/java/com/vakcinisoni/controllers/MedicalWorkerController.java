@@ -31,7 +31,10 @@ public class MedicalWorkerController{
 
     @PostMapping(value = "/accordance/{jmbg}",consumes = "application/xml")
     public ResponseEntity<ImmunizationAccordance> addVaccineEvidence(@PathVariable String jmbg, @RequestBody ImmunizationAccordance.VaccineEvidence vaccineEvidence) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        return new ResponseEntity<>(service.addVaccineEvidence(jmbg,vaccineEvidence),HttpStatus.OK);
+        ImmunizationAccordance ia = service.addVaccineEvidence(jmbg,vaccineEvidence);
+        if (ia.equals(null))
+            return new ResponseEntity<>(ia, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ia,HttpStatus.OK);
     }
 
     @GetMapping(value="/report/{jmbg}")

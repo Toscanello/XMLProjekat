@@ -23,6 +23,8 @@ public class TermController {
     @PostMapping(value="/", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<Term> createNew(@RequestBody Term term) {
         Term ret = service.save(term);
+        if (ret.equals(null))
+            return new ResponseEntity<>(ret, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }

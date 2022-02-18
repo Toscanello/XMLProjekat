@@ -28,7 +28,8 @@ public class VaccineReportController {
     @PostMapping(value = "/", consumes = "application/xml", produces = "application/xml")
     public ResponseEntity<VaccinationReport> save(@RequestBody VaccinationReport report){
         VaccinationReport ret = service.save(report);
-
+        if (ret.equals(null))
+            return new ResponseEntity<>(ret, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 

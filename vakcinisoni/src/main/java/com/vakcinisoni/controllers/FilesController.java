@@ -114,7 +114,6 @@ public class FilesController {
     @GetMapping("/write/{fileName}")
     public ResponseEntity<String> writeFile(@PathVariable("fileName") String fileName) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 
-
         // initialize collection and document identifiers
         String collectionId = null;
         String documentId = null;
@@ -148,7 +147,6 @@ public class FilesController {
         XMLResource res = null;
 
         try {
-
             System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = getOrCreateCollection(collectionId);
 
