@@ -1,0 +1,24 @@
+<ns3:certificate xmlns:pred="http://www.vakcinisoni.com/rdf/predicate" xmlns:ns3="http://www.vakcinisoni.com" about="http://www.vakcinisoni.com/DigitalCert/2509999880166" dateTime="2022-01-05T17:55:55">
+    <ns3:id>17</ns3:id>
+    <ns3:qrCode>http://www.vakcinisoni.com/DigitalCert/2509999880166</ns3:qrCode>
+    <ns3:fullName property="pred:fullName">Uros Petric</ns3:fullName>
+    <ns3:dateOfBirth>1999-10-07</ns3:dateOfBirth>
+    <ns3:jmbg property="pred:jmbg">0710999850006</ns3:jmbg>
+    <ns3:passportNum>00112233</ns3:passportNum>
+    <ns3:vaccination>
+        <ns3:dose count="1">
+            <ns3:type>Pfizer</ns3:type>
+            <ns3:manufacturer>BIONTECH MANUFACTURING</ns3:manufacturer>
+            <ns3:date>2021-11-06</ns3:date>
+            <ns3:batch>2245</ns3:batch>
+            <ns3:institution>DZ Ruma</ns3:institution>
+        </ns3:dose>
+        <ns3:dose count="2">
+            <ns3:type>Pfizer</ns3:type>
+            <ns3:manufacturer>BIONTECH MANUFACTURING</ns3:manufacturer>
+            <ns3:date>2021-11-20</ns3:date>
+            <ns3:batch>2245</ns3:batch>
+            <ns3:institution>DZ Ruma</ns3:institution>
+        </ns3:dose>
+    </ns3:vaccination>
+</ns3:certificate>
