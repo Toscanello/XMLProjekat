@@ -17,20 +17,26 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "immunizationReport")
 public class ImmunizationReport {
 
-    @XmlElement(required = true)
-    protected String startDate;
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+
+    @XmlAttribute(name = "about")
+    protected String about;
 
     @XmlElement(required = true)
-    protected String finishDate;
+    protected StartDate startDate;
 
     @XmlElement(required = true)
-    protected String immunizationRequests;
+    protected FinishDate finishDate;
 
     @XmlElement(required = true)
-    protected String certificateRequests;
+    protected ImmunizationRequests immunizationRequests;
 
     @XmlElement(required = true)
-    protected String certificatesIssued;
+    protected CertificateRequests certificateRequests;
+
+    @XmlElement(required = true)
+    protected CertificatesIssued certificatesIssued;
 
     @XmlElement(required = true)
     protected String vaccinesTaken;
@@ -44,43 +50,48 @@ public class ImmunizationReport {
     @XmlElement(required = true)
     protected String reportDate;
 
-    public String getStartDate() {
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
+
+    public StartDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(StartDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getFinishDate() {
+    public FinishDate getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(String finishDate) {
+    public void setFinishDate(FinishDate finishDate) {
         this.finishDate = finishDate;
     }
 
-    public String getImmunizationRequests() {
+    public ImmunizationRequests getImmunizationRequests() {
         return immunizationRequests;
     }
 
-    public void setImmunizationRequests(String immunizationRequests) {
+    public void setImmunizationRequests(ImmunizationRequests immunizationRequests) {
         this.immunizationRequests = immunizationRequests;
     }
 
-    public String getCertificateRequests() {
+    public CertificateRequests getCertificateRequests() {
         return certificateRequests;
     }
 
-    public void setCertificateRequests(String certificateRequests) {
+    public void setCertificateRequests(CertificateRequests certificateRequests) {
         this.certificateRequests = certificateRequests;
     }
 
-    public String getCertificatesIssued() {
+    public CertificatesIssued getCertificatesIssued() {
         return certificatesIssued;
     }
 
-    public void setCertificatesIssued(String certificatesIssued) {
+    public void setCertificatesIssued(CertificatesIssued certificatesIssued) {
         this.certificatesIssued = certificatesIssued;
     }
 
@@ -130,6 +141,133 @@ public class ImmunizationReport {
                 ", reportDate='" + reportDate + '\'' +
                 '}';
     }
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "startDate")
+    public static class StartDate {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "finishDate")
+    public static class FinishDate {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "immunizationRequests")
+    public static class ImmunizationRequests {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "certificateRequests")
+    public static class CertificateRequests {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "certificatesIssued")
+    public static class CertificatesIssued {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {

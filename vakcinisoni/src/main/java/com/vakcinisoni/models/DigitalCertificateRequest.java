@@ -1,6 +1,8 @@
 package com.vakcinisoni.models;
 
 import com.vakcinisoni.models.enums.Gender;
+import com.vakcinisoni.models.metadata.Fullname;
+import com.vakcinisoni.models.metadata.Jmbg;
 
 import javax.xml.bind.annotation.*;
 
@@ -18,8 +20,18 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "certificateRequest")
 public class DigitalCertificateRequest {
 
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+
+    @XmlAttribute(name = "about")
+    protected String about;
+    @XmlAttribute(name = "dateTime")
+    protected String dateTime;
+    @XmlAttribute(name = "accepted")
+    protected String accepted;
+
     @XmlElement(required = true)
-    protected String fullName;
+    protected Fullname fullName;
 
     @XmlElement(required = true)
     protected String birthDate;
@@ -28,7 +40,7 @@ public class DigitalCertificateRequest {
     protected Gender gender;
 
     @XmlElement(required = true)
-    protected String jmbg;
+    protected Jmbg jmbg;
 
     @XmlElement(required = true)
     protected String passportNum;
@@ -37,16 +49,25 @@ public class DigitalCertificateRequest {
     protected String reason;
 
     @XmlElement(required = true)
-    protected String place;
+    protected Place place;
 
     @XmlElement(required = true)
     protected String requestDate;
 
-    public String getFullName() {
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
+    public String getDateTime(){return this.dateTime;}
+    public void setDateTime(String dateTime){this.dateTime = dateTime;}
+    public String getAccepted(){return this.accepted;}
+    public void setAccepted(String accepted){this.accepted = accepted;}
+
+    public Fullname getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public void setFullName(Fullname fullName) {
         this.fullName = fullName;
     }
 
@@ -66,11 +87,11 @@ public class DigitalCertificateRequest {
         this.gender = gender;
     }
 
-    public String getJmbg() {
+    public Jmbg getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(Jmbg jmbg) {
         this.jmbg = jmbg;
     }
 
@@ -90,11 +111,11 @@ public class DigitalCertificateRequest {
         this.reason = reason;
     }
 
-    public String getPlace() {
+    public Place getPlace() {
         return place;
     }
 
-    public void setPlace(String place) {
+    public void setPlace(Place place) {
         this.place = place;
     }
 
@@ -104,5 +125,30 @@ public class DigitalCertificateRequest {
 
     public void setRequestDate(String requestDate) {
         this.requestDate = requestDate;
+    }
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "place")
+    public static class Place{
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty() {
+            return property;
+        }
+
+        public void setProperty(String property) {
+            this.property = property;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
     }
 }

@@ -1,7 +1,12 @@
 package com.vakcinisoni.models;
 
+import com.vakcinisoni.models.metadata.Jmbg;
+import com.vakcinisoni.models.metadata.Name;
+import com.vakcinisoni.models.metadata.Surname;
+
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -31,14 +36,20 @@ import java.util.List;
 @XmlRootElement(name = "accordance")
 public class ImmunizationAccordance {
 
-    @XmlElement(required = true)
-    protected String jmbg;
+    @XmlAttribute(name = "xmlns:pred")
+    protected String pred;
+
+    @XmlAttribute(name = "about")
+    protected String about;
 
     @XmlElement(required = true)
-    protected String surname;
+    protected Jmbg jmbg;
 
     @XmlElement(required = true)
-    protected String name;
+    protected Surname surname;
+
+    @XmlElement(required = true)
+    protected Name name;
 
     @XmlElement(required = true)
     protected String parentName;
@@ -59,7 +70,7 @@ public class ImmunizationAccordance {
     protected String post;
 
     @XmlElement(required = true)
-    protected String city;
+    protected City city;
 
     @XmlElement(required = true)
     protected String homeNumber;
@@ -94,27 +105,32 @@ public class ImmunizationAccordance {
     @XmlElement(required = true)
     protected VaccineEvidence vaccineEvidence;
 
-    public String getJmbg() {
+    public String getPred(){return this.pred;}
+    public void setPred(String pred){this.pred = pred;}
+    public String getAbout(){return this.about;}
+    public void setAbout(String about){this.about = about;}
+
+    public Jmbg getJmbg() {
         return jmbg;
     }
 
-    public void setJmbg(String jmbg) {
+    public void setJmbg(Jmbg jmbg) {
         this.jmbg = jmbg;
     }
 
-    public String getSurname() {
+    public Surname getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(Surname surname) {
         this.surname = surname;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 
@@ -166,11 +182,11 @@ public class ImmunizationAccordance {
         this.post = post;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -265,6 +281,22 @@ public class ImmunizationAccordance {
         this.vaccineEvidence = vaccineEvidence;
     }
 
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlRootElement(name = "city")
+    public static class City {
+
+        @XmlAttribute(name = "property")
+        private String property;
+        @XmlValue
+        private String value;
+
+        public String getProperty(){return this.property;}
+        public void setProperty(String property){this.property=property;}
+        public String getValue(){return this.value;}
+        public void setValue(String value){this.value=value;}
+
+    }
+
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -277,7 +309,7 @@ public class ImmunizationAccordance {
     public static class VaccineEvidence {
 
         @XmlElement(required = true)
-        protected String institution;
+        protected Institution institution;
         @XmlElement(required = true)
         protected String vaccinationNum;
         @XmlElement(required = true)
@@ -285,11 +317,11 @@ public class ImmunizationAccordance {
         @XmlElement(required = true)
         protected Table table;
 
-        public String getInstitution() {
+        public Institution getInstitution() {
             return institution;
         }
 
-        public void setInstitution(String institution) {
+        public void setInstitution(Institution institution) {
             this.institution = institution;
         }
 
@@ -321,6 +353,31 @@ public class ImmunizationAccordance {
 
         public void setTable(Table table) {
             this.table = table;
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlRootElement(name = "institution")
+        public static class Institution{
+            @XmlAttribute(name = "property")
+            private String property;
+            @XmlValue
+            private String value;
+
+            public String getProperty() {
+                return property;
+            }
+
+            public void setProperty(String property) {
+                this.property = property;
+            }
+
+            public String getValue() {
+                return value;
+            }
+
+            public void setValue(String value) {
+                this.value = value;
+            }
         }
 
         @XmlAccessorType(XmlAccessType.FIELD)
@@ -376,12 +433,16 @@ public class ImmunizationAccordance {
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
                 "row",
+                "contraindications"
         })
         @XmlRootElement(name = "table")
         public static class Table {
 
             @XmlElement(required = true)
             protected List<Row> row;
+
+            @XmlElement
+            protected Contraindications contraindications;
 
             public List<Row> getRow() {
                 if (row == null) {
@@ -393,6 +454,8 @@ public class ImmunizationAccordance {
             public void setRow(List<Row> row) {
                 this.row = row;
             }
+            public Contraindications getContraindications(){return  this.contraindications;}
+            public void setContraindications(Contraindications contraindications){this.contraindications=contraindications;}
 
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -489,6 +552,45 @@ public class ImmunizationAccordance {
                             ", manufacturer='" + manufacturer + '\'' +
                             ", reaction='" + reaction + '\'' +
                             '}';
+                }
+            }
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                    "diagnosis",
+                    "date",
+                    "permanent"
+            })
+            @XmlRootElement(name = "contraindications")
+            public static class Contraindications{
+                @XmlElement
+                protected String diagnosis;
+                @XmlElement
+                protected String date;
+                @XmlElement
+                protected String permanent;
+
+                public String getDiagnosis() {
+                    return diagnosis;
+                }
+
+                public void setDiagnosis(String diagnosis) {
+                    this.diagnosis = diagnosis;
+                }
+
+                public String getDate() {
+                    return date;
+                }
+
+                public void setDate(String date) {
+                    this.date = date;
+                }
+
+                public String getPermanent() {
+                    return permanent;
+                }
+
+                public void setPermanent(String permanent) {
+                    this.permanent = permanent;
                 }
             }
         }

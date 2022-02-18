@@ -26,7 +26,7 @@ public class DigitalCertificateRequestRepository extends CrudRepository<DigitalC
         org.xmldb.api.base.Collection col = null;
 
         try {
-            DbService.writeToDb(request, collectionId, request.getJmbg() + "-" + calculateId(request.getJmbg()));
+            DbService.writeToDb(request, collectionId, request.getJmbg().getValue() + "-" + calculateId(request.getJmbg().getValue()));
         } finally {
             // don't forget to cleanup
             if(col != null) {
@@ -46,7 +46,7 @@ public class DigitalCertificateRequestRepository extends CrudRepository<DigitalC
         try{
             List<DigitalCertificateRequest> all = (ArrayList<DigitalCertificateRequest>)this.findAll("/certificateRequest");
             List<DigitalCertificateRequest> forUser = all
-                    .stream().filter(cr -> cr.getJmbg().equals(jmbg)).collect(Collectors.toList());
+                    .stream().filter(cr -> cr.getJmbg().getValue().equals(jmbg)).collect(Collectors.toList());
             return forUser.size() + 1;
         }
         catch(Exception e){

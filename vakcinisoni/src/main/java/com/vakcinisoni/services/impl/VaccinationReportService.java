@@ -83,4 +83,9 @@ public class VaccinationReportService implements IVaccinationReportService {
             return "fail";
         }
     }
+
+    @Override
+    public VaccinationReports findByPhrase(String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new VaccinationReports(repository.findAllByPhrase(phrase));
+    }
 }

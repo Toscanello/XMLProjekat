@@ -3,6 +3,7 @@ package com.vakcinisoni.repository.impl;
 import com.vakcinisoni.models.Term;
 import com.vakcinisoni.models.VaccineCandidate;
 import com.vakcinisoni.services.DbService;
+import com.vakcinisoni.services.MailerService;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
 
@@ -68,7 +69,7 @@ public class TermRepository extends CrudRepository<Term>{
                     lastTerm = t;
                 }
             }
-            Term newTerm = new Term(lastTerm.getStart()+30*60*60*1000, lastTerm.getFinish()+30*60*60*1000, true, candidate.getLocation());
+            Term newTerm = new Term(lastTerm.getStart()+30*60*60*1000, lastTerm.getFinish()+30*60*60*1000, true, candidate.getLocation().getValue());
             save(newTerm);
             return newTerm;
         }

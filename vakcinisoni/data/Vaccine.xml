@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vaccine xmlns="http://www.vakcinisoni.com">
+
+    <manufacturer>BIOTECH</manufacturer>
+    <name>Kinez</name>
+    <quantity>1234</quantity>
+
+</vaccine>

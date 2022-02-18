@@ -1,10 +1,13 @@
 package com.vakcinisoni.grddl;
 
 import com.vakcinisoni.api.rdf.FusekiWriter;
+import com.vakcinisoni.models.ImmunizationAccordance;
 import com.vakcinisoni.util.AuthenticationUtilities;
 import org.apache.xalan.processor.TransformerFactoryImpl;
+import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
+import javax.xml.bind.JAXB;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -13,6 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 
+@Component
 public class MetadataExtractor {
 
     private TransformerFactory transformerFactory;
@@ -56,28 +60,21 @@ public class MetadataExtractor {
     }
 
 
-    public void test() throws Exception {
+    public void test(String xml) throws Exception {
 
         System.out.println("[INFO] " + MetadataExtractor.class.getSimpleName());
 
         String filePath = "gen/grddl_metadata.rdf";
 
-        InputStream in = new FileInputStream(new File("data/DigitalCert.xml"));
+        InputStream in = new ByteArrayInputStream(xml.getBytes());
 
-        OutputStream out = new FileOutputStream(filePath);
+        OutputStream out = new FileOutputStream("gen/grddl_metadata.rdf");
 
         extractMetadata(in, out);
 
         System.out.println("[INFO] File \"" + filePath + "\" generated successfully.");
 
         System.out.println("[INFO] End.");
-
-        new FusekiWriter("grddl").run(AuthenticationUtilities.loadProperties());
-    }
-
-    public static void main(String[] args) throws Exception {
-        new MetadataExtractor().test();
-
     }
 
 }
