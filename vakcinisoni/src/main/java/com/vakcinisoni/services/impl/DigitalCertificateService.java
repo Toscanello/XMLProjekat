@@ -99,4 +99,9 @@ public class DigitalCertificateService implements IDigitalCertificateService {
         }
         return null;
     }
+
+    @Override
+    public DigitalCertificates findByPhrase(String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new DigitalCertificates(repository.findAllbyPhrase(phrase));
+    }
 }

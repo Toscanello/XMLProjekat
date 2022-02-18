@@ -1,6 +1,8 @@
 package com.vakcinisoni.repository.impl;
 
 import com.vakcinisoni.models.DigitalCertificateRequest;
+import com.vakcinisoni.models.DigitalCertificateRequests;
+import com.vakcinisoni.models.VaccinationReport;
 import com.vakcinisoni.services.DbService;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
@@ -17,6 +19,13 @@ public class DigitalCertificateRequestRepository extends CrudRepository<DigitalC
 
     public DigitalCertificateRequestRepository() throws IOException {
         super(DIGITAL_CERTIFICATE_REQUEST_COLLECTION_NAME);
+    }
+
+    public List<DigitalCertificateRequest> findByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        List<DigitalCertificateRequest> allRequests = (ArrayList<DigitalCertificateRequest>) this.findAll("/certificateRequest");
+        List<DigitalCertificateRequest> newList = allRequests.stream().filter(acc->acc.getJmbg().equals(jmbg)).collect(Collectors.toList());
+        System.out.println("NASAO JE -> " + newList.size() + "  ZA JMBG: " + jmbg );
+        return newList;
     }
 
     @Override

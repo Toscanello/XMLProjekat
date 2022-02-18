@@ -2,6 +2,7 @@ package com.vakcinisoni.repository.impl;
 
 import com.vakcinisoni.api.rdf.FusekiWriter;
 import com.vakcinisoni.models.ImmunizationAccordance;
+import com.vakcinisoni.models.VaccinationReport;
 import com.vakcinisoni.services.DbService;
 import com.vakcinisoni.util.AuthenticationUtilities;
 import org.springframework.stereotype.Repository;
@@ -82,5 +83,41 @@ public class ImmunizationAccordanceRepository extends CrudRepository<Immunizatio
         if(newList.isEmpty())
             return null;
         return newList.get(0);
+    }
+
+    public List<ImmunizationAccordance> findAllByPhrase(String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        List<ImmunizationAccordance> allReports = (ArrayList<ImmunizationAccordance>) this.findAll("/accordance");
+        String finalPhrase = phrase.toLowerCase();
+        List<ImmunizationAccordance> newList = allReports.stream()
+                .filter(vacc -> vacc.getSurname().getValue().toLowerCase().contains(finalPhrase)
+                        || vacc.getName().getValue().toLowerCase().contains(finalPhrase)
+                        || vacc.getParentName().toLowerCase().contains(finalPhrase)
+                        || vacc.getBirthDate().toLowerCase().contains(finalPhrase)
+                        || vacc.getJmbg().getValue().toLowerCase().contains(finalPhrase)
+                        || vacc.getBirthPlace().toLowerCase().contains(finalPhrase)
+                        || vacc.getAddress().toLowerCase().contains(finalPhrase)
+                        || vacc.getPost().toLowerCase().contains(finalPhrase)
+                        || vacc.getCity().getValue().toLowerCase().contains(finalPhrase)
+                        || vacc.getHomeNumber().contains(finalPhrase)
+                        || vacc.getPhoneNum().toLowerCase().contains(finalPhrase)
+                        || vacc.getResidenceName().toLowerCase().contains(finalPhrase)
+                        || vacc.getMedicineName().toLowerCase().contains(finalPhrase)
+                        || vacc.getDate().toLowerCase().contains(finalPhrase)
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getInstitution().getValue().toLowerCase().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getVaccinationNum().toLowerCase().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getDoctorInfo().getFullName().toLowerCase().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getDoctorInfo().getFax().toLowerCase().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getDoctorInfo().getPhoneNum().toLowerCase().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getRow().stream().anyMatch(d->d.getBatch().contains(finalPhrase)))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getRow().stream().anyMatch(d->d.getVaccineName().contains(finalPhrase)))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getRow().stream().anyMatch(d->d.getDateIssued().contains(finalPhrase)))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getRow().stream().anyMatch(d->d.getManufacturer().contains(finalPhrase)))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getRow().stream().anyMatch(d->d.getReaction().contains(finalPhrase)))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getContraindications() != null && vacc.getVaccineEvidence().getTable().getContraindications().getDiagnosis().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getContraindications() != null && vacc.getVaccineEvidence().getTable().getContraindications().getDiagnosis().contains(finalPhrase))
+                        || (vacc.getVaccineEvidence().getInstitution() != null && vacc.getVaccineEvidence().getTable().getContraindications() != null && vacc.getVaccineEvidence().getTable().getContraindications().getDiagnosis().contains(finalPhrase))
+                )
+                .collect(Collectors.toList());
+        return newList;
     }
 }

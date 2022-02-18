@@ -1,6 +1,7 @@
 package com.vakcinisoni.repository.impl;
 
 import com.vakcinisoni.models.DigitalCertificate;
+import com.vakcinisoni.models.ImmunizationAccordance;
 import com.vakcinisoni.services.DbService;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.base.XMLDBException;
@@ -44,5 +45,23 @@ public class DigitalCertificateRepository extends CrudRepository<DigitalCertific
         List<DigitalCertificate> retVal = all.stream()
                 .filter(cert -> cert.getJmbg().getValue().equals(jmbg)).collect(Collectors.toList());
         return retVal;
+    }
+
+    public List<DigitalCertificate> findAllbyPhrase(String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        List<DigitalCertificate> allReports = (ArrayList<DigitalCertificate>) this.findAll("/certificate");
+        String finalPhrase = phrase.toLowerCase();
+        List<DigitalCertificate> newList = allReports.stream()
+                .filter(vacc -> vacc.getId().toLowerCase().contains(finalPhrase)
+                        || vacc.getFullName().getValue().contains(finalPhrase)
+                        || vacc.getDateOfBirth().contains(finalPhrase)
+                        || vacc.getJmbg().getValue().contains(finalPhrase)
+                        || vacc.getPassportNum().contains(finalPhrase)
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getType().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getManufacturer().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getDate().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getBatch().contains(finalPhrase))
+                        || vacc.getVaccination().getDose().stream().anyMatch(d->d.getInstitution().contains(finalPhrase))
+                ).collect(Collectors.toList());
+        return newList;
     }
 }

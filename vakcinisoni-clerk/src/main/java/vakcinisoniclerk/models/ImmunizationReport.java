@@ -1,6 +1,7 @@
 package vakcinisoniclerk.models;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -43,6 +44,20 @@ public class ImmunizationReport {
 
     @XmlElement(required = true)
     protected String reportDate;
+
+    public ImmunizationReport() {};
+
+    public ImmunizationReport(String startDate, String finishDate, String immunizationRequests, String certificateRequests, String certificatesIssued, String vaccinesTaken, String firstTimeVaccineTaken, Manufacturers manufacturers, String reportDate) {
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.immunizationRequests = immunizationRequests;
+        this.certificateRequests = certificateRequests;
+        this.certificatesIssued = certificatesIssued;
+        this.vaccinesTaken = vaccinesTaken;
+        this.firstTimeVaccineTaken = firstTimeVaccineTaken;
+        this.manufacturers = manufacturers;
+        this.reportDate = reportDate;
+    }
 
     public String getStartDate() {
         return startDate;
@@ -138,13 +153,19 @@ public class ImmunizationReport {
     @XmlRootElement(name = "manufacturers")
     public static class Manufacturers {
         @XmlElement(required = true)
-        protected Manufacturer manufacturer;
+        protected List<Manufacturer> manufacturer;
 
-        public Manufacturer getManufacturer() {
+        public Manufacturers() {};
+
+        public Manufacturers(List<Manufacturer> manufacturer) {
+            this.manufacturer = manufacturer;
+        }
+
+        public List<Manufacturer> getManufacturer() {
             return manufacturer;
         }
 
-        public void setManufacturer(Manufacturer manufacturer) {
+        public void setManufacturer(List<Manufacturer> manufacturer) {
             this.manufacturer = manufacturer;
         }
 
@@ -167,6 +188,13 @@ public class ImmunizationReport {
 
             @XmlElement(required = true)
             protected int numberOfVaccines;
+
+            public Manufacturer() {}
+
+            public Manufacturer(String name, int numberOfVaccines) {
+                this.name = name;
+                this.numberOfVaccines = numberOfVaccines;
+            }
 
             public String getName() {
                 return name;

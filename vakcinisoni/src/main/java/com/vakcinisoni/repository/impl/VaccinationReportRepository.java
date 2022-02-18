@@ -45,6 +45,8 @@ public class VaccinationReportRepository extends CrudRepository<VaccinationRepor
                         || vacc.getInstitution().toLowerCase().contains(finalPhrase)
                         || vacc.getVaccine().toLowerCase().contains(finalPhrase)
                         || vacc.getConfirmationDate().getValue().contains(finalPhrase)
+                        || vacc.getDoses().getDose().stream().anyMatch(d->d.getBatch().equals(finalPhrase))
+                        || vacc.getDoses().getDose().stream().anyMatch(d->d.getDate().equals(finalPhrase))
                 )
                 .collect(Collectors.toList());
         return newList;

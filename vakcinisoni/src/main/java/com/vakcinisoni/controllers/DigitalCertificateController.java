@@ -1,5 +1,6 @@
 package com.vakcinisoni.controllers;
 
+import com.vakcinisoni.models.Accordances;
 import com.vakcinisoni.models.DigitalCertificate;
 import com.vakcinisoni.models.DigitalCertificates;
 import com.vakcinisoni.services.IDigitalCertificateService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xmldb.api.base.XMLDBException;
 
 
 @RestController
@@ -49,5 +51,9 @@ public class DigitalCertificateController {
         String ret = service.downloadHtml(id);
 
         return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+    @GetMapping(value = "/simple-search/{phrase}", produces = "application/xml")
+    public ResponseEntity<DigitalCertificates> findByPhrase(@PathVariable String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new ResponseEntity<>(service.findByPhrase(phrase),HttpStatus.OK);
     }
 }

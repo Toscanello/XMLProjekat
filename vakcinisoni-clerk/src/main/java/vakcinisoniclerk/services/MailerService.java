@@ -1,6 +1,5 @@
 package vakcinisoniclerk.services;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,8 +15,6 @@ import java.util.Properties;
 
 @Service
 public class MailerService {
-
-
 
     public static JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
