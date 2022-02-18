@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ImmunizationReport } from "./pages/ImmunizationReport";
 import { DigitalRequestsPage } from "./pages/DigitalRequestsPage";
+import { VaccinesPage } from "./pages/VaccinesPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             path="/generate-report"
             element={<ImmunizationReport />}
           />
+          <Route exact path="/vaccines" element={<VaccinesPage />} />
         </Routes>
       </Router>
     </div>
