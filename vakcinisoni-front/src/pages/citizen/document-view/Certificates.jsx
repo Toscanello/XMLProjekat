@@ -10,9 +10,8 @@ function Certificates(){
 
     useEffect(() => {
         getCertificatesForUser((response) => {
-            parseXmlToJs(response.data, (result) => {
-                console.log(response.data);
-                console.log(result.certificates.certificate);
+            parseXmlToJs(response.data.replaceAll('ns2:',''), (result) => {
+                console.log(result);
                 setCertificates(result.certificates.certificate);
             });
         });

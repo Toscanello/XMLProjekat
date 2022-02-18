@@ -135,7 +135,7 @@
                             <p>Certificate of vaccination against COVID-19 and test results</p>
                         </div>
                         <div class="qr-code">
-                            <img src="http://172.20.176.1:8081/qr-code.png"/>
+                            <img src="../../../../../../data/xsl/images/qr-code.png"/>
                         </div>
                     </header>
 

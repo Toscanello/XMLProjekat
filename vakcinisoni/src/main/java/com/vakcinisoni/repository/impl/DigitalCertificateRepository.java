@@ -43,7 +43,7 @@ public class DigitalCertificateRepository extends CrudRepository<DigitalCertific
         List<DigitalCertificate> all = (ArrayList<DigitalCertificate>) this.findAll("/certificate");
 
         List<DigitalCertificate> retVal = all.stream()
-                .filter(cert -> cert.getJmbg().equals(jmbg)).collect(Collectors.toList());
+                .filter(cert -> cert.getJmbg().getValue().equals(jmbg)).collect(Collectors.toList());
         return retVal;
     }
 

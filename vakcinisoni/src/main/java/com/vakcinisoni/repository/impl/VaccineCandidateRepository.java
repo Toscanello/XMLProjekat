@@ -49,12 +49,8 @@ public class VaccineCandidateRepository extends CrudRepository<VaccineCandidate>
     public List<VaccineCandidateWithId> findForJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         List<VaccineCandidateWithId> allWithId = findAllWithId();
         List<VaccineCandidateWithId> retVal = allWithId.stream()
-                .filter(vc -> vc.getVaccineCandidate().getJmbg().equals(jmbg))
+                .filter(vc -> vc.getVaccineCandidate().getJmbg().getValue().equals(jmbg))
                 .collect(Collectors.toList());
-//        List<VaccineCandidate> all = (ArrayList<VaccineCandidate>)this.findAll("/vaccineCandidate");
-//        List<VaccineCandidate> retVal = all.stream()
-//                .filter(vc -> vc.getJmbg().equals(jmbg))
-//                .collect(Collectors.toList());
         return retVal;
     }
 
