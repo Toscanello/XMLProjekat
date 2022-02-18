@@ -22,8 +22,6 @@ public class MedicalService implements IMedicalService {
     VaccinationReportRepository vaccinationReportRepository;
     @Autowired
     TermRepository termRepository;
-    @Autowired
-    MailerService mailerService;
 
     @Override
     public ImmunizationAccordance findOneByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -44,8 +42,8 @@ public class MedicalService implements IMedicalService {
             immunizationAccordanceRepository.save(immunizationAccordance);
             VaccinationReport vaccinationReport = new VaccinationReport(immunizationAccordance);
             vaccinationReportRepository.save(vaccinationReport);
-            //Term term = termRepository.createTermForNewVaccination(System.currentTimeMillis(),immunizationAccordance.getCity());
-            //MailerService.sendEmailForNewTerm(term,immunizationAccordance.getEmail(),immunizationAccordance.getName());
+            Term term = termRepository.createTermForNewVaccination(System.currentTimeMillis(),immunizationAccordance.getCity().getValue());
+            MailerService.sendEmailForNewTerm(term,immunizationAccordance.getEmail(),immunizationAccordance.getName().getValue());
             return immunizationAccordance;
         }
         return null;

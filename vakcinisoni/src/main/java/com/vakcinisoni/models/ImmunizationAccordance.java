@@ -6,6 +6,7 @@ import com.vakcinisoni.models.metadata.Surname;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -439,6 +440,9 @@ public class ImmunizationAccordance {
             @XmlElement(required = true)
             protected List<Row> row;
 
+            @XmlElement
+            protected Contraindications contraindications;
+
             public List<Row> getRow() {
                 if (row == null) {
                     row = new ArrayList<>();
@@ -449,6 +453,8 @@ public class ImmunizationAccordance {
             public void setRow(List<Row> row) {
                 this.row = row;
             }
+            public Contraindications getContraindications(){return  this.contraindications;}
+            public void setContraindications(Contraindications contraindications){this.contraindications=contraindications;}
 
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -545,6 +551,45 @@ public class ImmunizationAccordance {
                             ", manufacturer='" + manufacturer + '\'' +
                             ", reaction='" + reaction + '\'' +
                             '}';
+                }
+            }
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                    "diagnosis",
+                    "date",
+                    "permanent"
+            })
+            @XmlRootElement(name = "contraindications")
+            public static class Contraindications{
+                @XmlElement
+                protected String diagnosis;
+                @XmlElement
+                protected String date;
+                @XmlElement
+                protected String permanent;
+
+                public String getDiagnosis() {
+                    return diagnosis;
+                }
+
+                public void setDiagnosis(String diagnosis) {
+                    this.diagnosis = diagnosis;
+                }
+
+                public String getDate() {
+                    return date;
+                }
+
+                public void setDate(String date) {
+                    this.date = date;
+                }
+
+                public String getPermanent() {
+                    return permanent;
+                }
+
+                public void setPermanent(String permanent) {
+                    this.permanent = permanent;
                 }
             }
         }
