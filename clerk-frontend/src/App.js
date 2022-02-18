@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { DigitalRequestsPage } from "./pages/DigitalRequestsPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ImmunizationReport } from "./pages/ImmunizationReport";
+import { DigitalRequestsPage } from "./pages/DigitalRequestsPage";
 
 function App() {
   return (

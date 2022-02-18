@@ -23,7 +23,7 @@ public class DigitalCertificateRequestRepository extends CrudRepository<DigitalC
 
     public List<DigitalCertificateRequest> findByJmbg(String jmbg) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         List<DigitalCertificateRequest> allRequests = (ArrayList<DigitalCertificateRequest>) this.findAll("/certificateRequest");
-        List<DigitalCertificateRequest> newList = allRequests.stream().filter(acc->acc.getJmbg().equals(jmbg)).collect(Collectors.toList());
+        List<DigitalCertificateRequest> newList = allRequests.stream().filter(acc->acc.getJmbg().getValue().equals(jmbg)).collect(Collectors.toList());
         System.out.println("NASAO JE -> " + newList.size() + "  ZA JMBG: " + jmbg );
         return newList;
     }

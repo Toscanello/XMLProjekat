@@ -33,7 +33,7 @@ public class MailerService {
         return mailSender;
     }
 
-    public static String sendAcceptedMail(String email, String name, String attachment) {
+    public static String sendAcceptedMail(String email, String name, String pdfPath, String xhtmlPath) {
 
         MimeMessage message = getJavaMailSender().createMimeMessage();
         try {
@@ -43,8 +43,10 @@ public class MailerService {
             helper.setSubject("Zahtev za izdavanje digitalnog sertifikata");
             helper.setText("Postovani " + name + ",\n\nVas zahtev za digitalni sertifikat je prihvacen! Ispod se nalazi " +
                     "vas digitalni sertifikat koji mozete da skinete.\n\nSrdacan pozdrav, \nVakcinisoni");
-            FileSystemResource file = new FileSystemResource("/home/svetozar/Pictures/motor.jpg");
-            helper.addAttachment(Objects.requireNonNull(file.getFilename()), file);
+            FileSystemResource file1 = new FileSystemResource(pdfPath);
+            FileSystemResource file2 = new FileSystemResource(xhtmlPath);
+            helper.addAttachment(Objects.requireNonNull(file1.getFilename()), file1);
+            helper.addAttachment(Objects.requireNonNull(file2.getFilename()), file2);
 
         } catch (MessagingException e) {
             e.printStackTrace();

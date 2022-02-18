@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:3001";
+const API_3000 = "http://localhost:3000";
 const qs = require("querystring");
 
 export function getObjects(
@@ -98,6 +99,22 @@ export function downloadPdf(
 ) {
   axios
     .get(`${API_URL}/${path}/download/${documentId}`)
+    .then((response) => {
+      callback(response);
+    })
+    .catch((error) => {
+      errorCallback(error);
+    });
+}
+
+export function downloadHtml(
+  path,
+  documentId,
+  callback = defaultCallback,
+  errorCallback = defaultErrorCallback
+) {
+  axios
+    .get(`${API_3000}/${path}/downloadhtml/${documentId}`)
     .then((response) => {
       callback(response);
     })

@@ -1,0 +1,31 @@
+<ns2:certificate xmlns:pred="http://www.vakcinisoni.com/rdf/predicate" xmlns:ns2="http://www.vakcinisoni.com" about="http://www.vakcinisoni.com/DigitalCert/2509999880166" dateTime="2022-01-05T17:55:55">
+    <ns2:id>2</ns2:id>
+    <ns2:qrCode>http://www.vakcinisoni.com/DigitalCert/2509999880166</ns2:qrCode>
+    <ns2:fullName property="pred:fullName">Pera Peric</ns2:fullName>
+    <ns2:dateOfBirth>1999-08-07</ns2:dateOfBirth>
+    <ns2:jmbg property="pred:jmbg">0708999850006</ns2:jmbg>
+    <ns2:passportNum>00112233</ns2:passportNum>
+    <ns2:vaccination>
+        <ns2:dose count="1">
+            <ns2:type>Pfizer</ns2:type>
+            <ns2:manufacturer>BIONTECH MANUFACTURING</ns2:manufacturer>
+            <ns2:date>2021-11-06</ns2:date>
+            <ns2:batch>2245</ns2:batch>
+            <ns2:institution>DZ Ruma</ns2:institution>
+        </ns2:dose>
+        <ns2:dose count="2">
+            <ns2:type>KURCINA</ns2:type>
+            <ns2:manufacturer>BIONTECH MANUFACTURING</ns2:manufacturer>
+            <ns2:date>2021-11-06</ns2:date>
+            <ns2:batch>2245</ns2:batch>
+            <ns2:institution>DZ Ruma</ns2:institution>
+        </ns2:dose>
+        <ns2:dose count="3">
+            <ns2:type>KURCINA</ns2:type>
+            <ns2:manufacturer>BIONTECH MANUFACTURING</ns2:manufacturer>
+            <ns2:date>2021-11-06</ns2:date>
+            <ns2:batch>2245</ns2:batch>
+            <ns2:institution>DZ Ruma</ns2:institution>
+        </ns2:dose>
+    </ns2:vaccination>
+</ns2:certificate>

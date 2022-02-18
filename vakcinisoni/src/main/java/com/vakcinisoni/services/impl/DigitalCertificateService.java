@@ -65,7 +65,7 @@ public class DigitalCertificateService implements IDigitalCertificateService {
             String fullUrl = URL_BASE + id;
             QrService.makeNewQr(fullUrl, PATH_TO_QR);
             transformer.generatePDF();
-            return "success";
+                return "success";
         } catch (Exception e) {
             return "fail";
         }
