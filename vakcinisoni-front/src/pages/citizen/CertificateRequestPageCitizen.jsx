@@ -2,8 +2,13 @@ import { useState } from "react";
 import { postCertificateRequestObject } from "../../services/certificateRequestService";
 import { parseXmlToJs } from "../../services/parseService";
 import NavigationHeader from "../../components/header/NavigationHeader";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { convertToHTML } from "draft-convert";
 
 function CertificateRequestPageCitizen(){
+
+    const [richReason, setRichReason] = useState("");
 
     const[certificateRequest, setCertificateRequest] = useState({
         fullName: "",
@@ -12,19 +17,28 @@ function CertificateRequestPageCitizen(){
         jmbg: "",
         passportNum: "", // AUTOCOMPLETE?
         reason: "" //RICH EDIT?
-    })
+    });
     
     function handleSubmit(e){
+        alert(richReason);
         e.preventDefault();
         console.log(certificateRequest);
-        postCertificateRequestObject(certificateRequest, (response) => {
+        postCertificateRequestObject(certificateRequest, richReason, (response) => {
             console.log(response.data);
-            parseXmlToJs(response.data, (result) => {
-                alert(result.certificateRequest.fullName);
-            })
+            if(response.status === 200){
+                alert("Uspesno podnet zahtev!");
+            }
+            // parseXmlToJs(response.data, (result) => {
+            //     alert(result.certificateRequest.fullName);
+            // })
         })
     }
 
+    function handleEditorChange(e){
+        //console.log(e.getCurrentContent());
+        const html = convertToHTML(e.getCurrentContent())
+        setRichReason(html);
+    }
     return(
     <>
         <NavigationHeader />
@@ -55,8 +69,10 @@ function CertificateRequestPageCitizen(){
                 onChange={(e) => setCertificateRequest({...certificateRequest, passportNum: e.target.value})}/><br/>
 
             <label htmlFor="reason">Razlog za podnošenje zahteva:</label><br/>
-            <textarea name="reason" id="reason" cols="30" rows="10" 
-                onChange={(e) => setCertificateRequest({...certificateRequest, reason: e.target.value})}></textarea><br/>
+            <Editor 
+                onEditorStateChange={handleEditorChange}/>
+            {/* <textarea name="reason" id="reason" cols="30" rows="10" 
+                onChange={(e) => setCertificateRequest({...certificateRequest, reason: e.target.value})}></textarea><br/> */}
 
             <input className="button" type="submit" value="Pošalji" />
 
