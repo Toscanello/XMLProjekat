@@ -163,7 +163,7 @@ public class VaccineCandidate {
     public String toString() {
         String retVal = "";
         retVal += getStringFromResidence(residence);
-        retVal += "\nIme i prezime: " + name + " " + surname;
+        retVal += "\nIme i prezime: " + name.getValue() + " " + surname.getValue();
         retVal += "\nBroj mobilnog: " + phoneNum;
         retVal += "\nBroj fiksnog: " + homeNum;
         retVal += "\nTipovi vakcine: " + options;
