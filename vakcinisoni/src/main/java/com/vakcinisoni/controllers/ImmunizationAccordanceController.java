@@ -2,11 +2,13 @@ package com.vakcinisoni.controllers;
 
 import com.vakcinisoni.models.Accordances;
 import com.vakcinisoni.models.ImmunizationAccordance;
+import com.vakcinisoni.models.VaccinationReports;
 import com.vakcinisoni.services.IImmunizationAccordanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xmldb.api.base.XMLDBException;
 
 @RestController
 @RequestMapping(value = "accordances")
@@ -43,6 +45,10 @@ public class ImmunizationAccordanceController {
     public ResponseEntity<String> downloadHtml(@PathVariable String id){
         String ret = service.downloadHtml(id);
         return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+    @GetMapping(value = "/simple-search/{phrase}", produces = "application/xml")
+    public ResponseEntity<Accordances> findByPhrase(@PathVariable String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new ResponseEntity<>(service.findByPhrase(phrase),HttpStatus.OK);
     }
 
 }

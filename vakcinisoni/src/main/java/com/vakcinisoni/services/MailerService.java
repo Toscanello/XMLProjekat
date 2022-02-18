@@ -47,4 +47,19 @@ public class MailerService {
         }
         getJavaMailSender().send(message);
     }
+
+    public static void sendEmailForNewTerm(Term term, String email, String name){
+        MimeMessage message = getJavaMailSender().createMimeMessage();
+
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("baronimndjr@gmail.com");
+            helper.setTo(email);
+            helper.setSubject("Novi termin za sledeću vakcinaciju");
+            helper.setText("Postovani " + name + "\n\nVaš novi termin za vakcinaciju je" + term.toString());
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
+        getJavaMailSender().send(message);
+    }
 }

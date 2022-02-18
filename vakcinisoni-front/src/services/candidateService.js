@@ -1,4 +1,4 @@
-import { postObject } from "./axiosService"
+import { postObject, getObjects } from "./axiosService"
 
 const PATH = "candidates";
 
@@ -30,4 +30,10 @@ export function postCandidateObject(candidate, callback){
     `;
     xmlData = xmlData.replaceAll(',', '');
     postObject(`${PATH}/`, xmlData, callback);
+}
+
+export function getCandidatesForUser(callback){
+    let jmbg = "2509999880166";
+
+    getObjects(`${PATH}/filter/${jmbg}`, callback);
 }

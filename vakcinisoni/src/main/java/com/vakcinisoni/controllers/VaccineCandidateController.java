@@ -2,6 +2,7 @@ package com.vakcinisoni.controllers;
 
 import com.vakcinisoni.models.Term;
 import com.vakcinisoni.models.VaccineCandidate;
+import com.vakcinisoni.models.VaccineCandidates;
 import com.vakcinisoni.services.IVaccineCandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,12 @@ public class VaccineCandidateController {
     @GetMapping(value="/count")
     public ResponseEntity<Integer> count(){
         return new ResponseEntity<>(service.countDistinct(), HttpStatus.OK);
+    }
+
+    @GetMapping(value="/filter/{jmbg}", produces = "application/xml")
+    public ResponseEntity<VaccineCandidates> getAllForJmbg(@PathVariable String jmbg){
+        VaccineCandidates ret = service.findAllForJmbg(jmbg);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @GetMapping(value = "/download/{id}")

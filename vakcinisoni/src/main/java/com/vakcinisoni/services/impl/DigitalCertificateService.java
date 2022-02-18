@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
+import java.util.List;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,5 +87,21 @@ public class DigitalCertificateService implements IDigitalCertificateService {
         } catch (Exception e) {
             return "fail";
         }
+    }
+
+    @Override
+    public DigitalCertificates findAllByJmbg(String jmbg) {
+        try {
+            List<DigitalCertificate> certificates = repository.findAllByJmbg(jmbg);
+            return new DigitalCertificates(certificates);
+        } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public DigitalCertificates findByPhrase(String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new DigitalCertificates(repository.findAllbyPhrase(phrase));
     }
 }
