@@ -91,4 +91,9 @@ public class ImmunizationAccordanceService implements IImmunizationAccordanceSer
             return "fail";
         }
     }
+
+    @Override
+    public Accordances findByPhrase(String phrase) throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        return new Accordances(repository.findAllByPhrase(phrase));
+    }
 }
