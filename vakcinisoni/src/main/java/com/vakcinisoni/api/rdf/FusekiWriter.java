@@ -42,7 +42,6 @@ public class FusekiWriter {
 
         // Delete all of the triples in all of the named graphs
         UpdateRequest request = UpdateFactory.create();
-        request.add(SparqlUtil.dropAll());
 
         /*
          * Create UpdateProcessor, an instance of execution of an UpdateRequest.
