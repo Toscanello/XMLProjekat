@@ -1,10 +1,13 @@
+import { response } from "express";
 import { useEffect, useState } from "react";
+import { downloadHtml } from "../services/axiosService";
 import {
   acceptCertificateRequest,
   declineCertificateRequest,
   getCertificateRequests,
 } from "../services/digitalCertificatesService";
 import { parseXmlToJs } from "../services/parseService";
+import { SERVER_URL } from "../utils/constants";
 
 export const DigitalRequestsPage = () => {
   const [requests, setRequests] = useState([]);
@@ -22,7 +25,14 @@ export const DigitalRequestsPage = () => {
     });
   }, []);
 
-  const fetchCertificateRequest = (jmbg) => {};
+  const fetchCertificateRequest = (e) => {
+    const certId = e.target.id;
+    downloadHtml("certificate-requests", certId, () => {
+      if (response.status === 200) {
+        window.open(`${SERVER_URL}${response.data}`);
+      }
+    });
+  };
 
   const fetchVaccinationReport = (jmbg) => {};
 
@@ -71,7 +81,8 @@ export const DigitalRequestsPage = () => {
                   <tr>
                     <td>
                       <button
-                        onClick={() => fetchCertificateRequest(request.jmbg)}
+                        id={request.jmbg + "-" + (i + 1)}
+                        onClick={(e) => fetchCertificateRequest(e)}
                       >
                         Pregledaj zahtev za sertifikat
                       </button>
