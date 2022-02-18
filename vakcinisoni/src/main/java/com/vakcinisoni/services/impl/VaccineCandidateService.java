@@ -78,7 +78,7 @@ public class VaccineCandidateService implements IVaccineCandidateService {
     @Override
     public VaccineCandidates findAllForJmbg(String jmbg) {
         try {
-            List<VaccineCandidate> candidates = candidateRepository.findForJmbg(jmbg);
+            List<VaccineCandidateWithId> candidates = candidateRepository.findForJmbg(jmbg);
             return new VaccineCandidates(candidates);
         } catch (XMLDBException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();

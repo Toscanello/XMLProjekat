@@ -5,21 +5,21 @@ import java.util.List;
 
 @XmlRootElement(name = "vaccineCandidates")
 public class VaccineCandidates {
-    private List<VaccineCandidate> vaccineCandidate;
+    private List<VaccineCandidateWithId> vaccineCandidate;
 
     public VaccineCandidates(){
 
     }
 
-    public VaccineCandidates(List<VaccineCandidate> vaccineCandidate) {
+    public VaccineCandidates(List<VaccineCandidateWithId> vaccineCandidate) {
         this.vaccineCandidate = vaccineCandidate;
     }
 
-    public List<VaccineCandidate> getVaccineCandidate() {
+    public List<VaccineCandidateWithId> getVaccineCandidate() {
         return vaccineCandidate;
     }
 
-    public void setVaccineCandidate(List<VaccineCandidate> vaccineCandidate) {
+    public void setVaccineCandidate(List<VaccineCandidateWithId> vaccineCandidate) {
         this.vaccineCandidate = vaccineCandidate;
     }
 
