@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { parseXmlToJs } from "../services/parseService";
 import {
+  createVaccine,
+  deleteVaccine,
   getVaccines,
   updateVaccineQuantity,
 } from "../services/vaccinesService";
@@ -8,6 +10,11 @@ import {
 export const VaccinesPage = () => {
   const [vaccines, setVaccines] = useState([]);
   const [vaccineId, setVaccineId] = useState("");
+  const [newQuantity, setNewQuantity] = useState(0);
+
+  const [formVisible, setFormVisible] = useState(false);
+  const [manufacturer, setManufacturer] = useState("");
+  const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -20,7 +27,16 @@ export const VaccinesPage = () => {
   }, []);
 
   const handleUpdateVaccineQuantity = () => {
-    updateVaccineQuantity(vaccineId, quantity, window.location.reload());
+    updateVaccineQuantity(vaccineId, newQuantity, window.location.reload());
+  };
+
+  const handleCreateVaccine = () => {
+    createVaccine({ manufacturer, name, quantity }, window.location.reload());
+    setFormVisible(false);
+  };
+
+  const handleDeleteVaccine = (vaccineToDeleteId) => {
+    deleteVaccine(vaccineToDeleteId, window.location.reload());
   };
 
   return (
@@ -46,14 +62,19 @@ export const VaccinesPage = () => {
                       Izmeni kolicinu
                     </button>
                   </td>
+                  <td>
+                    <button onClick={() => handleDeleteVaccine(vaccine.id)}>
+                      Obrisi
+                    </button>
+                  </td>
                   {vaccineId && vaccine.id === vaccineId && (
                     <>
                       <td>
                         <input
                           type="number"
-                          value={quantity}
+                          value={newQuantity}
                           min="0"
-                          onChange={(e) => setQuantity(e.target.value)}
+                          onChange={(e) => setNewQuantity(e.target.value)}
                         />
                       </td>
                       <td>
@@ -68,6 +89,39 @@ export const VaccinesPage = () => {
             })}
         </tbody>
       </table>
+      <button onClick={() => setFormVisible(true)}>Kreiraj novu vakcinu</button>
+      <br />
+      <br />
+      {formVisible && (
+        <form>
+          Proizvodjac:
+          <br />
+          <input
+            type="text"
+            value={manufacturer}
+            onChange={(e) => setManufacturer(e.target.value)}
+          />
+          <br />
+          Naziv:
+          <br />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <br />
+          Kolicina:
+          <br />
+          <input
+            type="text"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          <br />
+          <br />
+          <button onClick={() => handleCreateVaccine()}>Kreiraj</button>
+        </form>
+      )}
     </>
   );
 };

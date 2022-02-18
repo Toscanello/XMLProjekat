@@ -1,4 +1,9 @@
-import { getObjects, postObject, putObject } from "./axiosService";
+import {
+  deleteObject,
+  getObjects,
+  postObject,
+  putObject,
+} from "./axiosService";
 
 const PATH = "vaccines";
 
@@ -22,4 +27,8 @@ export const updateVaccineQuantity = (vaccineId, quantity, callback) => {
     `${PATH}/${vaccineId}/quantity?quantity=${quantity}`,
     callback
   );
+};
+
+export const deleteVaccine = (vaccineId, callback) => {
+  return deleteObject(`${PATH}/${vaccineId}`, callback);
 };
